@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @commissioning.label %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @commissioning.description %>
+</p>
+
+<%= link_to 'Edit', edit_commissioning_path(@commissioning) %> |
+<%= link_to 'Back', commissionings_path %>

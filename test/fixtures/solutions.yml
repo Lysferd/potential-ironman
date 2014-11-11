@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  label: MyString
+  manufacturer_id: 
+  platform_id: 
+
+two:
+  label: MyString
+  manufacturer_id: 
+  platform_id: 

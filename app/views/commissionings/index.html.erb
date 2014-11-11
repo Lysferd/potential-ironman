@@ -1,0 +1,27 @@
+<h1>Listing commissionings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @commissionings.each do |commissioning| %>
+      <tr>
+        <td><%= commissioning.label %></td>
+        <td><%= commissioning.description %></td>
+        <td><%= link_to 'Show', commissioning %></td>
+        <td><%= link_to 'Edit', edit_commissioning_path(commissioning) %></td>
+        <td><%= link_to 'Destroy', commissioning, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Commissioning', new_commissioning_path %>

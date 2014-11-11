@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @solution.label %>
+</p>
+
+<p>
+  <strong>Manufacturer:</strong>
+  <%= @solution.manufacturer %>
+</p>
+
+<p>
+  <strong>Platform:</strong>
+  <%= @solution.platform %>
+</p>
+
+<%= link_to 'Edit', edit_solution_path(@solution) %> |
+<%= link_to 'Back', solutions_path %>
