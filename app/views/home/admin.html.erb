@@ -1,3 +1,10 @@
 <h1>Administration</h1>
+<ul>
+  <li><%= link_to "Manufacturers", manufacturers_path %></li>
+  <li><%= link_to "Platforms", platforms_path %></li>
+  <li><%= link_to "Solutions", solutions_path %></li>
+  <li><%= link_to "Commissionings", commissionings_path %></li>
+  <!--<li><%#= button_to "Manufacturers", manufacturers_path, method: :get %></li>-->
+</ul>
 
 <%= button_to "Logout" , logout_path, method: :delete %>

@@ -1,4 +1,8 @@
 class HomeController < ApplicationController
+
+  before_action :check_user, only: :index
+  skip_before_action :require_login, only: [ :index, :create ]
+
   def index
   end
 
@@ -17,5 +21,10 @@ class HomeController < ApplicationController
   def destroy
     session[:user_id] = nil
     redirect_to login_url, notice: 'Logged out.'
+  end
+
+  private
+  def check_user
+    redirect_to admin_url if session[:user_id]
   end
 end
