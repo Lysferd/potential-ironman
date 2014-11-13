@@ -1,0 +1,27 @@
+
+<div style="text-align: center;">
+  <h1>◇ Potential Ironman ◇</h1>
+
+  <%= form_tag( "login" ) do %>
+    <table style="margin-left: auto; margin-right: auto;">
+      <tr>
+        <td>Username:</td>
+        <td><%= text_field_tag :username, params[:username] %></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><%= password_field_tag :password, params[:password] %></td>
+      </tr>
+      <tr>
+        <td colspan="2"><%= submit_tag "Login" %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>
+
+<% if notice or alert %>
+  <div style="text-align: center;">
+    <p id="notice" style="font-weight: bold; color: green;"><%= notice %></p>
+    <p id="alert" style="font-weight: bold; color: red;"><%= alert %></p>
+  </div>
+<% end %>
