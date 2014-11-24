@@ -69,6 +69,6 @@ class SolutionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def solution_params
-      params.require(:solution).permit(:label, :manufacturer_id, :platform_id)
+      params.require(:solution).permit(:label, :description, :product_id, :platform_id)
     end
 end

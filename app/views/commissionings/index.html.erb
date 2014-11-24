@@ -1,29 +1,35 @@
-<h1>Listing commissionings</h1>
+<div id="title">Comissionings</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Label</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @commissionings.each do |commissioning| %>
+<div id="paper-big">
+  <table class="comm">
+    <thead class="thead">
       <tr>
-        <td><%= commissioning.label %></td>
-        <td><%= commissioning.description %></td>
-        <td><%= link_to 'Show', commissioning %></td>
-        <td><%= link_to 'Edit', edit_commissioning_path(commissioning) %></td>
-        <td><%= link_to 'Destroy', commissioning, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Label</th>
+        <th>Description</th>
+        <th>Client</th>
+        <th>Options</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody class="tbody">
+      <% @commissionings.each do |commissioning| %>
+        <tr>
+          <td><%= commissioning.label %></td>
+          <td><%= commissioning.description %></td>
+          <td><%= Client::find_by_id( commissioning.client_id ).label rescue "NIL" %></td>
+          <td><%= link_to "Details", commissioning %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tbody class="tbody2">
+      <tr>
+        <td colspan=4>
+          <%= button_to "New", new_commissioning_path, method: :get %>
+          <%= button_to "Back", admin_path, method: :get %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-<%= button_to 'New', new_commissioning_path, method: :get %>
 
-<%= button_to "Back", admin_path, method: :get %>

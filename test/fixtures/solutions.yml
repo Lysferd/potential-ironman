@@ -2,10 +2,12 @@
 
 one:
   label: MyString
-  manufacturer_id: 
+  description: MyText
+  product_id: 
   platform_id: 
 
 two:
   label: MyString
-  manufacturer_id: 
+  description: MyText
+  product_id: 
   platform_id: 

@@ -1,6 +1,6 @@
-class CreateCommissionings < ActiveRecord::Migration
+class CreateProductTypes < ActiveRecord::Migration
   def change
-    create_table :commissionings do |t|
+    create_table :product_types do |t|
       t.string :label
       t.text :description
 

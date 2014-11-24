@@ -1,0 +1,32 @@
+
+<div id="title">Clients</div>
+
+<div id="paper-big" style="width:500px;">
+  <table class="comm" style="width:500px;">
+    <thead class="thead">
+    <tr>
+      <th>Name</th>
+      <th colspan="4">Options</th>
+    </tr>
+  </thead>
+
+  <tbody class="tbody">
+    <% @clients.each do |client| %>
+      <tr>
+        <td><%= client.label %></td>
+        <td>|</td>
+        <td><%= link_to "Show", client %></td>
+        <td><%= link_to "Edit", edit_client_path(client) %></td>
+        <td><%= link_to "Destroy", client, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tbody class="tbody2">
+      <tr>
+        <td colspan=5>
+          <%= button_to "New", new_client_path, method: :get %>
+          <%= button_to "Back", admin_path, method: :get %>
+        </td>
+      </tr>
+  </tbody>
+</table>

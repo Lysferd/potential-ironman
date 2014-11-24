@@ -1,14 +1,43 @@
+<div id="title">Details for <%= @commissioning.label %></div>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Label:</strong>
-  <%= @commissioning.label %>
-</p>
+<div id="paper-big">
+  <table class="comm">
+    <thead class="thead">
+      <tr>
+        <th>Description</th>
+        <th><%= pluralize( @commissioning.users.size, "Commissioner" ).match( /\d+\s+([\w]+)/ )[1] %></th>
+        <th>Client</th>
+        <th>Created at</th>
+        <th>Updated at</th>
+      </tr>
+    </thead>
 
-<p>
-  <strong>Description:</strong>
-  <%= @commissioning.description %>
-</p>
-
-<%= link_to 'Edit', edit_commissioning_path(@commissioning) %> |
-<%= link_to 'Back', commissionings_path %>
+    <tbody class="tbody">
+        <tr>
+          <td><%= @commissioning.description %></td>
+          <td><% @commissioning.users.each_with_index do |u, i| %>
+            <%= link_to u.username, u %>
+            <% unless i+1 == @commissioning.users.size %>
+                <br>
+            <% end %>
+          <% end %></td>
+        <td><%= Client::find_by_id( @commissioning.client_id ).label %></td>
+        <td><%= @commissioning.created_at %></td>
+        <td><%= @commissioning.updated_at %></td>
+        </tr>
+    </tbody>
+    <tbody class="tbody2">
+      <tr>
+        <td colspan=5>
+          <%= button_to "Edit", edit_commissioning_path(@commissioning), method: :get %>
+          <% if is_admin? %>
+            <%= button_to "Delete", @commissioning, method: :delete, data: { confirm: "Are you sure?" } %>
+          <% end %>
+          <%= button_to "Back", commissionings_path, method: :get %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -18,7 +18,7 @@ class SolutionsControllerTest < ActionController::TestCase
 
   test "should create solution" do
     assert_difference('Solution.count') do
-      post :create, solution: { label: @solution.label, manufacturer_id: @solution.manufacturer_id, platform_id: @solution.platform_id }
+      post :create, solution: { description: @solution.description, label: @solution.label, platform_id: @solution.platform_id, product_id: @solution.product_id }
     end
 
     assert_redirected_to solution_path(assigns(:solution))
@@ -35,7 +35,7 @@ class SolutionsControllerTest < ActionController::TestCase
   end
 
   test "should update solution" do
-    patch :update, id: @solution, solution: { label: @solution.label, manufacturer_id: @solution.manufacturer_id, platform_id: @solution.platform_id }
+    patch :update, id: @solution, solution: { description: @solution.description, label: @solution.label, platform_id: @solution.platform_id, product_id: @solution.product_id }
     assert_redirected_to solution_path(assigns(:solution))
   end
 

@@ -1,27 +1,37 @@
 
-<div style="text-align: center;">
-  <h1>◇ Potential Ironman ◇</h1>
-
-  <%= form_tag( "login" ) do %>
-    <table style="margin-left: auto; margin-right: auto;">
-      <tr>
-        <td>Username:</td>
-        <td><%= text_field_tag :username, params[:username] %></td>
-      </tr>
-      <tr>
-        <td>Password:</td>
-        <td><%= password_field_tag :password, params[:password] %></td>
-      </tr>
-      <tr>
-        <td colspan="2"><%= submit_tag "Login" %></td>
-      </tr>
-    </table>
-  <% end %>
-</div>
-
 <% if notice or alert %>
   <div style="text-align: center;">
     <p id="notice" style="font-weight: bold; color: green;"><%= notice %></p>
     <p id="alert" style="font-weight: bold; color: red;"><%= alert %></p>
   </div>
 <% end %>
+
+<div id="title">Potential IronMan</div>
+<div id="login">
+  <div id="image">
+    <%= image_tag( "ib3.png" ) %>
+  </div>
+  
+  <%= form_tag( "login" ) do %>
+    <div class="input">
+      <%= text_field_tag :username, params[:username], placeholder: "Usuário", class: :text %>
+    </div>
+    <div class="spacer"></div>
+    <div class="input">
+    <%= password_field_tag :password, params[:password], placeholder: "Senha", class: :text %>
+    </div>
+    <div class="spacer"></div>
+    <div class="input">
+      <%= submit_tag "Login", { class: :button } %>
+    </div>
+  <% end %>
+  
+</div>
+
+<div class="spacer"></div>
+<div id="footer">
+  2014-2015 © <a href="www.ibtecnologia.com.br">IB Tecnologia & Sistemas LTDA</a>
+  <div id="image2">
+    <%= image_tag( "qpc.png" ) %>
+  </div>
+</div>

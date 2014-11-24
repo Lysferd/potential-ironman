@@ -24,7 +24,10 @@ class CommissioningsController < ApplicationController
   # POST /commissionings
   # POST /commissionings.json
   def create
-    @commissioning = Commissioning.new(commissioning_params)
+    p = commissioning_params
+    p[:users].delete( '' )
+    p[:users].collect! { |i| User.find_by_id(i.to_i) }
+    @commissioning = Commissioning.new(p)
 
     respond_to do |format|
       if @commissioning.save
@@ -40,8 +43,12 @@ class CommissioningsController < ApplicationController
   # PATCH/PUT /commissionings/1
   # PATCH/PUT /commissionings/1.json
   def update
+    p = commissioning_params
+    p[:users].delete( '' )
+    p[:users].collect! { |i| User.find_by_id(i.to_i) }
+    
     respond_to do |format|
-      if @commissioning.update(commissioning_params)
+      if @commissioning.update(p)
         format.html { redirect_to @commissioning, notice: 'Commissioning was successfully updated.' }
         format.json { render :show, status: :ok, location: @commissioning }
       else
@@ -69,6 +76,6 @@ class CommissioningsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def commissioning_params
-      params.require(:commissioning).permit(:label, :description)
+      params.require(:commissioning).permit(:label, :description, :client_id, :solutions_id, { users: [ ] })
     end
 end

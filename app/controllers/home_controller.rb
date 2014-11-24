@@ -7,9 +7,11 @@ class HomeController < ApplicationController
   end
 
   def admin
+    @id = session[:user_id]
   end
   
   def create
+    
     if user = User::authenticate( params[:username], params[:password] )
       session[:user_id] = user.id
       redirect_to admin_url

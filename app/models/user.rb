@@ -2,8 +2,12 @@ require( 'digest/sha2' )
 
 class User < ActiveRecord::Base
   
+  has_and_belongs_to_many :commissionings
+  has_many :activities
+  
   validates :username, presence: true, uniqueness: true
   validates :password, confirmation: true
+  validates :permission, presence: true
   
   attr_accessor :password_confirmation
   attr_reader   :password
