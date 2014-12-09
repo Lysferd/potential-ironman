@@ -1,4 +1,6 @@
-<div id="title">Activities</div>
+<% content_for( :title ) do %>
+  Activities
+<% end %>
 
 <div id="paper-big">
   <table class="comm">
@@ -9,7 +11,7 @@
       <th>Date start</th>
       <th>Date end</th>
       <th>User</th>
-      <th colspan="3"></th>
+      <th>Options</th>
     </tr>
     </thead>
 
@@ -21,16 +23,19 @@
         <td><%= activity.date_start %></td>
         <td><%= activity.date_end %></td>
         <td><%= activity.user %></td>
-        <td><%= link_to 'Show', activity %></td>
-        <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
-        <td><%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to "Show", activity %>
+          <%= link_to "Edit", edit_activity_path(activity) %>
+          <%= link_to "Destroy", activity, method: :delete, data: { confirm: "Are you sure?" } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
   <tbody class="tbody2">
       <tr>
-        <td colspan=8>
-          <%= button_get "New Activity", new_activity_path %>
+        <td colspan=6>
+          <%= button_get "New", new_activity_path %>
+          <%= button_get "Back", admin_path %>
         </td>
       </tr>
     </tbody>

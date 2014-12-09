@@ -6,8 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User::create username: 'Administrator',
-             password: '1',
-             password_confirmation: '1',
-             permission: 0
+#User::create username: 'Administrator',
+#             password: '1',
+#             password_confirmation: '1',
+#             permission: 0
+
+Manufacturer::create label: 'Lenel'
+ProductType::create label: 'Access Control'
+Product::create label: 'OnGuard',
+                product_type: ProductType.first.id,
+                manufacturer_id: Manufacturer.first.id
 

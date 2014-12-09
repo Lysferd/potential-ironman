@@ -1,5 +1,6 @@
 class ManufacturersController < ApplicationController
   before_action :set_manufacturer, only: [:show, :edit, :update, :destroy]
+  before_filter :check_for_cancel, :only => [:create, :update]
 
   # GET /manufacturers
   # GET /manufacturers.json
@@ -28,8 +29,8 @@ class ManufacturersController < ApplicationController
 
     respond_to do |format|
       if @manufacturer.save
-        format.html { redirect_to @manufacturer, notice: 'Manufacturer was successfully created.' }
-        format.json { render :show, status: :created, location: @manufacturer }
+        format.html { redirect_to manufacturers_url, notice: 'Manufacturer was successfully created.' }
+        format.json { render :index, status: :created, location: manufacturers_url }
       else
         format.html { render :new }
         format.json { render json: @manufacturer.errors, status: :unprocessable_entity }
@@ -42,8 +43,8 @@ class ManufacturersController < ApplicationController
   def update
     respond_to do |format|
       if @manufacturer.update(manufacturer_params)
-        format.html { redirect_to @manufacturer, notice: 'Manufacturer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @manufacturer }
+        format.html { redirect_to manufacturers_url, notice: 'Manufacturer was successfully updated.' }
+        format.json { render :index, status: :ok, location: manufacturers_url }
       else
         format.html { render :edit }
         format.json { render json: @manufacturer.errors, status: :unprocessable_entity }
@@ -62,13 +63,18 @@ class ManufacturersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_manufacturer
-      @manufacturer = Manufacturer.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_manufacturer
+    @manufacturer = Manufacturer.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def manufacturer_params
-      params.require(:manufacturer).permit(:label)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def manufacturer_params
+    params.require(:manufacturer).permit(:label)
+  end
+
+  # Cancels data update/creation in case cancel button is pressed.
+  def check_for_cancel
+    redirect_to( manufacturers_path, notice: 'Changes discarded.' ) if params[:commit] == 'Cancel'
+  end
 end

@@ -1,3 +1,5 @@
 class Manufacturer < ActiveRecord::Base
-  # has_many :solutions
+  
+  has_many :products
+  
 end

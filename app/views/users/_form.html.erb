@@ -12,6 +12,10 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :fullname %><br>
+    <%= f.text_field :fullname %>
+  </div>
+  <div class="field">
     <%= f.label :username %><br>
     <%= f.text_field :username %>
   </div>
@@ -24,10 +28,11 @@
     <%= f.password_field :password_confirmation %>
   </div>
   <div class="field">
-    <%= f.label :permission %><br>
-    <%= f.select :permission, { Administrator: 0, Commissioner: 1, Viewer: 2 } %>
+    <%= f.label :permission_id %><br>
+    <%= f.select :permission_id, Permission::all.collect { |p| [ p.label, p.id ] } %>
   </div>
   <div class="actions">
     <%= f.submit %>
+    <%= f.submit "Cancel" %>
   </div>
 <% end %>

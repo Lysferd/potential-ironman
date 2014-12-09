@@ -1,6 +1,7 @@
 class SolutionsController < ApplicationController
   before_action :set_solution, only: [:show, :edit, :update, :destroy]
-
+  before_filter :check_for_cancel, :only => [:create, :update]
+  
   # GET /solutions
   # GET /solutions.json
   def index
@@ -62,13 +63,18 @@ class SolutionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_solution
-      @solution = Solution.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_solution
+    @solution = Solution.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def solution_params
-      params.require(:solution).permit(:label, :description, :product_id, :platform_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def solution_params
+    params.require(:solution).permit(:label, :description, :product_id, :platform_id)
+  end
+  
+  # Cancels data update/creation in case cancel button is pressed.
+  def check_for_cancel
+    redirect_to( solutions_path, notice: 'Changes discarded.' ) if params[:commit] == 'Cancel'
+  end
 end

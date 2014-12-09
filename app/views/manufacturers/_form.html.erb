@@ -10,12 +10,16 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :label %><br>
-    <%= f.text_field :label %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  
+  <div id="menu-wide">
+    <div class="field">
+      <%= f.text_field :label, placeholder: "Label" %>
+    </div>
+    
+    <div class="action">
+      <%= f.submit "Create" %>
+      <%= f.submit "Cancel" %>
+    </div>
+    
   </div>
 <% end %>

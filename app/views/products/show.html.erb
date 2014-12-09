@@ -1,14 +1,39 @@
-<p id="notice"><%= notice %></p>
+<% content_for( :title ) do %>
+Details of <%= @product.label %>
+<% end %>
 
-<p>
+
+<div id="paper-big" style="width: 500px;">
+  <table class="comm">
+    <thead class="thead3">
+      <tr>
+        <th>Basic Information</th>
+      </tr>
+    </thead>
+        
+    <tbody class="tbody">
+      <tr>
+        <td>
   <strong>Label:</strong>
   <%= @product.label %>
-</p>
-
-<p>
-  <strong>Description:</strong>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <strong>Description:</strong>
   <%= @product.description %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+      </td>
+      </tr>      
+    </tbody>
+    
+     
+    <tbody class="tbody2">
+      <tr>
+        <td>
+<%= button_get 'Edit', edit_product_path(@product) %>
+<%= button_get 'Back', products_path %>
+       </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

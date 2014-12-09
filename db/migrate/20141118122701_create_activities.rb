@@ -5,7 +5,8 @@ class CreateActivities < ActiveRecord::Migration
       t.text :description
       t.timestamp :date_start
       t.timestamp :date_end
-      t.references :user, index: true
+      t.integer :commissioning_id
+      t.integer :user_id
 
       t.timestamps
     end

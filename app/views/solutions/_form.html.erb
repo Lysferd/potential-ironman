@@ -1,3 +1,4 @@
+<br/><br/><br/><br/><br/><br/><br/>
 <%= form_for(@solution) do |f| %>
   <% if @solution.errors.any? %>
     <div id="error_explanation">
@@ -10,7 +11,14 @@
       </ul>
     </div>
   <% end %>
-
+<div id="menu-wide">
+  <table class="comm3">
+    <thead class="thead3">
+      <tr>
+      <th colspan="2">Description<br></th>
+      </tr>
+    </thead>
+  </table>
   <div class="field">
     <%= f.label :label %><br>
     <%= f.text_field :label %>
@@ -27,7 +35,9 @@
     <%= f.label :platform_id %><br>
     <%= f.text_field :platform_id %>
   </div>
-  <div class="actions">
+  <div class="action">
     <%= f.submit %>
+    <%= f.submit "Cancel" %>
   </div>
-<% end %>
+  <% end %>
+</div>

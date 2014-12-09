@@ -1,15 +1,21 @@
 class CommissioningsController < ApplicationController
   before_action :set_commissioning, only: [:show, :edit, :update, :destroy]
+  before_filter :check_for_cancel, :only => [:create, :update]
 
   # GET /commissionings
   # GET /commissionings.json
   def index
-    @commissionings = Commissioning.all
+    @commissionings = Commissioning::order( 'label' )
   end
 
   # GET /commissionings/1
   # GET /commissionings/1.json
   def show
+  end
+  
+  def add_user
+    @f = params[:form]
+    render( 'add_user', format: :js )
   end
 
   # GET /commissionings/new
@@ -26,8 +32,17 @@ class CommissioningsController < ApplicationController
   def create
     p = commissioning_params
     p[:users].delete( '' )
-    p[:users].collect! { |i| User.find_by_id(i.to_i) }
-    @commissioning = Commissioning.new(p)
+    p[:users].unshift( session[:user_id] )
+    p[:users].collect! { |i| User.find( i.to_i ) }
+    p[:owner_id] = session[:user_id]
+    
+    # Debugging purposes.
+    # logger.debug '=' * 32
+    # logger.debug "Size: #{p[:users].size}"
+    # logger.debug "Users: #{p[:users]}"
+    # logger.debug '=' * 32
+    
+    @commissioning = Commissioning.new( p )
 
     respond_to do |format|
       if @commissioning.save
@@ -45,7 +60,7 @@ class CommissioningsController < ApplicationController
   def update
     p = commissioning_params
     p[:users].delete( '' )
-    p[:users].collect! { |i| User.find_by_id(i.to_i) }
+    p[:users].collect! { |i| User.find( i.to_i ) }
     
     respond_to do |format|
       if @commissioning.update(p)
@@ -57,7 +72,7 @@ class CommissioningsController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /commissionings/1
   # DELETE /commissionings/1.json
   def destroy
@@ -69,13 +84,18 @@ class CommissioningsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_commissioning
-      @commissioning = Commissioning.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def commissioning_params
-      params.require(:commissioning).permit(:label, :description, :client_id, :solutions_id, { users: [ ] })
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_commissioning
+    @commissioning = Commissioning.find(params[:id])
+  end
+  
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def commissioning_params
+    params.require(:commissioning).permit(:label, :description, :client_id, { users: [ ], active_users: [ ], solutions: [ ], activities: [ ] })
+  end
+  
+  # Cancels data update/creation in case cancel button is pressed.
+  def check_for_cancel
+    redirect_to( commissionings_path, notice: 'Changes discarded.' ) if params[:commit] == 'Cancel'
+  end
 end

@@ -1,37 +1,25 @@
-
-<% if notice or alert %>
-  <div style="text-align: center;">
-    <p id="notice" style="font-weight: bold; color: green;"><%= notice %></p>
-    <p id="alert" style="font-weight: bold; color: red;"><%= alert %></p>
-  </div>
+<% content_for( :title ) do %>
+  Administração
+  <p>Logado como: <%= current_user.fullname %></p>
 <% end %>
 
-<div id="title">Potential IronMan</div>
-<div id="login">
-  <div id="image">
-    <%= image_tag( "ib3.png" ) %>
-  </div>
-  
-  <%= form_tag( "login" ) do %>
-    <div class="input">
-      <%= text_field_tag :username, params[:username], placeholder: "Usuário", class: :text %>
-    </div>
-    <div class="spacer"></div>
-    <div class="input">
-    <%= password_field_tag :password, params[:password], placeholder: "Senha", class: :text %>
-    </div>
-    <div class="spacer"></div>
-    <div class="input">
-      <%= submit_tag "Login", { class: :button } %>
-    </div>
-  <% end %>
-  
-</div>
-
-<div class="spacer"></div>
-<div id="footer">
-  2014-2015 © <a href="www.ibtecnologia.com.br">IB Tecnologia & Sistemas LTDA</a>
-  <div id="image2">
-    <%= image_tag( "qpc.png" ) %>
+<div id="menu">
+  <div class="input">
+    <%= button_get( "Comissionamentos", commissionings_path) %>
+    <%#= button_get( "Atividades", activities_path ) %>
+    <%#= button_get( "Soluções", solutions_path ) %>
+    
+    <%= button_get( "Clientes", clients_path ) %>
+    <%= button_get( "Produtos", products_path ) %>
+    
+    <%= button_get( "Tipos de Produtos", product_types_path ) %>
+    <%= button_get( "Fabricantes", manufacturers_path ) %>
+    
+    <%= button_get( "Usuários", users_path ) %>
+    <%= button_get( "Certificados", certifications_path ) %>
+    <%= button_get( "Permissões", permissions_path ) %>
+    
+    <%= button_delete( "Finalizar Sessão", destroy_user_session_path,
+        data: { confirm: "This will terminate your login session. Continue?" } ) %>
   </div>
 </div>

@@ -1,12 +1,14 @@
+<% content_for( :title ) do %>
+  Clients
+<% end %>
 
-<div id="title">Clients</div>
 
-<div id="paper-big" style="width:500px;">
-  <table class="comm" style="width:500px;">
+<div id="paper-big">
+  <table class="comm">
     <thead class="thead">
     <tr>
       <th>Name</th>
-      <th colspan="4">Options</th>
+      <th>Options</th>
     </tr>
   </thead>
 
@@ -14,19 +16,21 @@
     <% @clients.each do |client| %>
       <tr>
         <td><%= client.label %></td>
-        <td>|</td>
-        <td><%= link_to "Show", client %></td>
-        <td><%= link_to "Edit", edit_client_path(client) %></td>
-        <td><%= link_to "Destroy", client, method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <td>
+          <%= link_to "Show", client %>
+          <%= link_to "Edit", edit_client_path(client) %>
+          <%= link_to "Destroy", client, method: :delete, data: { confirm: "Are you sure?" } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
   <tbody class="tbody2">
       <tr>
         <td colspan=5>
-          <%= button_to "New", new_client_path, method: :get %>
-          <%= button_to "Back", admin_path, method: :get %>
+          <%= button_get "New", new_client_path %>
+          <%= button_get "Back", admin_path %>
         </td>
       </tr>
   </tbody>
 </table>
+</div>

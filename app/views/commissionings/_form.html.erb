@@ -1,4 +1,3 @@
-
 <%= form_for(@commissioning) do |f| %>
   <% if @commissioning.errors.any? %>
     <div id="error_explanation">
@@ -12,27 +11,59 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :label %><br>
-    <%= f.text_field :label %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :client_id %><br>
-    <%= f.select :client_id, Client::all.collect { |c| [ c.label, c.id ] } %>
-  </div>
-  <div class="field">
-    <%= f.label :users %><br>
-    <% for user in User::all do %>
-      <%= f.check_box :users, {}, user.id, "" %> <%= user.username %><br>
-    <% end %>?
-    <%#= User::find_by_id( session[:user_id] ).username %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-    <%= button_get "Back", commissionings_path %>
+  <div id="menu-wide">
+    <table class="comm3">
+      <thead class="thead3">
+        <tr>
+          <th colspan="2">Basic Information</th>
+        </tr>
+      </thead>
+    </table>
+    
+    <div class="field">
+      <%= f.text_field :label, placeholder: :label, class: "data" %>
+    </div>
+    
+    <div class="field">
+      <%= f.text_area :description, placeholder: :description %>
+    </div>
+    
+    <div class="field">
+      <div class="comission">
+        <%= f.select :client_id, Client::all.collect { |c| [ c.label, c.id ] }, {include_blank: "Client" } %>
+      </div>
+    </div>
+    
+    <div class="field">
+      <table class="comm3">
+        <thead class="thead3">
+          <tr>
+            <th colspan="4"><%= f.label :users %></th>
+          </tr>
+        </thead>
+        
+        <tbody class="tbody3">
+          <tr>
+            <% User::all.each_with_index do | user, i | %>
+              <td>
+                  <%= f.check_box :users, { multiple: true }, user.id, "" %>
+                  <%= f.label :users, user.fullname %>
+              </td>
+              <% if (i + 1) % 2 == 0 %>
+                </tr><tr>
+              <% end %>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="action">
+      <%= f.submit "Create"%>
+      <%= f.submit "Cancel" %>
+    </div>
+    
   </div>
 <% end %>
+                      #checked: current_user == user ? true : false,
+                      #disabled: current_user == user ? false : false

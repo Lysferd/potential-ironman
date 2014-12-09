@@ -1,17 +1,15 @@
 class HomeController < ApplicationController
 
-  before_action :check_user, only: :index
-  skip_before_action :require_login, only: [ :index, :create ]
+  #before_action :check_user, only: :index
+  #skip_before_action :require_login, only: [ :index, :create ]
 
   def index
   end
 
   def admin
-    @id = session[:user_id]
   end
-  
+=begin 
   def create
-    
     if user = User::authenticate( params[:username], params[:password] )
       session[:user_id] = user.id
       redirect_to admin_url
@@ -29,4 +27,5 @@ class HomeController < ApplicationController
   def check_user
     redirect_to admin_url if session[:user_id]
   end
+=end
 end

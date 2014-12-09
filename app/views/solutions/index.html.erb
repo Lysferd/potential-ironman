@@ -1,4 +1,7 @@
-<div id="title">Solutions</div>
+<% content_for( :title ) do %>
+  Solutions
+<% end %>
+
 
 <div id="paper-big">
   <table class="comm">
@@ -8,7 +11,7 @@
       <th>Description</th>
       <th>Product</th>
       <th>Platform</th>
-      <th colspan="3">Options</th>
+      <th>Options</th>
     </tr>
   </thead>
 
@@ -19,17 +22,19 @@
         <td><%= solution.description %></td>
         <td><%= Product::find_by_id( solution.product_id ).label %></td>
         <td><%= Platform::find_by_id( solution.platform_id ).label %></td>
-        <td><%= link_to 'Show', solution %></td>
-        <td><%= link_to 'Edit', edit_solution_path(solution) %></td>
-        <td><%= link_to 'Destroy', solution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to "Show", solution %>
+          <%= link_to "Edit", edit_solution_path(solution) %>
+          <%= link_to "Destroy", solution, method: :delete, data: { confirm: "Are you sure?" } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
   <tbody class="tbody2">
       <tr>
-        <td colspan=7>
-          <%= button_to "New", new_solution_path, method: :get %>
-          <%= button_to "Back", admin_path, method: :get %>
+        <td colspan=5>
+          <%= button_get "New", new_solution_path %>
+          <%= button_get "Back", admin_path %>
         </td>
       </tr>
     </tbody>

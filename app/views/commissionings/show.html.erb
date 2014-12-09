@@ -1,12 +1,15 @@
-<div id="title">Details for <%= @commissioning.label %></div>
+<% if notice %>
+  <div id="notice"><%= notice %></div>
+<% end %>
 
-<p id="notice"><%= notice %></p>
+<div id="title">Details of <%= @commissioning.label %></div>
 
-<div id="paper-big">
+<div id="paper-big" style="width: 800px;">
   <table class="comm">
     <thead class="thead">
       <tr>
         <th>Description</th>
+        <th>Owner</th>
         <th><%= pluralize( @commissioning.users.size, "Commissioner" ).match( /\d+\s+([\w]+)/ )[1] %></th>
         <th>Client</th>
         <th>Created at</th>
@@ -17,27 +20,37 @@
     <tbody class="tbody">
         <tr>
           <td><%= @commissioning.description %></td>
-          <td><% @commissioning.users.each_with_index do |u, i| %>
-            <%= link_to u.username, u %>
-            <% unless i+1 == @commissioning.users.size %>
-                <br>
+          <td><%= link_to User::find_by_id( @commissioning.owner_id ).fullname, user_path( @commissioning.owner_id ) %></td>
+          <td>
+            <% if @commissioning.users.empty? %>
+              None
+            <% else %>
+              <% @commissioning.users.each_with_index do |u, i| %>
+                <%= link_to u.fullname, u %>
+                <%= "<br/>" unless i+1 == @commissioning.users.size %>
+             <% end %>
             <% end %>
-          <% end %></td>
-        <td><%= Client::find_by_id( @commissioning.client_id ).label %></td>
-        <td><%= @commissioning.created_at %></td>
-        <td><%= @commissioning.updated_at %></td>
+          </td>
+          <td><%= link_to Client::find( @commissioning.client_id ).label, client_path( @commissioning.client_id ) %></td>
+          <td><%= @commissioning.created_at.to_s( :db ) %></td>
+          <td><%= @commissioning.updated_at.to_s( :db ) %></td>
         </tr>
     </tbody>
     <tbody class="tbody2">
       <tr>
-        <td colspan=5>
-          <%= button_to "Edit", edit_commissioning_path(@commissioning), method: :get %>
-          <% if is_admin? %>
+        <td colspan=6>
+          <%= button_get "Edit", edit_commissioning_path(@commissioning) %>
+          <%# if is_admin? %>
             <%= button_to "Delete", @commissioning, method: :delete, data: { confirm: "Are you sure?" } %>
-          <% end %>
-          <%= button_to "Back", commissionings_path, method: :get %>
+          <%# end %>
+          <%= button_get "Back", commissionings_path %>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<br/>
+<%= render "details_solutions" %>
+<br/>
+<%= render "details_activities" %>

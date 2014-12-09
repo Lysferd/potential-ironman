@@ -10,7 +10,15 @@
       </ul>
     </div>
   <% end %>
-
+  
+<div id="menu-wide">
+  <table class="comm3">
+    <thead class="thead3">
+      <tr>
+      <th colspan="2">Description<br></th>
+      </tr>
+    </thead>
+  </table>
   <div class="field">
     <%= f.label :label %><br>
     <%= f.text_field :label %>
@@ -20,18 +28,23 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
+  <div class="activity">
     <%= f.label :date_start %><br>
-    <%= f.datetime_select :date_start %>
-  </div>
+    <%= f.text_field :date_start %>
+  </div></div>
   <div class="field">
+  <div class="activity">
     <%= f.label :date_end %><br>
-    <%= f.datetime_select :date_end %>
-  </div>
+    <%= f.text_field :date_end %>
+  </div></div>
   <div class="field">
     <%= f.label :user_id %><br>
     <%= f.text_field :user_id %>
   </div>
   <div class="actions">
     <%= f.submit %>
+    <%= f.submit "Cancel" %>
   </div>
-<% end %>
+  <% end %>
+
+</div>

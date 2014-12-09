@@ -1,9 +1,37 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div id="notice">
+    <%= notice %>
+  </div>
+<% end %>
 
-<p>
-  <strong>Label:</strong>
-  <%= @client.label %>
-</p>
+<div id="title">Details for <%= @client.label %></div>
 
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+<div id="paper-big" style="width: 500px;">
+  <table class="comm">
+    <thead class="thead3">
+      <tr>
+        <th>Basic Information</th>
+      </tr>
+    </thead>
+    
+    <tbody class="tbody">
+      <tr>
+        <td>
+          <strong>Label:</strong>
+          <%= @client.label %>
+        </td>
+      </tr>
+    </tbody>
+    
+    <tbody class="tbody2">
+      <tr>
+        <td>
+          <%= button_get "Edit", edit_client_path(@client) %>
+          <%= button_get "Back", clients_path %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+

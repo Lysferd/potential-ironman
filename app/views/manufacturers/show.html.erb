@@ -1,9 +1,38 @@
-<p id="notice"><%= notice %></p>
+<% content_for( :title ) do %>
+  Details for <%= @manufacturer.label %>
+<% end %>
 
-<p>
+<div id="paper-big" style="width: 500px;">
+  <table class="comm">
+    <thead class="thead3">
+      <tr>
+        <th>Basic Information</th>
+      </tr>
+    </thead>
+        
+    <tbody class="tbody">
+      <tr>
+        <td>
   <strong>Label:</strong>
-  <%= @manufacturer.label %>
-</p>
-
+label
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <strong>Description:</strong>
+descrip
+      </td>
+      </tr>      
+    </tbody>
+    
+     
+    <tbody class="tbody2">
+      <tr>
+        <td>
 <%= link_to 'Edit', edit_manufacturer_path(@manufacturer) %> |
 <%= link_to 'Back', manufacturers_path %>
+       </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
