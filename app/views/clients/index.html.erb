@@ -2,35 +2,34 @@
   Clients
 <% end %>
 
-
-<div id="paper-big">
-  <table class="comm">
-    <thead class="thead">
-    <tr>
-      <th>Name</th>
-      <th>Options</th>
-    </tr>
-  </thead>
-
-  <tbody class="tbody">
-    <% @clients.each do |client| %>
+<div id="paper">
+  <table>
+    <thead>
       <tr>
-        <td><%= client.label %></td>
-        <td>
-          <%= link_to "Show", client %>
-          <%= link_to "Edit", edit_client_path(client) %>
-          <%= link_to "Destroy", client, method: :delete, data: { confirm: "Are you sure?" } %>
-        </td>
+        <th>Name</th>
+        <th>Options</th>
       </tr>
-    <% end %>
-  </tbody>
-  <tbody class="tbody2">
+    </thead>
+
+    <tbody class="data">
+      <% @clients.each do |client| %>
+        <tr>
+          <td><%= client.label %></td>
+          <td>
+            <%= link_to "Show", client %>
+            <%= link_to "Edit", edit_client_path(client) %>
+            <%= link_to "Destroy", client, method: :delete, data: { confirm: "Are you sure?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tbody class="commands">
       <tr>
-        <td colspan=5>
+        <td colspan=2>
           <%= button_get "New", new_client_path %>
           <%= button_get "Back", admin_path %>
         </td>
       </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 </div>

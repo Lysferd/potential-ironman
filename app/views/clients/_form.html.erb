@@ -1,3 +1,5 @@
+<div id="formy" style="width: 370px;">
+
 <%= form_for(@client) do |f| %>
   <% if @client.errors.any? %>
     <div id="error_explanation">
@@ -12,23 +14,17 @@
   <% end %>
 
 
-<div id="menu-wide">
-  <table class="comm">
-    <thead class="thead3">
-      <tr>
-        <th colspan="2">Basic Information</th>
-      </tr>
-    </thead>
-  </table>
+<div class="spacer"></div>
   
   <div class="field">
-    <%= f.label :label %><br>
-    <%= f.text_field :label %>
+    <%= f.label :label, placeholder: "Label" %><br>
+    <%= f.text_field :label, placeholder: "Description" %>
   </div>
   
-  <div class="action">
+  <div id="commands"><div class="spacer"></div>
     <%= f.submit "Create"%>
     <%= f.submit "Cancel" %>
   </div>
-</div>
+
 <% end %>
+</div>

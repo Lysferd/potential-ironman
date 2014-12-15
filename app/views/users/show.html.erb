@@ -1,16 +1,55 @@
-<p id="notice"><%= notice %></p>
+<% content_for( :title ) do %>
+  Details for user: <%= @user.name %>
+<% end %>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
-
-<p>
-  <strong>Commissionings:</strong>
-  <% @user.commissionings.collect do |c| %>
-    <%= link_to c.label, c %>
-  <% end %>
-</p>
-
-<%= link_to "Edit", edit_user_path(@user) %> |
-<%= link_to "Back", users_path %>
+<div id="paper">
+  <table>
+    <tbody class="data">
+      <tr>
+        <td>E-Mail:</td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td>Registro Geral:</td>
+        <td><%= @user.reg || "Não informado." %></td>
+      </tr>
+      <tr>
+        <td>Cadastro de Pessoa Física:</td>
+        <td><%= @user.cpf || "Não informado." %></td>
+      </tr>
+      <tr>
+        <td>Carteira de Trabalho e Previdência Social:</td>
+        <td><%= @user.ctps || "Não informado." %></td>
+      </tr>
+      <tr>
+        <td>Conceito Institucional:</td>
+        <td><%= @user.ci || "Não informado." %></td>
+      </tr>
+      <tr>
+        <td>Programa de Integração Social:</td>
+        <td><%= @user.pis || "Não informado." %></td>
+      </tr>
+      <tr>
+        <td>Commissionings:</td>
+        <td>
+          <% if @user.commissionings.empty? %>
+            There are no commissionings.
+          <% else %>
+            <% @user.commissionings.collect do |c| %>
+              <%= link_to c.label, c %><br />
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+    
+    <tbody class="commands">
+      <tr>
+        <td colspan=2>
+          <%= button_get "Edit", edit_user_registration_path(@user) %>
+          <%= button_get "Back", users_path %>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

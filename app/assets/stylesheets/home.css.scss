@@ -10,7 +10,7 @@
   padding-top: 30px;
   position: fixed;
   width: 100%;
-  height: 70px;
+  height: 90px;
   box-shadow: 0px 0px 15px #888888;
   text-align: center;
   font-variant: small-caps;
@@ -22,6 +22,12 @@
 body {
   background-color: #EEEEEE;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
 }
 
 
@@ -49,90 +55,125 @@ body {
 }
 
 
-// Contents //
-
+// BEGIN OF CONTENTS //
 #contents {
   
-  //turn in paper-big table
-  table {
-    .comm {
+  // BEGIN OF PAPER-BIG //
+  #paper {
+    position: relative;
+    top: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFFFFF; //Branco 0 - Google Material Design Pallete
+    width: 600px;
+    height: auto;
+    box-shadow: 0px 0px 5px #455A64;
+    
+    input {
+      color: white;
+      letter-spacing: 2px;
+      background-color: #4DB6AC; //Verde Petróleo 500 - Google Material Design Pallete
+      width: 180px;
+      height: 30px;
+      border: 0;
+      
+      &:hover {
+        background-color:#26A69A; //Verde Petróleo 400 - Google Material Design Pallete
+      }
+    }
+    
+    .button_to {
+      display: inline;
+      
+      div {
+        display: inline;
+      }
+    }
+    
+    // BEGIN OF GENERIC TABLE //
+    table {
       width: inherit;
       text-align: center;
       padding: 5px;
       border-collapse: collapse;
-    }
-    
-    // fixme: is this necessary?
-    .comm3 {
-      width: 350px;
-      text-align: center;
-      padding: 5px;
-      border-collapse: collapse;
-    }
-    
-    .thead {
-      color: #424242;  //Cinza 800 - Google Material Design Pallete
-      line-height: 60px;
-      font-size: 15px;
-    }
-    
-    .tbody {
-      color: #757575; //Cinza 600 - Google Material Design Pallete
+      padding-top: 100px;
+      margin-left: auto;
+      margin-right: auto;
       
-      a {
-        color: #00BFA5; //Verde Petróleo 400 - Google Material Design Pallete
+      // BEGIN OF GENERIC THEAD //
+      thead {
+        color: #424242;  //Cinza 800 - Google Material Design Pallete
+        line-height: 60px;
+        font-size: 15px;
       }
+      // END OF GENERIC THEAD //
       
-      tr {
-        height: 30px;
+      // BEGIN OF TABLE DATA //
+      .data {
+        color: #757575; //Cinza 600 - Google Material Design Pallete
+        
+        a {
+          color: #00BFA5; //Verde Petróleo 400 - Google Material Design Pallete
+        }
+        
+        tr {
+          height: 30px;
+          
+          &:nth-child( odd ) {
+            background: #F5F5F5; //Cinza 100 - Google Material Design Pallete
+          }
+        }
+        
+        td { 
+          width: 150px;
+        }
       }
+      // END OF TABLE DATA //
       
-      tr:nth-child( odd ) { 
-        background: #F5F5F5; //Cinza 100 - Google Material Design Pallete
-      }
-      
-      td { 
-        width: 150px;
-      }
-    }
-    
-    .tbody2 {
-      tr {
+      // BEGIN OF TABLE COMMANDS //
+      .commands tr {
         height: 60px;
       }
+      // END OF TABLE COMMANDS //
     }
-    
-    .thead3 {
-      color: #424242;  //Cinza 800 - Google Material Design Pallete
-      line-height: 60px;
-      font-size: 15px;
-    }
-    
-    .tbody3 {
-      color: #757575; //Cinza 600 - Google Material Design Pallete
-      
-      a {
-        color: #00BFA5; //Verde Petróleo 400 - Google Material Design Pallete
-      }
-      
-      tr {
-        height: 30px;
-      }
-      
-      tr:nth-child( odd ) { 
-        background: #F5F5F5; //Cinza 100 - Google Material Design Pallete
-      }
-      
-      td {
-        width: 150px;
-      }
-    }
-    
+    // END OF GENERIC TABLE //
   }
-
-  // checkbox power metal awesome
-
+  // END OF PAPER-BIG //
   
+  
+  // BEGIN OF FIXME //
+  .comm3 {
+    width: 350px;
+    text-align: center;
+    padding: 5px;
+    border-collapse: collapse;
+  }
+  
+  .thead3 {
+    color: #424242;  //Cinza 800 - Google Material Design Pallete
+    line-height: 60px;
+    font-size: 15px;
+  }
+  
+  .tbody3 {
+    color: #757575; //Cinza 600 - Google Material Design Pallete
+    
+    a {
+      color: #00BFA5; //Verde Petróleo 400 - Google Material Design Pallete
+    }
+    
+    tr {
+      height: 30px;
+    }
+    
+    tr:nth-child( odd ) { 
+      background: #F5F5F5; //Cinza 100 - Google Material Design Pallete
+    }
+    
+    td {
+      width: 150px;
+    }
+  }
   
   .spacer{
     position: relative;
@@ -142,7 +183,9 @@ body {
     height: 10px;
   }
 
-  #login {
+  #formy {
+    padding-top: 20px;
+    padding-bottom: 10px;
     position: relative;
     top: 150px;
     margin-left: auto;
@@ -155,15 +198,14 @@ body {
     width: 355px;
     
     // FIX THIS
-    height: 300px;
+    //height: 300px;
     //height: 100%;
-    
     
     form {
       margin-left: auto;
       margin-right: auto;
       width: 274px;
-      height: 10px;
+      //height: 10px;
     
       .inputcheck {
         margin-left: auto;
@@ -190,8 +232,41 @@ body {
         }
       }
       
+      #commands {
+        text-align: center;
+        
+        input[type="submit"] {
+          color: white;
+          letter-spacing: 2px;
+          background-color: #4DB6AC; //Verde Petróleo 500 - Google Material Design Pallete
+          width: 130px;
+          height: 30px;
+          border: 0;
+          
+          &:hover{
+            background-color:#26A69A; //Verde Petróleo 400 - Google Material Design Pallete
+          }
+        }
+      }
+      
+    // SPECIAL BUTTON FOR LOGIN PAGE
+      #login {
+        color: white;
+        letter-spacing: 2px;
+        background-color: #009688; //Verde Petróleo 500 - Google Material Design Pallete
+        width: 274px;
+        height: 43px;
+        border: 0;
+        border-radius: 3px;
+        &:hover {
+          background-color:#26A69A; //Teal 400 - Google Material Design Pallete
+        }
+      }
+      
       input {
-        &[type="email"], &[type="password"] {
+        margin-bottom: 10px;
+        
+        &[type="email"], &[type="password"], &[type="text"]{
           width: 274px;
           height: 43px;
           background-color: #FFFFFF;
@@ -202,21 +277,23 @@ body {
           letter-spacing: 2px;
         }
         
-        &[type="submit"] {
-          color: white;
-          letter-spacing: 2px;
-          background-color: #009688; //Verde Petróleo 500 - Google Material Design Pallete
-          width: 274px;
-          height: 43px;
-          border: 0;
-          border-radius: 3px;
-          &:hover {
-            background-color:#26A69A; //Teal 400 - Google Material Design Pallete
-          }
-        }
       }
+      textarea {
+          width: 252px;
+          height: 150px;
+          border: 1px solid #BDBDBD; //Cinza 400 - Google Material Design Pallete
+          resize: none;
+          padding: 5px 10px 5px 10px;
+          
+          
+          &:focus {
+             background-color: #FAFAFA; //Cinza 50 - Google Material Design Pallete
+          }
+          
+        }
     }
-
+    
+    
     #image {
       padding-top: 10px;
       padding-bottom: 10px;
@@ -232,22 +309,8 @@ body {
     }
   }
 }
+// END OF CONTENTS //
 
-  #footer{
-    bottom: 0px;
-    left:0px;
-    position: fixed;
-    width: 100%;
-    height: 100px;
-    text-align: center;
-    font-variant: small-caps;
-    font-size: 15px;
-  }
-
-  #image2 img {
-    width: 50px;
-    height: 50px;
-  }
 
 
   /******************************************************** Admin Page */
@@ -268,7 +331,7 @@ body {
       color: black;
       letter-spacing: 2px;
       background-color: #FFFFFF; //Branco 0 - Google Material Design Pallete
-      width: inherit;
+      width: 274px;
       height: 43px;
       border: 0;
       
@@ -344,38 +407,6 @@ body {
 
   /******************************************************** Comissionings page */
 
-  #paper-big{
-    position: relative;
-    top: 150px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #FFFFFF; /*Branco 0 - Google Material Design Pallete*/
-    width: 600px;
-    height: auto;
-    box-shadow: 0px 0px 5px #455A64;
-  }
-
-
-  #paper-big input{
-    color: white;
-    letter-spacing: 2px;
-    background-color: #4DB6AC; /*Verde Petróleo 500 - Google Material Design Pallete*/
-    width: 180px;
-    height: 30px;
-    border: 0;
-    }
-    
-  #paper-big input:hover{
-    background-color:#26A69A; /*Verde Petróleo 400 - Google Material Design Pallete*/
-  }
-
-  #paper-big .button_to{
-      display: inline;
-  }
-
-  #paper-big .button_to div{
-    display: inline;
-  }
 
   /******************************************************** New Comissioning Page */
 
@@ -538,3 +569,21 @@ body {
   #paper-small.button_to div{
     display: inline;
   }
+
+// BEGIN OF FOOTER //
+#footer{
+  bottom: 0px;
+  left:0px;
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  font-variant: small-caps;
+  font-size: 15px;
+  
+  #image2 img {
+    width: 50px;
+    height: 50px;
+  }
+}
+// END OF FOOTER //

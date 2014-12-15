@@ -1,22 +1,21 @@
 Rails.application.routes.draw do
   
-  root to: 'home#admin'
-
+  root to: 'home#index'
+  
   # -=-=-=-=-
   # Devise gem routes.
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   as :user do
-    #root to: 'devise/sessions#new'
     get 'login' => 'devise/sessions#new'
     post 'login' => 'devise/sessions#create'
     delete 'logout' => 'devise/sessions#destroy'
   end
-
+  
   # -=-=-=-=-
   # Standard HTTP requests.
   get    'index'  => 'home#index'
-  get    'admin'  => 'home#index'
-
+  # get    'admin'  => 'home#index'
+  
   # -=-=-=-=-
   # AJAX requests.
   # get 'commissioning_add_user' => 'commissionings#add_user'
@@ -32,6 +31,6 @@ Rails.application.routes.draw do
   resources :commissionings
   resources :manufacturers
   resources :certifications
-  resources :permissions
+  resources :roles
   resources :platforms
 end

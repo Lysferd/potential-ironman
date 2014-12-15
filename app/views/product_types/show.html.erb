@@ -2,14 +2,9 @@
 Showing <%= @product_type.label %>
 <% end %>
 
-<div id="paper-big" style="width: 500px;">
-  <table class="comm">
-    <thead class="thead3">
-      <tr>
-        <th>Basic Information</th>
-      </tr>
-    </thead>
-        
+<div id="paper" style="width: 500px;">
+  <table>
+    <div class="spacer"></div>
     <tbody class="tbody">
       <tr>
         <td>
@@ -26,7 +21,7 @@ Showing <%= @product_type.label %>
     </tbody>
     
      
-    <tbody class="tbody2">
+    <tbody class="commands">
       <tr>
         <td>
 <%= button_get 'Edit', edit_product_type_path(@product_type) %>

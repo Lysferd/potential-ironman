@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128163151) do
+ActiveRecord::Schema.define(version: 20141212120712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20141128163151) do
     t.string   "label"
     t.text     "description"
     t.integer  "active_users", default: [], array: true
-    t.integer  "owner_id"
+    t.integer  "creator_id"
     t.boolean  "authorized"
     t.integer  "client_id"
     t.datetime "created_at"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20141128163151) do
     t.string   "label"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "manufacturer_id"
   end
 
   create_table "product_types", force: true do |t|
@@ -84,9 +85,21 @@ ActiveRecord::Schema.define(version: 20141128163151) do
     t.integer  "type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "manufacturer_id"
   end
 
   add_index "products", ["type_id"], name: "index_products_on_type_id", using: :btree
+
+  create_table "roles", force: true do |t|
+    t.string   "label"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles_users", id: false, force: true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
+  end
 
   create_table "solutions", force: true do |t|
     t.string   "label"
@@ -99,13 +112,12 @@ ActiveRecord::Schema.define(version: 20141128163151) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "fullname"
+    t.string   "name"
     t.string   "ctps"
     t.string   "ci"
     t.string   "cpf"
     t.string   "pis"
     t.string   "reg"
-    t.string   "permission_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false

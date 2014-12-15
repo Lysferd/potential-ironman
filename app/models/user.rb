@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
          :timeoutable
 
   has_and_belongs_to_many :commissionings
+  has_and_belongs_to_many :roles
   has_many :activities
+  
+  def role?( role )
+    return !!self.roles.find_by_label( role.to_s.camelize )
+  end
   
 end

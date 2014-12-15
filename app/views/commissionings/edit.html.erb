@@ -1,6 +1,5 @@
-<div id="title">Editing Comissioning</div>
+<% content_for( :title ) do %>
+  Editing <%= @commissioning.label %>
+<% end %>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @commissioning %> |
-<%= link_to 'Back', commissionings_path %>

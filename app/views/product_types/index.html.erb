@@ -3,9 +3,9 @@
 <% end %>
 
 
-<div id="paper-big">
-  <table class="comm">
-    <thead class="thead">
+<div id="paper">
+  <table>
+    <thead>
       <tr>
         <th>Label</th>
         <th>Description</th>
@@ -13,7 +13,7 @@
       </tr>
     </thead>
 
-    <tbody class="tbody">
+    <tbody class="data">
       <% @product_types.each do |product_type| %>
         <tr>
           <td><%= product_type.label %></td>
@@ -26,7 +26,7 @@
         </tr>
       <% end %>
     </tbody>
-    <tbody class="tbody2">
+    <tbody class="commands">
       <tr>
         <td colspan=3>
           <%= button_get "New", new_product_type_path %>

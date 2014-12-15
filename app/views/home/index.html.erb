@@ -1,25 +1,34 @@
 <% content_for( :title ) do %>
   Administração
-  <p>Logado como: <%= current_user.fullname %></p>
+  <p>Logado como: <%= current_user.name %></p>
 <% end %>
 
 <div id="menu">
-  <div class="input">
+  <% unless Client::all.empty? and can? [ :create, :edit ], :commissionings %>
     <%= button_get( "Comissionamentos", commissionings_path) %>
-    <%#= button_get( "Atividades", activities_path ) %>
-    <%#= button_get( "Soluções", solutions_path ) %>
-    
-    <%= button_get( "Clientes", clients_path ) %>
-    <%= button_get( "Produtos", products_path ) %>
-    
+    <% unless Commissioning::all.empty? and can? :manage, :commissionings %>
+      <%= button_get( "Atividades", activities_path ) %>
+      <%= button_get( "Soluções", solutions_path ) %>
+    <% end %>
+  <% end %>
+  
+  <%= button_get( "Clientes", clients_path ) %>
+  
+  <% unless Manufacturer::all.empty? %>
     <%= button_get( "Tipos de Produtos", product_types_path ) %>
-    <%= button_get( "Fabricantes", manufacturers_path ) %>
-    
+    <%= button_get( "Produtos", products_path ) %>
+    <%= button_get( "Plataformas", platforms_path ) %>
+  <% end %>
+  
+  <%= button_get( "Fabricantes", manufacturers_path ) %>
+  
+  <% if can? :manage, :all %>
     <%= button_get( "Usuários", users_path ) %>
     <%= button_get( "Certificados", certifications_path ) %>
-    <%= button_get( "Permissões", permissions_path ) %>
-    
-    <%= button_delete( "Finalizar Sessão", destroy_user_session_path,
-        data: { confirm: "This will terminate your login session. Continue?" } ) %>
-  </div>
+    <%= button_get( "Permissões", roles_path ) %>
+  <% end %>
+  
+  <%= button_delete( "Finalizar Sessão", destroy_user_session_path,
+      data: { confirm: "This will terminate your login session. Continue?" } ) %>
+
 </div>

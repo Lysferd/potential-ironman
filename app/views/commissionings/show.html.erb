@@ -1,15 +1,13 @@
-<% if notice %>
-  <div id="notice"><%= notice %></div>
+<% content_for( :title ) do %>
+  Details of <%= @commissioning.label %>
 <% end %>
 
-<div id="title">Details of <%= @commissioning.label %></div>
-
-<div id="paper-big" style="width: 800px;">
-  <table class="comm">
-    <thead class="thead">
+<div id="paper" style="width: 1000px;">
+  <table>
+    <thead>
       <tr>
         <th>Description</th>
-        <th>Owner</th>
+        <th>Created by</th>
         <th><%= pluralize( @commissioning.users.size, "Commissioner" ).match( /\d+\s+([\w]+)/ )[1] %></th>
         <th>Client</th>
         <th>Created at</th>
@@ -17,17 +15,18 @@
       </tr>
     </thead>
 
-    <tbody class="tbody">
+    <tbody class="data">
         <tr>
           <td><%= @commissioning.description %></td>
-          <td><%= link_to User::find_by_id( @commissioning.owner_id ).fullname, user_path( @commissioning.owner_id ) %></td>
+          <td><%= link_to User::find_by_id( @commissioning.creator_id ).name, user_path( @commissioning.creator_id ) %></td>
           <td>
             <% if @commissioning.users.empty? %>
               None
             <% else %>
               <% @commissioning.users.each_with_index do |u, i| %>
-                <%= link_to u.fullname, u %>
-                <%= "<br/>" unless i+1 == @commissioning.users.size %>
+                <%= link_to u.name, u %>
+                <% break if i + 1 == @commissioning.users.size %>
+                <br/>
              <% end %>
             <% end %>
           </td>
@@ -36,13 +35,13 @@
           <td><%= @commissioning.updated_at.to_s( :db ) %></td>
         </tr>
     </tbody>
-    <tbody class="tbody2">
+    <tbody class="commands">
       <tr>
         <td colspan=6>
           <%= button_get "Edit", edit_commissioning_path(@commissioning) %>
-          <%# if is_admin? %>
+          <% if can? :delete, @commissioning %>
             <%= button_to "Delete", @commissioning, method: :delete, data: { confirm: "Are you sure?" } %>
-          <%# end %>
+          <% end %>
           <%= button_get "Back", commissionings_path %>
         </td>
       </tr>

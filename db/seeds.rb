@@ -11,9 +11,21 @@
 #             password_confirmation: '1',
 #             permission: 0
 
-Manufacturer::create label: 'Lenel'
-ProductType::create label: 'Access Control'
-Product::create label: 'OnGuard',
-                product_type: ProductType.first.id,
-                manufacturer_id: Manufacturer.first.id
+# Manufacturer::create label: 'Lenel'
+# ProductType::create label: 'Access Control'
+# Product::create label: 'OnGuard',
+                # product_type: ProductType.first.id,
+                # manufacturer_id: Manufacturer.first.id
 
+Role::create( label: 'Administrator' )
+
+User::create( email: 'phabio_almeida@ibtecnologia.com.br',
+              password: '1234',
+              password_confirmation: '1234',
+              name: 'Fábio Almeida' )
+              # role: Role::first )
+
+User::create( email: 'david_milsted@ibtecnologia.com.br',
+              password: '1234',
+              password_confirmation: '1234',
+              name: 'David Milsted' )

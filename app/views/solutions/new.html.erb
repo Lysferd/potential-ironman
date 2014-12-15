@@ -1,5 +1,5 @@
-<div id="title">New solution</div>
+<% content_for( :title ) do %>
+  New Solution
+<% end %>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', solutions_path %>

@@ -32,14 +32,13 @@ class CommissioningsController < ApplicationController
   def create
     p = commissioning_params
     p[:users].delete( '' )
-    p[:users].unshift( session[:user_id] )
     p[:users].collect! { |i| User.find( i.to_i ) }
-    p[:owner_id] = session[:user_id]
     
     # Debugging purposes.
     # logger.debug '=' * 32
     # logger.debug "Size: #{p[:users].size}"
     # logger.debug "Users: #{p[:users]}"
+    # logger.debug "Creator: #{p[:creator_id]}"
     # logger.debug '=' * 32
     
     @commissioning = Commissioning.new( p )
@@ -91,7 +90,7 @@ class CommissioningsController < ApplicationController
   
   # Never trust parameters from the scary internet, only allow the white list through.
   def commissioning_params
-    params.require(:commissioning).permit(:label, :description, :client_id, { users: [ ], active_users: [ ], solutions: [ ], activities: [ ] })
+    params.require(:commissioning).permit(:label, :description, :client_id, :creator_id, { users: [ ], active_users: [ ], solutions: [ ], activities: [ ] })
   end
   
   # Cancels data update/creation in case cancel button is pressed.

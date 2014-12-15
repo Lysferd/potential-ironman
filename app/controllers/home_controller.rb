@@ -8,7 +8,8 @@ class HomeController < ApplicationController
 
   def admin
   end
-=begin 
+  
+=begin
   def create
     if user = User::authenticate( params[:username], params[:password] )
       session[:user_id] = user.id
@@ -28,4 +29,5 @@ class HomeController < ApplicationController
     redirect_to admin_url if session[:user_id]
   end
 =end
+
 end

@@ -3,9 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 delay = (ms, func) -> setTimeout func, ms
+popup = (msg) -> $( '.tooltip' ).show
 
 $ ->
   delay 2500, -> $( '#alert, #notice' ).fadeOut 'slow'
+  $( 'input[data-popbox]' ).hover -> $( '#pop1.tooltip' ).show
+
   #.effect 'slide', { "direction" : 'up', 'mode' : 'hide' }
   #$( '.button' ).click ->
     #$( '#login' ).slideUp( 'slow' )

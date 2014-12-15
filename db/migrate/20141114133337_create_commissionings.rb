@@ -4,7 +4,7 @@ class CreateCommissionings < ActiveRecord::Migration
       t.string :label
       t.text :description
       t.integer :active_users, array: true, default: []
-      t.integer :owner_id
+      t.integer :creator_id
       t.boolean :authorized
       t.integer :client_id
 

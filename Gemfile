@@ -41,3 +41,4 @@ gem 'byebug', group: [:development, :test]
 gem 'browser'
 
 gem 'devise'
+gem 'cancan'

@@ -2,6 +2,54 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 td {
-  padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+/**/
+
+#formy {
+  .popper {
+    .tooltip {
+      background: #F8F8F8;
+      border: 3px solid #DFDFDF;
+      color: #717171;
+      font-size: 10px;
+      
+      width: 200px;
+      height: 30px;
+      letter-spacing: 1px;
+      line-height: 30px;
+      
+      position: absolute;
+      z-index: 99999;
+      
+      text-align: center;
+      //bottom: 10%;
+      //left: 100%;
+      display: none;
+      padding: 0 10px;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        top: 25%;
+        width: 10px;
+        height: 10px;
+        border-bottom: 5px solid #dfdfdf;
+        border-left: 5px solid #dfdfdf;
+        background: #f8f8f8;
+        left: 0%;
+        margin-left: -10px;
+        -moz-transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+    }
+
+    &:hover tooltip {
+      display: block;
+    }
+  }
 }

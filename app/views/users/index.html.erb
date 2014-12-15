@@ -2,24 +2,23 @@
   Users
 <% end %>
 
-
-<div id="paper-big">
-  <table class="comm">
-    <thead class="thead">
+<div id="paper" style="width: 700px;">
+  <table>
+    <thead>
       <tr>
-        <th>Full Name</th>
-        <th>Username</th>
+        <th>Name</th>
+        <th>E-Mail</th>
         <th>Permission group</th>
         <th>Options</th>
       </tr>
     </thead>
-
-    <tbody class="tbody">
+    
+    <tbody class="data">
       <% @users.each do |user| %>
         <tr>
-          <td><%= user.fullname %></td>
-          <td><%= user.username %></td>
-          <td><%= Permission::find_by_id( user.permission_id ).label %>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.roles.first.label rescue "none" %></td>
           <td>
             <%= link_to "Show", user %>
             <%= link_to "Edit", edit_user_path(user) %>
@@ -29,14 +28,13 @@
       <% end %>
     </tbody>
     
-    <tbody class="tbody2">
+    <tbody class="commands">
       <tr>
         <td colspan=4>
-          <%= button_get "New", new_user_path %>
-          <%= button_get "Back", admin_path %>
+          <%= button_get "New", new_user_registration_path %>
+          <%= button_get "Back", index_path %>
         </td>
       </tr>
     </tbody>
   </table>
-
-<br>
+</div>

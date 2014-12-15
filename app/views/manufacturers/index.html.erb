@@ -2,17 +2,17 @@
   Manufacturers
 <% end %>
 
-<div id="paper-big">
-  <table class="comm">
+<div id="paper">
+  <table>
     <% unless @manufacturers.empty? %>
-      <thead class="thead">
+      <thead>
         <tr>
           <th>Label</th>
           <th>Options</th>
         </tr>
       </thead>
       
-      <tbody class="tbody">
+      <tbody class="data">
           <% @manufacturers.each do |manufacturer| %>
             <tr>
               <td><%= manufacturer.label %></td>
@@ -32,7 +32,7 @@
       </tr>
     <% end %>
     
-    <tbody class="tbody2">
+    <tbody class="commands">
         <tr>
           <td colspan=2>
             <%= button_get "New", new_manufacturer_path %>
