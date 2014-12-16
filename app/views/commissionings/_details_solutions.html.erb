@@ -1,0 +1,35 @@
+
+<div id="paper">
+  <table>
+    <% unless @commissioning.solutions.empty? %>
+      <thead>
+        <tr>
+          <th>Last 5 Solutions</th>
+        </tr>
+      </thead>
+
+      <tbody class="data">
+        <% for s in @commissioning.solutions %>
+          <tr>
+            <td><%= link_to s.label, solution_path( s.id ) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% else %>
+      <tr>
+        <td>
+          <h3>No solutions.</h3>
+        </td>
+      </tr>
+    <% end %>
+    
+    <tbody class="commands">
+      <tr>
+        <td>
+          <%= button_get "Create new solution", new_solution_path %>
+          <%= button_get "View all solutions", solutions_path %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

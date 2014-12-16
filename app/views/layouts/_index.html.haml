@@ -1,0 +1,26 @@
+= content_for( :title ) { obj.to_s }
+
+%div#paper
+  %table
+    %thead
+      %tr
+        - columns.each do |c|
+          %th
+            = c.capitalize
+        %th
+          Options
+    %tbody.data
+      - obj.all.each do |o|
+        %tr
+          - columns.each do |c|
+            %td
+              = eval( "o.#{c}" )
+          %td
+            = link_to image_tag( 'show.svg', { border: 0, alt: t(:show) } ), o
+            = link_to image_tag( 'edit.svg', { border: 0, alt: ( :edit ) } ), eval( "edit_#{obj.to_s.downcase}_path( o )" )
+            = link_to image_tag( 'destroy.svg', { border: 0, alt: t( :destroy ) } ), o, method: :delete, data: { confirm: t( :destroy_confirmation ) }
+    %tbody.commands
+      %tr
+        %td{ colspan: columns.length + 1 }
+          = button_get t( :new ), eval( "new_#{obj.to_s.downcase}_path" )
+          = button_get t( :back ), root_path

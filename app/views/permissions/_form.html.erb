@@ -1,0 +1,57 @@
+<%= form_for(@permission) do |f| %>
+  <% if @permission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@permission.errors.count, "error") %> prohibited this permission from being saved:</h2>
+
+      <ul>
+      <% @permission.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="actions">
+    <%= f.label :label %><br>
+    <%= f.text_field :label %>
+  </div>
+  
+  <div class="actions">
+    <%= f.label :mode %><br>
+    <table border=5 cellspacing=10 cellpadding=10>
+      <thead>
+        <tr>
+          <th colspan=3>Owner</th>
+          <th colspan=3>Group</th>
+          <th colspan=3>Other</th>
+        </tr>
+      </thead>
+      
+      <tbody style="text-align: center;">
+        <tr>
+          <% 3.times do %>
+            <% for m in %w( r w d ) %>
+              <td>
+                <%= m %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+        <tr>
+          <% 3.times do %>
+            <% 3.times do %>
+              <td>
+                <%= f.check_box :mode, { multiple: true } %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+    <%= f.submit "Cancel" %>
+  </div>
+<% end %>

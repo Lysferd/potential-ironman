@@ -1,0 +1,43 @@
+<% content_for( :title ) do %>
+  Roles
+<% end %>
+
+<div id="paper">
+  <table>
+    <% unless @roles.empty? %>
+      <thead>
+        <tr>
+          <th>Label</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      
+      <tbody class="data">
+        <% @roles.each do |role| %>
+          <tr>
+            <td><%= role.label %></td>
+            <td>
+              <%= link_to "Edit", edit_role_path(role) %>
+              <%= link_to "Destroy", role, method: :delete, data: { confirm: "Are you sure?" } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% else %>
+      <tr>
+        <td>
+          <h1>EMPTY</h1>
+        </td>
+      </tr>
+    <% end %>
+    
+    <tbody class="commands">
+      <tr>
+        <td colspan=2>
+          <%= button_get "New", new_role_path %>
+          <%= button_get "Back", admin_path %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

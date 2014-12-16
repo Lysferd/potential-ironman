@@ -1,0 +1,9 @@
+
+pt-BR:
+  show: "Detalhes"
+  edit: "Editar"
+  destroy: "Remover"
+  destroy_confirmation: "Esta ação permanentemente removerá o dado selecionado. Deseja prosseguir?"
+
+  new: "Novo"
+  back: "Voltar"

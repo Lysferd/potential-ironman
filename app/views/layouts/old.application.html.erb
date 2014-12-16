@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <title>PotentialIronman</title>
+    <%= stylesheet_link_tag    "desktop/application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  
+  <body>
+    <div id="title">
+      <%= content_for?( :title ) ? yield( :title ) : "Potential Ironman" %>
+    </div>
+    
+    <% if notice %>
+      <div id="notice"><%= notice %></div>
+    <% end %>
+    
+    <% if alert %>
+      <div id="alert"><%= alert %></div>
+    <% end %>
+    
+    <div id="contents">
+      <% if params[:dry] %>
+        <%= render "layouts/index", obj: Client, name: "client" %>
+      <% else %>
+        <%= yield %>
+      <% end %>
+    </div>
+    
+    
+    <% unless params[:dry] %>
+    <div id="footer">
+      2014-2015 © <a href="www.ibtecnologia.com.br">IB Tecnologia & Sistemas LTDA</a>
+      <div id="image2"><%= image_tag( "qpc.png" ) %></div>
+    </div>
+    <% end %>
+    
+  </body>
+  
+</html>

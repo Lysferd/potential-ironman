@@ -1,0 +1,25 @@
+<div id="title">
+  Administração
+  <p>Logado como: <%= current_user.fullname rescue "(vazio)" %></p>
+</div>
+
+<div id="menu">
+  <div class="input">
+    <%= button_get( "Comissionamentos", commissionings_path) %>
+    <%#= button_get( "Atividades", activities_path ) %>
+    <%#= button_get( "Soluções", solutions_path ) %>
+    
+    <%= button_get( "Clientes", clients_path ) %>
+    <%= button_get( "Produtos", products_path ) %>
+    
+    <%= button_get( "Tipos de Produtos", product_types_path ) %>
+    <%= button_get( "Fabricantes", manufacturers_path ) %>
+    
+    <%= button_get( "Usuários", users_path ) %>
+    <%= button_get( "Certificados", certifications_path ) %>
+    <%= button_get( "Permissões", permissions_path ) %>
+    
+    <%= button_delete( "Finalizar Sessão", logout_path,
+        data: { confirm: "This will terminate your login session. Continue?" } ) %>
+  </div>
+</div>
