@@ -1,6 +1,9 @@
-<% content_for( :title ) do %>
+<%= render 'layouts/index', obj: Activity, columns: %w( label description date_start date_end user ) %>
+
+<!--
+<%# content_for( :title ) do %>
   Activities
-<% end %>
+<%# end %>
 
 <div id="paper-big">
   <table class="comm">
@@ -40,3 +43,4 @@
       </tr>
     </tbody>
 </table>
+-->

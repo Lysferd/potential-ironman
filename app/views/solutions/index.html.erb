@@ -1,8 +1,6 @@
-<% content_for( :title ) do %>
-  Solutions
-<% end %>
+<%= render 'layouts/index', obj: Solution, columns: %w( label description ) %>
 
-
+<!--
 <div id="paper-big">
   <table class="comm">
     <thead class="thead">
@@ -39,3 +37,4 @@
       </tr>
     </tbody>
 </table>
+-->

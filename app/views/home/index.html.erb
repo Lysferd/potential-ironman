@@ -5,30 +5,30 @@
 
 <div id="menu">
   <% unless Client::all.empty? and can? [ :create, :edit ], :commissionings %>
-    <%= button_get( "Comissionamentos", commissionings_path) %>
+    <%= link_to( "Comissionamentos", commissionings_path, class: "button-link" ) %>
     <% unless Commissioning::all.empty? and can? :manage, :commissionings %>
-      <%= button_get( "Atividades", activities_path ) %>
-      <%= button_get( "Soluções", solutions_path ) %>
+      <%= link_to( "Atividades", activities_path, class: "button-link"  ) %>
+      <%= link_to( "Soluções", solutions_path, class: "button-link"  ) %>
     <% end %>
   <% end %>
   
-  <%= button_get( "Clientes", clients_path ) %>
+  <%= link_to( "Clientes", clients_path, class: "button-link"  ) %>
   
   <% unless Manufacturer::all.empty? %>
-    <%= button_get( "Tipos de Produtos", product_types_path ) %>
-    <%= button_get( "Produtos", products_path ) %>
-    <%= button_get( "Plataformas", platforms_path ) %>
+    <%= link_to( "Tipos de Produtos", product_types_path, class: "button-link" ) %>
+    <%= link_to( "Produtos", products_path, class: "button-link"  ) %>
+    <%= link_to( "Plataformas", platforms_path, class: "button-link"  ) %>
   <% end %>
   
-  <%= button_get( "Fabricantes", manufacturers_path ) %>
+  <%= link_to( "Fabricantes", manufacturers_path, class: "button-link"  ) %>
   
   <% if can? :manage, :all %>
-    <%= button_get( "Usuários", users_path ) %>
-    <%= button_get( "Certificados", certifications_path ) %>
-    <%= button_get( "Permissões", roles_path ) %>
+    <%= link_to( "Usuários", users_path, class: "button-link"  ) %>
+    <%= link_to( "Certificados", certifications_path, class: "button-link"  ) %>
+    <%= link_to( "Permissões", roles_path, class: "button-link"  ) %>
   <% end %>
   
-  <%= button_delete( "Finalizar Sessão", destroy_user_session_path,
+  <%= link_to( "Finalizar Sessão", destroy_user_session_path, method: :delete, class: "button-link", 
       data: { confirm: "This will terminate your login session. Continue?" } ) %>
 
 </div>
