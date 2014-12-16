@@ -1,8 +1,12 @@
-<% if notice %>
+<%= render 'layouts/index', obj: Certification, columns: %w( label ) %>
+
+<!--
+
+<%# if notice %>
   <div id="notice">
     <%= notice %>
   </div>
-<% end %>
+<%# end %>
 
 <div id="title">Certifications</div>
 
@@ -42,3 +46,5 @@
     </tbody>
   </table>
 </div>
+
+-->

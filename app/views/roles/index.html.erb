@@ -1,6 +1,10 @@
-<% content_for( :title ) do %>
+<%= render 'layouts/index', obj: Role, columns: %w( label ) %>
+
+<!--
+
+<%# content_for( :title ) do %>
   Roles
-<% end %>
+<%# end %>
 
 <div id="paper">
   <table>
@@ -41,3 +45,5 @@
     </tbody>
   </table>
 </div>
+
+-->

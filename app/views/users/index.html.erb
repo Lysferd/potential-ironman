@@ -1,6 +1,10 @@
-<% content_for( :title ) do %>
+<%= render 'layouts/index', obj: User, columns: %w( name email ) %>
+
+<!--
+
+<%# content_for( :title ) do %>
   Users
-<% end %>
+<%# end %>
 
 <div id="paper" style="width: 700px;">
   <table>
@@ -38,3 +42,5 @@
     </tbody>
   </table>
 </div>
+
+-->

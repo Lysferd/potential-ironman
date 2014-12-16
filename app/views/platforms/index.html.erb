@@ -1,6 +1,10 @@
-<% content_for( :title ) do %>
+<%= render 'layouts/index', obj: Platform, columns: %w( label ) %>
+
+<!--
+
+<%# content_for( :title ) do %>
   Listing Platforms
-<% end %>
+<%# end %>
 
 <div id="paper">
   <table>
@@ -47,3 +51,5 @@
   <br>
 
 </div>
+
+-->

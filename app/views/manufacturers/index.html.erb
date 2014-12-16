@@ -1,6 +1,10 @@
-<% content_for( :title ) do %>
+<%= render 'layouts/index', obj: Manufacturer, columns: %w( label ) %>
+
+<!--
+
+<%# content_for( :title ) do %>
   Manufacturers
-<% end %>
+<%# end %>
 
 <div id="paper">
   <table>
@@ -42,3 +46,5 @@
     </tbody>
   </table>
 </div>
+
+-->

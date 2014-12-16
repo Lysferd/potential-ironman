@@ -1,6 +1,10 @@
-<% content_for( :title ) do %>
+<%= render 'layouts/index', obj: Commissioning, columns: %w( label description ) %>
+
+<!--
+
+<%# content_for( :title ) do %>
   Comissionings
-<% end %>
+<%# end %>
 
 <div id="paper">
   <table>
@@ -43,4 +47,4 @@
   </table>
 </div>
 
-
+-->

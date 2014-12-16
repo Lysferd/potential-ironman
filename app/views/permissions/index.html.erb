@@ -1,6 +1,10 @@
-<% content_for( :title ) do %>
+<%= render 'layouts/index', obj: Certification, columns: %w( label username date_start date_end user ) %>
+
+<!--
+
+<%# content_for( :title ) do %>
   Permissions
-<% end %>
+<%# end %>
 
 <div id="paper-big">
   <table class="comm">
@@ -38,3 +42,4 @@
 
 <br>
 
+-->

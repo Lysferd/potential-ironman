@@ -1,6 +1,10 @@
-<% content_for( :title ) do %>
+<%= render 'layouts/index', obj: Product, columns: %w( label description ) %>
+
+<!--
+
+<%# content_for( :title ) do %>
   Products
-<% end %>
+<%# end %>
 
 
 <div id="paper">
@@ -37,4 +41,4 @@
 </table>
 </div>
 
-
+-->
