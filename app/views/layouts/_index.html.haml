@@ -1,4 +1,6 @@
-= content_for( :title ) { obj.to_s }
+- content_for( :title ) do
+  = t 'indexes.header'
+  = t 'indexes.' + name.pluralize
 
 %div#paper
   %table
@@ -6,7 +8,7 @@
       %tr
         - columns.each do |c|
           %th
-            = c.capitalize
+            = t c
         %th
           Options
     %tbody.data
@@ -14,13 +16,13 @@
         %tr
           - columns.each do |c|
             %td
-              = eval( "o.#{c}" )
+              = eval 'o.' + c
           %td
-            = link_to image_tag( 'show.svg', { border: 0, alt: t(:show) } ), o
-            = link_to image_tag( 'edit.svg', { border: 0, alt: ( :edit ) } ), eval( "edit_#{obj.to_s.downcase}_path( o )" )
-            = link_to image_tag( 'destroy.svg', { border: 0, alt: t( :destroy ) } ), o, method: :delete, data: { confirm: t( :destroy_confirmation ) }
+            = image_get 'show.svg', :show, o
+            = image_get 'edit.svg', :edit, eval( "edit_#{name}_path( o )" )
+            = image_delete 'destroy.svg', :destroy, o
     %tbody.commands
       %tr
-        %td{ colspan: columns.length + 1 }
-          = button_get t( :new ), eval( "new_#{obj.to_s.downcase}_path" )
-          = button_get t( :back ), root_path
+        %td{ colspan: columns.size + 1 }
+          = button_get :new, eval( "new_#{name}_path" )
+          = button_get :back, root_path

@@ -14,5 +14,9 @@ class User < ActiveRecord::Base
   def role?( role )
     return !!self.roles.find_by_label( role.to_s.camelize )
   end
+
+  def role
+    return self.roles.first.label || t :no_role_error
+  end
   
 end

@@ -1,4 +1,3 @@
-
 class Commissioning < ActiveRecord::Base
   
   has_and_belongs_to_many :users, dependent: :destroy
@@ -8,5 +7,9 @@ class Commissioning < ActiveRecord::Base
   
   validates :label, presence: true, uniqueness: true
   validates :client_id, presence: true
+
+  def client
+    return Client::find( self.client_id ).label
+  end
   
 end
