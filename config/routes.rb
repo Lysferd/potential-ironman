@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   # -=-=-=-=-
   # Standard HTTP requests.
   get    'index'  => 'home#index'
-  # get    'admin'  => 'home#index'
   
   # -=-=-=-=-
   # AJAX requests.
