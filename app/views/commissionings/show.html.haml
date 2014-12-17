@@ -1,0 +1,6 @@
+= render 'layouts/show',
+  obj: @commissioning,
+  name: 'commissioning',
+  columns: %w( label description creator_name users_names client creation_date update_date )
+= render 'details_solutions'
+= render 'details_activities'

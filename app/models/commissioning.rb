@@ -9,7 +9,27 @@ class Commissioning < ActiveRecord::Base
   validates :client_id, presence: true
 
   def client
-    return Client::find( self.client_id ).label
+    Client::find( self.client_id ).label
+  end
+
+  def creator_name
+    User::find( self.creator_id ).name
+  end
+
+  def users_names
+    names = ''
+    users.each do |u|
+      names << u.name
+    end
+    return names
+  end
+
+  def creation_date
+    I18n::localize( self.created_at )
+  end
+
+  def update_date
+    I18n::localize( self.updated_at )
   end
   
 end

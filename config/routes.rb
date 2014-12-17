@@ -1,19 +1,15 @@
 Rails.application.routes.draw do
-  
-  root to: 'home#index'
-  
-  # -=-=-=-=-
-  # Devise gem routes.
-  devise_for :users, controllers: { registrations: 'users/registrations' }
-  as :user do
-    get 'login' => 'devise/sessions#new'
-    post 'login' => 'devise/sessions#create'
-    delete 'logout' => 'devise/sessions#destroy'
-  end
-  
+
   # -=-=-=-=-
   # Standard HTTP requests.
-  get    'index'  => 'home#index'
+  controller :home do
+    get    'index'  => :index
+    get    'admin'  => :admin #remove this
+    get    'menu'   => :menu
+    get    'login'  => :login
+    post   'login'  => :create
+    delete 'logout' => :destroy
+  end
   
   # -=-=-=-=-
   # AJAX requests.
@@ -21,15 +17,19 @@ Rails.application.routes.draw do
   
   # -=-=-=-=-
   # Standard resources.
-  resources :users
-  resources :clients
-  resources :product_types
-  resources :products
+  resources :users do
+    resources :certifications
+  end
+
+  resources :roles
+  resources :commissionings
   resources :solutions
   resources :activities
-  resources :commissionings
   resources :manufacturers
-  resources :certifications
-  resources :roles
+  resources :products
   resources :platforms
+  resources :clients
+  resources :product_types
+  
+  root to: 'home#index'
 end

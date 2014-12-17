@@ -6,26 +6,43 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-#User::create username: 'Administrator',
-#             password: '1',
-#             password_confirmation: '1',
-#             permission: 0
 
-# Manufacturer::create label: 'Lenel'
-# ProductType::create label: 'Access Control'
-# Product::create label: 'OnGuard',
-                # product_type: ProductType.first.id,
-                # manufacturer_id: Manufacturer.first.id
 
-Role::create( label: 'Administrator' )
+admin = Role::create label: 'Administrator'
+draft = Role::create label: 'Draftsman'
+commi = Role::create label: 'Commissioner'
 
-User::create( email: 'phabio_almeida@ibtecnologia.com.br',
-              password: '1234',
-              password_confirmation: '1234',
-              name: 'Fábio Almeida' )
-              # role: Role::first )
+User::create email: 'fabioalmeida@ibtecnologia.com.br',
+  password: '1',
+  password_confirmation: '1',
+  name: "Fábio Moritz de Almeida",
+  ctps: "3696451-002/PR",
+  ci: "11.099.671-3",
+  cpf: "080.708.869-27",
+  pis: "131.42996.53.1",
+  reg: "423",
+  role_id: admin.id
 
-User::create( email: 'david_milsted@ibtecnologia.com.br',
-              password: '1234',
-              password_confirmation: '1234',
-              name: 'David Milsted' )
+User::create name: "David Rocha Milsted",
+  password: '1',
+  password_confirmation: '1',
+  email: "davidmilsted@ibtecnologia.com.br",
+  ctps: "3705156-002/PR",
+  ci: "80651872-SESP/PR",
+  cpf: "070.538.689-90",
+  pis: "200.34971-80.1",
+  reg: "609",
+  role_id: admin.id
+
+lenel = Manufacturer::create label: 'Lenel'
+
+# -=-=-=-=-
+# Generate product types.
+[ 'Controle de Acesso', 'CFTV', 'Automação Predial' ].each do |l|
+  ProductType::create label: l
+end
+
+Product::create label: 'OnGuard',
+                manufacturer_id: lenel.id,
+                product_type: ProductType::find_by_label( 'Controle de Acesso' ).id
+

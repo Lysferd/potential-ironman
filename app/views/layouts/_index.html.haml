@@ -1,8 +1,8 @@
 - content_for( :title ) do
-  = t 'indexes.header'
-  = t 'indexes.' + name.pluralize
+  = t 'index_header'
+  = t("models.#{name}").pluralize
 
-%div#paper
+%div#paper{ style: "width: #{500 + 100 * (columns.size - 1)}px;" }
   %table
     %thead
       %tr
@@ -10,17 +10,19 @@
           %th
             = t c
         %th
-          Options
+          = t 'indexes.options'
     %tbody.data
       - obj.all.each do |o|
         %tr
           - columns.each do |c|
             %td
-              = eval 'o.' + c
+              = eval 'o.' + c rescue c
           %td
             = image_get 'show.svg', :show, o
             = image_get 'edit.svg', :edit, eval( "edit_#{name}_path( o )" )
-            = image_delete 'destroy.svg', :destroy, o
+            = link_image 'destroy.svg', :destroy, o,
+              method: :delete,
+              data: { confirm: t( :destroy_confirmation ) }
     %tbody.commands
       %tr
         %td{ colspan: columns.size + 1 }

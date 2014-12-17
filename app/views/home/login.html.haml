@@ -1,0 +1,11 @@
+%div#formy
+  %div#image
+    = image_tag 'ib3.png'
+  = form_tag :login do |f|
+    = email_field_tag :email, params[:email], autofocus: true, placeholder: t( :email )
+    = password_field_tag :password, params[:password],
+      autocomplete: :off, placeholder: t( :password )
+    %div.inputcheck
+      = check_box_tag :remember_me, params[:remember_me]
+      = label_tag :remember_me, "<span></span>#{t( :remember_me )}".html_safe
+    = submit_tag :login, { id: "login", data: { disable_with: t( :login_in ) } }

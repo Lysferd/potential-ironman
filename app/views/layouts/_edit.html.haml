@@ -1,0 +1,5 @@
+- content_for( :title ) do
+  = t 'edit_header'
+  = t name
+
+= render "#{name.pluralize}/form"

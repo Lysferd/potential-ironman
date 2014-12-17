@@ -5,7 +5,7 @@ class ManufacturersController < ApplicationController
   # GET /manufacturers
   # GET /manufacturers.json
   def index
-    @manufacturers = Manufacturer.all
+    @manufacturers = Manufacturer::order( :label )
   end
 
   # GET /manufacturers/1
@@ -29,11 +29,14 @@ class ManufacturersController < ApplicationController
 
     respond_to do |format|
       if @manufacturer.save
-        format.html { redirect_to manufacturers_url, notice: 'Manufacturer was successfully created.' }
-        format.json { render :index, status: :created, location: manufacturers_url }
+        format.html { redirect_to manufacturers_url,
+                      notice: 'Manufacturer was successfully created.' }
+        format.json { render :index, status: :created,
+                      location: manufacturers_url }
       else
         format.html { render :new }
-        format.json { render json: @manufacturer.errors, status: :unprocessable_entity }
+        format.json { render json: @manufacturer.errors,
+                      status: :unprocessable_entity }
       end
     end
   end
@@ -43,7 +46,8 @@ class ManufacturersController < ApplicationController
   def update
     respond_to do |format|
       if @manufacturer.update(manufacturer_params)
-        format.html { redirect_to manufacturers_url, notice: 'Manufacturer was successfully updated.' }
+        format.html { redirect_to manufacturers_url,
+                      notice: 'Manufacturer was successfully updated.' }
         format.json { render :index, status: :ok, location: manufacturers_url }
       else
         format.html { render :edit }

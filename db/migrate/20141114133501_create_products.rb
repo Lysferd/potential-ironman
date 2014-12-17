@@ -4,6 +4,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :label
       t.text :description
       t.integer :type_id
+      t.integer :manufacturer_id
 
       t.timestamps
     end

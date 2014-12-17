@@ -1,0 +1,23 @@
+%span
+  = link_to t( 'models.commissioning' ), commissionings_path
+  \-
+  = link_to t( 'models.activity' ), activities_path
+  \-
+  = link_to t( 'models.solution' ), solutions_path
+  \-
+  = link_to t( 'models.client' ), clients_path
+  \-
+  = link_to t( 'models.product_type' ), product_types_path
+  \-
+  = link_to t( 'models.product' ), products_path
+  \-
+  = link_to t( 'models.platform' ), platforms_path
+  \-
+  = link_to t( 'models.manufacturer' ), manufacturers_path
+  \-
+  = link_to t( 'models.user' ), users_path
+  \-
+  -#= link_to t( 'models.certification' )#, users_certifications_path
+  = link_to t( 'models.role' ), roles_path
+  \-
+  = link_to t( 'logout' ), logout_path, method: :delete, data: { confirm: "This will terminate your login session. Continue?" }

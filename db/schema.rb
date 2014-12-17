@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212120712) do
+ActiveRecord::Schema.define(version: 20141209133133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,9 +67,9 @@ ActiveRecord::Schema.define(version: 20141212120712) do
 
   create_table "platforms", force: true do |t|
     t.string   "label"
+    t.integer  "platform_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "manufacturer_id"
   end
 
   create_table "product_types", force: true do |t|
@@ -83,22 +83,15 @@ ActiveRecord::Schema.define(version: 20141212120712) do
     t.string   "label"
     t.text     "description"
     t.integer  "type_id"
+    t.integer  "manufacturer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "manufacturer_id"
   end
-
-  add_index "products", ["type_id"], name: "index_products_on_type_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "label"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "roles_users", id: false, force: true do |t|
-    t.integer "role_id"
-    t.integer "user_id"
   end
 
   create_table "solutions", force: true do |t|
@@ -113,26 +106,17 @@ ActiveRecord::Schema.define(version: 20141212120712) do
 
   create_table "users", force: true do |t|
     t.string   "name"
+    t.string   "email"
+    t.string   "hashed_password"
+    t.string   "salt"
     t.string   "ctps"
     t.string   "ci"
     t.string   "cpf"
     t.string   "pis"
     t.string   "reg"
+    t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

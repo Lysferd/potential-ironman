@@ -4,9 +4,9 @@
     %meta{ name: 'viewport', content: 'user-scalable=no' }
     %title
       PotentialIronman
-    - if browser.tablet?
+    - if browser.tablet? or params[:tablet]
       - css = 'tablet'
-    - elsif browser.mobile?
+    - elsif browser.mobile? or params[:mobile]
       - css = 'mobile'
     - else
       - css = 'desktop'
@@ -23,15 +23,13 @@
     - if alert
       %div#alert
         = alert
+    - if user_signed_in?
+      %div#hmenu
+        = render 'layouts/menu'
     %div#contents
-      - if params[:dry]
-        = render 'layouts/index', obj: User,
-          name: 'user',
-          columns: %w( name email )
-      - else
-        = yield
+      = yield
     %div#footer
-      %a{ href: 'www.ibtecnologia.com.br' }
-        %div#image2
-          = image_tag 'qpc.png'
+      %div#image2
+        = image_tag 'qpc.png'
+      %a{ href: 'http://www.ibtecnologia.com.br/' }
         2014-2015 © IB Tecnologia & Sistemas LTDA

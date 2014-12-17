@@ -1,0 +1,19 @@
+- content_for( :title ) do
+  = t 'shows.header'
+  = t 'models.' + eval( "obj.#{columns.first}" )
+
+%div#paper
+  %table
+    %tbody.data
+      - columns.each do |c|
+        - next if !!(c =~ /^(label|name)$/)
+        %tr
+          %td{ style: 'font-weight: bold;' }
+            = t( 'shows.' + c ) + ':'
+          %td
+            = eval 'obj.' + c
+    %tbody.commands
+      %tr
+        %td{ colspan: 2 }
+          = button_get :edit, eval( "edit_#{name}_path( obj )" )
+          = button_get :back, eval( "#{name.pluralize}_path" )

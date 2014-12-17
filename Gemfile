@@ -39,6 +39,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'byebug', group: [:development, :test]
 
 gem 'browser'
-gem 'devise'
+#gem 'devise'
 gem 'cancan'
 gem 'haml'
