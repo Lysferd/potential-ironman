@@ -61,13 +61,15 @@ ActiveRecord::Schema.define(version: 20141209133133) do
 
   create_table "manufacturers", force: true do |t|
     t.string   "label"
+    t.string   "homepage"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "platforms", force: true do |t|
     t.string   "label"
-    t.integer  "platform_id"
+    t.text     "description"
+    t.integer  "manufacturer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

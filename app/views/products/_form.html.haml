@@ -1,0 +1,17 @@
+%div#formy
+  = form_for @product do |f|
+    - if @product.errors.any?
+      %div#error_explanation
+        = t :error_notice
+        %ul
+          - @product.errors.full_messages.each do |message|
+            %li
+              = message
+    = f.text_field :label, placeholder: t( 'forms.label' )
+    = f.text_area :description, placeholder: t( 'forms.description' )
+    = f.select :manufacturer_id,
+      Manufacturer::order( :label ).collect { |m| [ m.label, m.id ] },
+      { include_blank: 'Selecione um fabricante' }
+    %div#commands
+      = f.submit t( :create )
+      = f.submit t( :cancel )

@@ -31,6 +31,8 @@ pt-BR:
   
   forms:
     full_name: 'Nome completo'
+    label: 'Nome'
+    description: 'Descrição'
     email: 'E-mail'
     password: 'Senha'
     password_confirmation: 'Confirmação de senha'

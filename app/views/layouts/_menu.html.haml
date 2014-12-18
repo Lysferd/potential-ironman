@@ -1,5 +1,5 @@
 %span
-  = link_to t( 'models.commissioning' ), commissionings_path
+  = link_to t( 'models.commissioning' ).pluralize, commissionings_path
   \-
   = link_to t( 'models.activity' ), activities_path
   \-
@@ -20,4 +20,5 @@
   -#= link_to t( 'models.certification' )#, users_certifications_path
   = link_to t( 'models.role' ), roles_path
   \-
-  = link_to t( 'logout' ), logout_path, method: :delete, data: { confirm: "This will terminate your login session. Continue?" }
+  = link_to t( 'logout' ), logout_path, method: :delete,
+    data: { confirm: "This will terminate your login session. Continue?" }

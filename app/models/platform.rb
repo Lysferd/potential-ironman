@@ -1,9 +1,13 @@
 class Platform < ActiveRecord::Base
   
   belongs_to :manufacturer
+  #has_one :product_type
+
+  validates :label, presence: true, uniqueness: true
+  validates :manufacturer_id, presence: true
   
   def manufacturer
-    return Manufacturer::find( self.manufacturer_id ).label
+    Manufacturer::find( self.manufacturer_id ).label
   end
 
 end
