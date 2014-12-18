@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :cpf
       t.string :pis
       t.string :reg
+      t.string :auth_token
       t.integer :role_id
 
       t.timestamps

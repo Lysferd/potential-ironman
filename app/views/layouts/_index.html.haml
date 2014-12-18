@@ -1,22 +1,27 @@
 - content_for( :title ) do
   = t 'index_header'
-  = t("models.#{name}").pluralize
+  = t "models.#{name}", count: 2
+  %p
+    = 'Desktop version' if desktop?
+    = 'Mobile version' if mobile?
+    = 'Tablet version' if tablet?
 
-%div#paper{ style: "width: #{500 + 100 * (columns.size - 1)}px;" }
+- width = desktop? ? "width: #{500 + 100 * (columns.size - 1)}px;" : "width: auto;"
+
+%div#paper{ style: width }
   %table
     %thead
       %tr
         - columns.each do |c|
-          %th
-            = t c
-        %th
-          = t 'indexes.options'
+          - next if mobile? and not (c =~ /^(label|name)$/)
+          %th= t 'forms.' + c
+        %th= t 'forms.options'
     %tbody.data
       - obj.all.each do |o|
         %tr
           - columns.each do |c|
-            %td
-              = eval 'o.' + c rescue c
+            - next if mobile? and not (c =~ /^(label|name)$/)
+            %td= eval 'o.' + c rescue c
           %td
             = image_get 'show.svg', :show, o
             = image_get 'edit.svg', :edit, eval( "edit_#{name}_path( o )" )

@@ -25,16 +25,27 @@ module ApplicationHelper
   end
 
   def user_signed_in?
-    !!session[:user_id]
+    !!cookies[:auth_token]
   end
 
   def current_user
-    User::find( session[:user_id] ) if user_signed_in?
+    User::find_by_auth_token( cookies[:auth_token] ) if cookies[:auth_token]
   end
 
-  # DEPRECATED
-  def admin_path
-    return root_path
+  def desktop?
+    !tablet_or_mobile?
   end
-  
+
+  def tablet?
+    browser.tablet?
+  end
+
+  def mobile?
+    browser.mobile?
+  end
+
+  def tablet_or_mobile?
+    browser.mobile? or browser.tablet?
+  end
+  alias :mobile_or_tablet? :tablet_or_mobile?
 end

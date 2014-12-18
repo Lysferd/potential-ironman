@@ -3,7 +3,9 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.string :label
       t.text :description
-      t.integer :type_id
+      t.integer :product_whitelist, array: true, default: [ ]
+      t.integer :platform_whitelist, array: true, default: [ ]
+      t.integer :product_type_id
       t.integer :manufacturer_id
 
       t.timestamps

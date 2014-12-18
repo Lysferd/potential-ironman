@@ -5,11 +5,16 @@ class Solution < ActiveRecord::Base
   has_one    :platform
 
   def product
-    return Product::find( product_id ).label
+    Product::find( product_id ).label
   end
 
   def platform
-    return Platform::find( platform_id ).label
+    Platform::find( platform_id ).label
+  end
+
+  def short_description
+    return self.description if self.description.size <= 100
+    self.description[0...100] + '(...)'
   end
   
 end

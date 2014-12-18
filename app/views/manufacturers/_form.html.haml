@@ -1,13 +1,14 @@
 %div#formy
   = form_for @manufacturer do |f|
     - if @manufacturer.errors.any?
-      %div#error_explanation{ style: 'border: 1px solid red;' }
+      %div#error_explanation
         = t :error_notice
         %ul
           - @manufacturer.errors.full_messages.each do |message|
             %li
               = message
-    = f.text_field :label, placeholder: t( :label ), autofocus: true
+    = f.text_field :label, placeholder: t( 'forms.label' ), autofocus: true
+    = f.text_field :homepage, placeholder: t( 'forms.homepage' )
     %div#commands
       = f.submit t( :create )
       = f.submit t( :cancel )

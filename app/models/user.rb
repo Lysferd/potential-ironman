@@ -2,6 +2,11 @@ require( 'digest/sha2' )
 
 class User < ActiveRecord::Base
   
+  attr_accessor :password_confirmation
+  attr_reader   :password
+
+  before_create { generate_token( :auth_token ) }
+
   has_and_belongs_to_many :commissionings
   has_one :role
   has_many :activities
@@ -9,10 +14,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
   validates :password, confirmation: true
-  
-  attr_accessor :password_confirmation
-  attr_reader   :password
-  
   validate :password_must_be_present
   
   def role?( role )
@@ -50,5 +51,11 @@ class User < ActiveRecord::Base
   
   def generate_salt
     self.salt = self.object_id.to_s + rand.to_s
+  end
+
+  def generate_token( column )
+    begin
+      self[column] = SecureRandom::urlsafe_base64
+    end while User::exists?( column => self[column] )
   end
 end

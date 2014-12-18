@@ -1,8 +1,5 @@
 = content_for( :title ) do
   Administração
-  %p
-    Logado como:
-    = current_user.name
 %div#menu
   = link_to( "Comissionamentos", commissionings_path, class: "button-link" )
   = link_to( "Atividades", activities_path, class: "button-link"  )

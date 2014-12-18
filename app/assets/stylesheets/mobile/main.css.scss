@@ -27,7 +27,7 @@ body {
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 30px;
-  line-height: 0px;
+  //line-height: 0px;
 }
 
 // Title //
@@ -37,6 +37,8 @@ p, ol, ul, td {
   background-color: #009688; // Verde Petróleo 500 - Google Material Design Pallete
   font-size: 80px;
   z-index: 10;
+  
+  p{ line-height: 0px;}
 }
 
 #alert {
@@ -119,25 +121,27 @@ p, ol, ul, td {
 
 // BEGIN OF FOOTER //
 #footer {
-  margin-top: 250px;
-  padding-bottom: 70px;
+  display:none;
+  
+  /*padding-top: 250px;
+  padding-bottom: 20px;
   bottom: 0px;
   left: 0px;
-  position: relative;
+  position: fixed;
   width: 100%;
-  height: 80px;
+  height: 70px;
   text-align: center;
   font-variant: small-caps;
-  font-size: 25px;
+  font-size: 15px;
   
   a {
     text-decoration: none;
     color: black;
-  }
+  }*/
 
   #image2 img {
-    width: 100px;
-    height: 100px;
+    width: 25px;
+    height: 25px;
   }
 }
 // END OF FOOTER //
@@ -153,17 +157,20 @@ p, ol, ul, td {
     margin-right: auto;
     margin-bottom: 30px;
     background-color: #FFFFFF; //Branco 0 - Google Material Design Pallete
-    width: 800px;
+    width: 100%;
     height: auto;
     box-shadow: 0px 0px 5px #455A64;
+    //display: inline-block;
+    
     
     input {
       color: white;
       letter-spacing: 2px;
       background-color: #4DB6AC; //Verde Petróleo 500 - Google Material Design Pallete
-      width: 180px;
-      height: 30px;
+      width: 280px;
+      height: 60px;
       border: 0;
+      font-size: 35px;
       
       &:hover {
         background-color:#26A69A; //Verde Petróleo 400 - Google Material Design Pallete
@@ -180,7 +187,7 @@ p, ol, ul, td {
     
     // BEGIN OF GENERIC TABLE //
     table {
-      width: inherit;
+      width: 100%;
       text-align: center;
       padding: 5px;
       border-collapse: collapse;
@@ -213,7 +220,7 @@ p, ol, ul, td {
         }
         
         td { 
-          width: 150px;
+          min-width: 350px;
           padding-left: 5px;
           padding-right: 5px;
         }
@@ -225,6 +232,14 @@ p, ol, ul, td {
         height: 60px;
       }
       // END OF TABLE COMMANDS //
+      
+      img {
+        position: relative;
+        width: 100px;
+        height: 100px;
+      }
+      
+      
     }
     // END OF GENERIC TABLE //
   }
@@ -321,7 +336,7 @@ p, ol, ul, td {
       }
 
       #commands {
-        text-align: center;
+        margin-left: 20%;
         
         input[type="submit"] {
           color: white;

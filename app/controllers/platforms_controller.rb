@@ -5,7 +5,7 @@ class PlatformsController < ApplicationController
   # GET /platforms
   # GET /platforms.json
   def index
-    @platforms = Platform.all
+    @platforms = Platform::order( :label )
   end
 
   # GET /platforms/1
@@ -70,11 +70,11 @@ class PlatformsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def platform_params
-    params.require(:platform).permit(:label)
+    params.require(:platform).permit(:label, :description, :manufacturer_id)
   end
   
   # Cancels data update/creation in case cancel button is pressed.
   def check_for_cancel
-    redirect_to( platforms_path, notice: 'Changes discarded.' ) if params[:commit] == 'Cancel'
+    redirect_to( platforms_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

@@ -5,7 +5,7 @@ class CertificationsController < ApplicationController
   # GET /certifications
   # GET /certifications.json
   def index
-    @certifications = Certification.all
+    @certifications = Certification::order( :label )
   end
 
   # GET /certifications/1
@@ -75,6 +75,6 @@ class CertificationsController < ApplicationController
 
   # Cancels data update/creation in case cancel button is pressed.
   def check_for_cancel
-    redirect_to( certifications_path, notice: 'Changes discarded.' ) if params[:commit] == 'Cancel'
+    redirect_to( certifications_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

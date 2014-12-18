@@ -5,7 +5,7 @@ class CommissioningsController < ApplicationController
   # GET /commissionings
   # GET /commissionings.json
   def index
-    @commissionings = Commissioning::order( 'label' )
+    @commissionings = Commissioning::order( :label )
   end
 
   # GET /commissionings/1
@@ -95,6 +95,6 @@ class CommissioningsController < ApplicationController
   
   # Cancels data update/creation in case cancel button is pressed.
   def check_for_cancel
-    redirect_to( commissionings_path, notice: 'Changes discarded.' ) if params[:commit] == 'Cancel'
+    redirect_to( commissionings_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

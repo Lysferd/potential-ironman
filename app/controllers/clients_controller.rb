@@ -5,7 +5,7 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.all
+    @clients = Client::order( :label )
   end
 
   # GET /clients/1
@@ -70,11 +70,11 @@ class ClientsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def client_params
-    params.require(:client).permit(:label)
+    params.require(:client).permit(:label, :homepage)
   end
   
   # Cancels data update/creation in case cancel button is pressed.
   def check_for_cancel
-    redirect_to( clients_path, notice: 'Changes discarded.' ) if params[:commit] == 'Cancel'
+    redirect_to( clients_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

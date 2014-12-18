@@ -70,11 +70,12 @@ class ProductsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
-    params.require(:product).permit(:label, :description, :manufacturer_id)
+    params.require(:product).permit(:label, :description, :manufacturer_id,
+                                    product_whitelist: [ ], platform_whitelist: [ ] )
   end
   
   # Cancels data update/creation in case cancel button is pressed.
   def check_for_cancel
-    redirect_to( products_path, notice: 'Changes discarded.' ) if params[:commit] == 'Cancel'
+    redirect_to( products_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

@@ -5,6 +5,8 @@
 %div#paper
   %table
     %tbody.data
+      -#%tr
+        %td{ colspan: 2 }
       - columns.each do |c|
         - next if !!(c =~ /^(label|name)$/)
         %tr

@@ -84,7 +84,9 @@ ActiveRecord::Schema.define(version: 20141209133133) do
   create_table "products", force: true do |t|
     t.string   "label"
     t.text     "description"
-    t.integer  "type_id"
+    t.integer  "product_whitelist",  default: [], array: true
+    t.integer  "platform_whitelist", default: [], array: true
+    t.integer  "product_type_id"
     t.integer  "manufacturer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -116,6 +118,7 @@ ActiveRecord::Schema.define(version: 20141209133133) do
     t.string   "cpf"
     t.string   "pis"
     t.string   "reg"
+    t.string   "auth_token"
     t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"

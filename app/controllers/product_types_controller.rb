@@ -5,7 +5,7 @@ class ProductTypesController < ApplicationController
   # GET /product_types
   # GET /product_types.json
   def index
-    @product_types = ProductType.all
+    @product_types = ProductType::order( :label )
   end
 
   # GET /product_types/1
@@ -75,6 +75,6 @@ class ProductTypesController < ApplicationController
   
   # Cancels data update/creation in case cancel button is pressed.
   def check_for_cancel
-    redirect_to( product_types_path, notice: 'Changes discarded.' ) if params[:commit] == 'Cancel'
+    redirect_to( product_types_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

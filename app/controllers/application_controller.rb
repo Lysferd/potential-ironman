@@ -6,16 +6,12 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = exception.message
-    redirect_to root_url
+    redirect_to root_path
   end
 
   private
   def require_login
-    return if session[:user_id]
+    return if cookies[:auth_token]
     redirect_to login_path, alert: 'Please log in.'
-  end
-
-  def after_sign_out_path_for( arg )
-    login_path
   end
 end

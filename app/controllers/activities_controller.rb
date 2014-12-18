@@ -5,7 +5,7 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.json
   def index
-    @activities = Activity.all
+    @activities = Activity::order( :label )
   end
 
   # GET /activities/1
@@ -75,6 +75,6 @@ class ActivitiesController < ApplicationController
   
   # Cancels data update/creation in case cancel button is pressed.
   def check_for_cancel
-    redirect_to( activities_path, notice: 'Changes discarded.' ) if params[:commit] == 'Cancel'
+    redirect_to( activities_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

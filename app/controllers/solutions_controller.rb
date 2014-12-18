@@ -5,7 +5,7 @@ class SolutionsController < ApplicationController
   # GET /solutions
   # GET /solutions.json
   def index
-    @solutions = Solution.all
+    @solutions = Solution::order( :label )
   end
 
   # GET /solutions/1
@@ -75,6 +75,6 @@ class SolutionsController < ApplicationController
   
   # Cancels data update/creation in case cancel button is pressed.
   def check_for_cancel
-    redirect_to( solutions_path, notice: 'Changes discarded.' ) if params[:commit] == 'Cancel'
+    redirect_to( solutions_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

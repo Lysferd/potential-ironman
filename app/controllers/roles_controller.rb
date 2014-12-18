@@ -5,7 +5,7 @@ class RolesController < ApplicationController
   respond_to :html
 
   def index
-    @roles = Role.all
+    @roles = Role::order( :label )
     respond_with(@roles)
   end
 
@@ -63,6 +63,6 @@ class RolesController < ApplicationController
   
   # Cancels data update/creation in case cancel button is pressed.
   def check_for_cancel
-    redirect_to( roles_path, notice: 'Changes discarded.' ) if params[:commit] == 'Cancel'
+    redirect_to( roles_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end
