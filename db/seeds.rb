@@ -81,39 +81,49 @@ os = ProductType::create label: 'Sistema Operacional',
   description: 'Programa ou um conjunto de programas cuja função é gerenciar os recursos do sistema, fornecendo uma interface entre o computador e o usuário.'
 
 #====================================================================
-# SEED PRODUCTS
-Product::create label: 'OnGuard',
-  description: 'Solução de controle de acesso.',
-  manufacturer_id: lenel.id
-  #product_type: ac
-
-Product::create label: 'LNVR',
-  description: 'Solução em CFTV, exige OnGuard para ser configurado.',
-  manufacturer_id: tyco.id
-  #product_type: os
-
-Product::create label: 'VideoEdge',
-  description: 'Solução de CFTV.',
-  manufacturer_id: tyco.id
-  #product_type: cftv
-
-Product::create label: 'OrcaView',
-  description: 'Solução de supervisório para sistemas de automação predial.',
-  manufacturer_id: delta_controls.id
-  #product_type: automation
-
-#====================================================================
 # SEED PLATFORMS
-Platform::create label: 'Windows 2008 Server R2',
+win = Platform::create label: 'Windows 2008 Server R2',
   description: 'Windows Server 2008 R2 is a server operating system produced by Microsoft. It was released to manufacturing (RTM) on July 22, 2009 and launched on October 22, 2009. According to the Windows Server Team blog, the retail availability was September 14, 2009. It is built on Windows NT 6.1, the same kernel used with the client-oriented Windows 7. It is the first 64-bit-only operating system released from Microsoft. Version enhancements include new functionality for Active Directory, new virtualization and management features, version 7.5 of Microsoft IIS Web Server and support for up to 256 logical processors.
   There are seven editions: Foundation, Standard, Enterprise, Datacenter, Web, HPC Server, Itanium and Windows Storage Server 2008 R2 (Essentials Edition).',
   manufacturer_id: microsoft.id
   #product_type: os
 
-Platform::create label: 'Ubuntu Server 10.14 x64',
+ubuntu = Platform::create label: 'Ubuntu Server 10.14 x64',
   description: 'Debian-based Linux operating system.',
   manufacturer_id: canonical.id
   #product_type: os
+
+#====================================================================
+# SEED PRODUCTS
+og = Product::create label: 'OnGuard',
+  description: 'Solução de controle de acesso.',
+  manufacturer_id: lenel.id
+  #product_type: ac
+
+lnvr = Product::create label: 'LNVR',
+  description: 'Solução em CFTV, exige OnGuard para ser configurado.',
+  manufacturer_id: tyco.id
+  #product_type: os
+
+ve = Product::create label: 'VideoEdge',
+  description: 'Solução de CFTV.',
+  manufacturer_id: tyco.id
+  #product_type: cftv
+
+ov = Product::create label: 'OrcaView',
+  description: 'Solução de supervisório para sistemas de automação predial.',
+  manufacturer_id: delta_controls.id
+  #product_type: automation
+
+og.update product_whitelist: [lnvr.id],
+  platform_whitelist: [win.id]
+
+lnvr.update product_whitelist: [og.id],
+    platform_whitelist: [win.id]
+
+ve.update platform_whitelist: [ubuntu.id]
+
+ov.update platform_whitelist: [win.id]
 
 #====================================================================
 # SEED CLIENTS

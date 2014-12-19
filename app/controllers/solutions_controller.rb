@@ -25,6 +25,10 @@ class SolutionsController < ApplicationController
   # POST /solutions
   # POST /solutions.json
   def create
+    # -=-=-=-
+    # Validate compatibility between Product and Platform.
+    #unless self.product_id.platform_whitelist.include?( self.platform_id )
+
     @solution = Solution.new(solution_params)
 
     respond_to do |format|
