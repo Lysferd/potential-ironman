@@ -1,7 +1,7 @@
-%div#formy
+#formy
   = form_for @solution do |f|
     - if @solution.errors.any?
-      %div#error_explanation
+      #error_explanation
         = t :error_notice
         %ul
           - @solution.errors.full_messages.each do |message|
@@ -15,6 +15,6 @@
     = f.select :platform_id,
       Platform::order( :label ).collect { |p| [ p.label, p.id ] },
       { include_blank: t( 'forms.select_platform' ) }
-    %div#commands
+    #commands
       = f.submit t( :create )
       = f.submit t( :cancel )

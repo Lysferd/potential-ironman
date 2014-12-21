@@ -7,7 +7,13 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.role? :administrator
       can :manage, :all
-    else
+    elsif user.role? :analist
+      can :manage, [ Manufacturer, Product, Platform, ProductTypes ]
+    elsif user.role? :commissioner
+      can :manage, Activity
+    elsif user.role? :draftsman
+      can :manage, [ Commissioning, Solution, Client ]
+    elsif user.role? :manager
       can :read, :all
     end
 

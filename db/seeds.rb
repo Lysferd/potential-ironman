@@ -131,3 +131,20 @@ ov.update platform_whitelist: [win.id]
   'GVT', 'Nissan', 'Centro Israelita Paranaense' ].each do |l|
   Client::create label: l
 end
+
+#====================================================================
+# SEED SOLUTIONS
+Solution::create label: 'OnGuard + Windows',
+  description: 'Software de controle de acesso OnGuard numa plataforma Windows Server.',
+  product_id: og.id,
+  platform_id: win.id
+
+Solution::create label: 'LNVR + Windows',
+  description: 'Software de CFTV LNVR numa plataforma Windows Server.',
+  product_id: lnvr.id,
+  platform_id: win.id
+
+Solution::create label: 'VideoEdge + Linux',
+  description: 'Software de CFTV VideoEdge numa plataforma Ubuntu Server.',
+  product_id: ve.id,
+  platform_id: ubuntu.id

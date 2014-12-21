@@ -1,7 +1,7 @@
-%div#formy{ style: "padding-top: 20px; padding-bottom: 10px;" }
+#formy{ style: "padding-top: 20px; padding-bottom: 10px;" }
   = form_for @user do |f|
     - if @user.errors.any?
-      %div#error_explanation
+      #error_explanation
         = t :error_notice
         %ul
           - @user.errors.full_messages.each do |message|
@@ -18,7 +18,7 @@
     = f.text_field :cpf, placeholder: t( 'forms.cpf' )
     = f.text_field :pis, placeholder: t( 'forms.pis' )
     = f.text_field :reg, placeholder: t( 'forms.reg' )
-    = f.select :role_id, Role::all.collect { |r| [ r.label, r.id ] }, { include_blank: 'Selecione uma permissão' }
-    %div#commands
+    = f.select :role_id, User::Roles::all.collect { |r| r }, { include_blank: 'Selecione uma permissão' }
+    #commands
       = f.submit t( :create )
       = f.submit t( :cancel )

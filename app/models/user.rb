@@ -1,6 +1,8 @@
 require( 'digest/sha2' )
 
 class User < ActiveRecord::Base
+
+  Roles = [ :administrator, :analist, :commissioner, :draftsman, :manager ]
   
   attr_accessor :password_confirmation
   attr_reader   :password
@@ -17,7 +19,7 @@ class User < ActiveRecord::Base
   validate :password_must_be_present
   
   def role?( role )
-    return !!self.roles.find_by_label( role.to_s.camelize )
+    return !!self.role.include?( role.to_s.camelize )
   end
 
   def role
