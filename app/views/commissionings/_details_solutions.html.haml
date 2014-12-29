@@ -1,0 +1,19 @@
+#paper
+  %table
+    - unless @commissioning.solutions.empty?
+      %thead
+        %tr
+          %th= t 'shows.last_solutions'
+      %tbody.data
+        - @commissioning.solutions.each do | s |
+          %tr
+            %td= link_to s.label, solution_path( s.id )
+    - else
+      %tr
+        %td
+          %h3= t 'shows.no_solutions'
+    %tbody.commands
+      %tr
+        %td
+          = button_get t( :create ), new_solution_path
+          = button_get t( :view ), solutions_path

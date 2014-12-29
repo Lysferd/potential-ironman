@@ -6,6 +6,8 @@
     = password_field_tag :password, params[:password],
       autocomplete: :off, placeholder: t( :password )
     %div.inputcheck
-      = check_box_tag :remember_me, params[:remember_me]
-      = label_tag :remember_me, "<span></span>#{t( :remember_me )}".html_safe
-    = submit_tag :login, { id: "login", data: { disable_with: t( :login_in ) } }
+      %div.centeringbutton
+        = check_box_tag :remember_me, params[:remember_me]
+        = label_tag :remember_me, t( :remember_me )
+    %div.centeringbutton
+      = submit_tag :login, { id: "login", data: { disable_with: t( :login_in ) } }

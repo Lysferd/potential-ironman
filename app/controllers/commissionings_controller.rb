@@ -31,18 +31,9 @@ class CommissioningsController < ApplicationController
   # POST /commissionings.json
   def create
     p = commissioning_params
-    p[:users].delete( '' )
-    p[:users].collect! { |i| User.find( i.to_i ) }
-    
-    # Debugging purposes.
-    # logger.debug '=' * 32
-    # logger.debug "Size: #{p[:users].size}"
-    # logger.debug "Users: #{p[:users]}"
-    # logger.debug "Creator: #{p[:creator_id]}"
-    # logger.debug '=' * 32
-    
-    @commissioning = Commissioning.new( p )
+    p[:creator_id] = current_user.id
 
+    @commissioning = Commissioning.new( p )
     respond_to do |format|
       if @commissioning.save
         format.html { redirect_to @commissioning, notice: 'Commissioning was successfully created.' }
@@ -57,12 +48,8 @@ class CommissioningsController < ApplicationController
   # PATCH/PUT /commissionings/1
   # PATCH/PUT /commissionings/1.json
   def update
-    p = commissioning_params
-    p[:users].delete( '' )
-    p[:users].collect! { |i| User.find( i.to_i ) }
-    
     respond_to do |format|
-      if @commissioning.update(p)
+      if @commissioning.update(commissioning_params)
         format.html { redirect_to @commissioning, notice: 'Commissioning was successfully updated.' }
         format.json { render :show, status: :ok, location: @commissioning }
       else
@@ -90,7 +77,7 @@ class CommissioningsController < ApplicationController
   
   # Never trust parameters from the scary internet, only allow the white list through.
   def commissioning_params
-    params.require(:commissioning).permit(:label, :description, :client_id, :creator_id, { users: [ ], active_users: [ ], solutions: [ ], activities: [ ] })
+    params.require(:commissioning).permit(:label, :description, :client_id, :creator_id, users: [ ], active_users: [ ], solutions: [ ], activities: [ ] )
   end
   
   # Cancels data update/creation in case cancel button is pressed.

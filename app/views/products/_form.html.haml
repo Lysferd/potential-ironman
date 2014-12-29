@@ -14,18 +14,23 @@
       { include_blank: 'Selecione um fabricante' }
     Platform Whitelist:
     %br
-    - Platform::order( :label ).each do |p|
-      = f.check_box :platform_whitelist, { multiple: true }, p.id, false
-      = f.label :platform_whitelist, p.label
-      %br
-    %br
+    .inputcheck
+      - Platform::order( :label ).each do |p|
+        = f.check_box :platform_whitelist, { multiple: true }, p.id, false
+        = f.label :platform_whitelist, p.label
+        %br/
+        %br/
+    %br/
     System Whitelist:
-    %br
-    - Product::order( :label ).each do |p|
-      - next if p == @product
-      = f.check_box :product_whitelist, { multiple: true }, p.id, false
-      = f.label :product_whitelist, p.label
-      %br
+    %br/
+    .inputcheck
+      - Product::order( :label ).each do |p|
+        - next if p == @product
+        = f.check_box :product_whitelist, { multiple: true }, p.id, false
+        = f.label :product_whitelist, p.label 
+        %br/
+        %br/
     %div#commands
-      = f.submit t( :create )
-      = f.submit t( :cancel )
+      %div#commands2
+        = f.submit t( :create )
+        = f.submit t( :cancel )

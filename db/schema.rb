@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209133133) do
+ActiveRecord::Schema.define(version: 20141223151907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "activities", force: true do |t|
     t.string   "label"
@@ -96,6 +97,7 @@ ActiveRecord::Schema.define(version: 20141209133133) do
     t.string   "label"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.hstore   "modes",      default: {}, null: false
   end
 
   create_table "solutions", force: true do |t|

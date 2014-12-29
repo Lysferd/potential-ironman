@@ -4,31 +4,28 @@
       #error_explanation
         = t :error_notice
         %ul
-          - @solution.errors.full_messages.each do |message|
+          - @commissioning.errors.full_messages.each do |message|
             %li
               = message
     = f.text_field :label, placeholder: t( 'forms.label' ), autofocus: true
     = f.text_area :description, placeholder: t( 'forms.description' )
-    = f.select :client_id,
-      Client::order( :label ).collect { |c| [ c.label, c.id ] },
-      { include_blank: 'Select a client' }
-    - if can? :manage, @commissioning
-      = f.label :creator_id, 'Creator:'
-      = f.select :creator_id,
-        User::all.collect { |u| [ u.name, u.id ] },
-        { include_blank: 'Select an user' }
-    %br/
-    %br/
-    = f.label :users, 'Commissioners:'
-    %table
-      %tr
+    = f.select :client_id, Client::order( :label ).collect { |c| [ c.label, c.id ] }, { include_blank: 'Select a client' }
+    /
+      - if can? :manage, @commissioning
+        = f.label :creator_id, 'Creator:'
+        = f.select :creator_id, User::all.collect { |u| [ u.name, u.id ] }, { include_blank: 'Select an user' }
+    /
+      = f.label :users, 'Commissioners:'
+      %table
         - User::order( :name ).each_with_index do |u, i|
-          - next if u == current_user #and cannot? :destroy, @commissioning
-          %td
-            = f.check_box :users, { multiple: true, checked: @commissioning.user_ids.include?( u.id ) }, u.id, ""
-            = f.label :users, u.name
-          - if (i + 1) % 2 == 0
-            = "</tr><tr>".html_safe
+          - next if u == current_user and cannot? :destroy, @commissioning
+          %tr
+            %td
+              = f.check_box :users, { multiple: true, checked: @commissioning.user_ids.include?( u.id ) }, u.id, ''
+              = f.label :users, u.name
+    /
+      = f.check_box :authorized
+      = f.label :authorized, t( 'forms.authorized' )
     #commands
       = f.submit t( :create )
       = f.submit t( :cancel )

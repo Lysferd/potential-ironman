@@ -1,4 +1,6 @@
-== README
+== POTENTIAL IRONMAN
+= A commissioning management system.
+Based on Ruby 2.1.5 on Rails 4.1.7, using PostgreSQL 9.4
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

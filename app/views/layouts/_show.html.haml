@@ -6,15 +6,11 @@
   %table
     %br/
     %tbody.data
-      -#%tr
-        %td{ colspan: 2 }
       - columns.each do |c|
         - next if !!(c =~ /^(label|name)$/)
         %tr
-          %td{ style: 'font-weight: bold;' }
-            = t( 'shows.' + c ) + ':'
-          %td
-            = eval 'obj.' + c
+          %td{ style: 'font-weight: bold;' }= t( 'shows.' + c ) + ':'
+          %td= eval 'obj.' + c
     %tbody.commands
       %tr
         %td{ colspan: 2 }

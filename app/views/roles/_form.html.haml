@@ -1,0 +1,26 @@
+#formy
+  = form_for @role do | f |
+    - if @role.errors.any?
+      #error_explanation
+        = t :error_notice
+        %ul
+          - @user.errors.full_messages.each do |message|
+            %li
+              = message
+    = f.text_field :label, autofocus: true, placeholder: t( 'forms.label' )
+    = f.label 'Modes:'
+    %table( border )
+      %thead
+        %tr
+          %th
+            Elemento
+          %th
+            Permissão
+      %tbody
+        - models.each do | m |
+          %tr
+            %td= f.label m
+            %td= f.select :modes, %w( Create Edit Destroy Read )
+    #commands
+      = f.submit t( :create )
+      = f.submit t( :cancel )

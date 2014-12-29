@@ -44,21 +44,20 @@ p, ol, ul, td {
 #alert {
   @include title-banner;
   background-color: #D50000; // Vermelho A700 - Google Material Design Pallete
-  font-size: 30px;
+  font-size: 50px;
   z-index: 11;
 }
 
 #notice {
   @include title-banner;
   background-color: #FFCA28; // Âmbar 400 - Google Material Design Pallete
-  font-size: 30px;
+  font-size: 50px;
   z-index: 11;
 }
 
 #hmenu {
   display: none;
 }
-
 
 // BEGIN OF MENU //
 #menu {
@@ -71,6 +70,7 @@ p, ol, ul, td {
   width: 800px;
   height: auto;
   box-shadow: 0px 0px 5px #455A64;
+  
 /*    
   input {
     padding-top: 5px;
@@ -109,7 +109,7 @@ p, ol, ul, td {
     border: 0;
     color: black;
     height: 60px;
-    font-size: 30px;
+    font-size: 35px;
     
     &:hover {
       background-color: #CFD8DC; //Cinza azulado 100 - Google Material Design Pallete
@@ -171,6 +171,7 @@ p, ol, ul, td {
       height: 60px;
       border: 0;
       font-size: 35px;
+      margin-bottom: 20px;
       
       &:hover {
         background-color:#26A69A; //Verde Petróleo 400 - Google Material Design Pallete
@@ -199,7 +200,7 @@ p, ol, ul, td {
       thead {
         color: #424242;  //Cinza 800 - Google Material Design Pallete
         line-height: 60px;
-        font-size: 15px;
+        font-size: 30px;
       }
       // END OF GENERIC THEAD //
       
@@ -213,6 +214,7 @@ p, ol, ul, td {
         
         tr {
           height: 30px;
+          vertical-align: middle;
           
           &:nth-child( odd ) {
             background: #F5F5F5; //Cinza 100 - Google Material Design Pallete
@@ -293,62 +295,80 @@ p, ol, ul, td {
     padding-bottom: 10px;
     position: relative;
     top: 190px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
     background-color: #FFFFFF; //Branco 0 - Google Material Design Pallete
     box-shadow: 0px 0px 5px #888888;
-    width: 700px;
+    width: auto; 
+    font-size: 40px;
+    
     
     // BEGIN OF FORM //
     form {
       margin-left: auto;
       margin-right: auto;
       width: 600px;
+      
     
       .inputcheck {
         margin-left: auto;
         margin-right: auto;
         width: 600px;
-        height: 60px;
-        font-size: 30px;
+        height: auto;
+        font-size: 20px;
         
         input[type="checkbox"] {
-          display: none;
-          
-          + label span {
-            display: inline-block;
-            width: 60px;
-            height: 60px;
-            margin: -1px 4px 0 0;
-            vertical-align: middle;
-            background: url( /assets/unchecked.svg ) left top no-repeat;
-            background-size: 60px 60px;
-            background-repeat: no-repeat;
-            cursor: pointer;
+          -webkit-transform: scale(3.5,3.5);
+          margin-left: 20px;
+          bottom: 5px;
+          cursor: pointer;
+          vertical-align: middle;
+          position: relative;
+
+          + label{
+            font-size: 40px;
+            padding-left: 15px;
+            text-indent: -15px;
           }
-          
-          &:checked + label span {
+        /* 
+          + label{
+            display: inline-block;
+            width: auto;
+            height: 60px;
+            vertical-align: middle;
+          }
+           
+          &:checked + label span{
             background: url( /assets/checked.svg ) 0px top no-repeat;
             background-size: 60px 60px;
             background-repeat: no-repeat;
-          }
+          } */
         }
       }
 
       #commands {
-        margin-left: 20%;
+        //margin-left: 20%;
         
         input[type="submit"] {
           color: white;
+          font-size: 30px;
           letter-spacing: 2px;
+          margin-top: 20px;
           background-color: #4DB6AC; //Verde Petróleo 500 - Google Material Design Pallete
-          width: 130px;
-          height: 30px;
+          width: 230px;
+          height: 60px;
           border: 0;
           
           &:hover{
             background-color:#26A69A; //Verde Petróleo 400 - Google Material Design Pallete
           }
+        }
+        
+        #commands2{
+          width: 480px;
+          margin-left: auto;
+          margin-right: auto;
         }
       }
       
@@ -357,11 +377,13 @@ p, ol, ul, td {
         color: white;
         letter-spacing: 2px;
         background-color: #009688; //Verde Petróleo 500 - Google Material Design Pallete
-        width: 600px;
+        width: 500px;
         height: 100px;
         border: 0;
         border-radius: 3px;
         font-size: 40px;
+        margin-top: 20px;
+        
         &:hover {
           background-color:#26A69A; //Teal 400 - Google Material Design Pallete
         }
@@ -378,15 +400,23 @@ p, ol, ul, td {
           border: 1px solid gray;
           letter-spacing: 2px;
           font-size: 40px;
+          margin-bottom: 20px;
         }
       }
+      
+      .centeringbutton{
+          width: 500px;
+          margin-left: auto;
+          margin-right: auto;
+        }
 
       textarea {
-        width: 252px;
+        width: 590px;
         height: 150px;
         border: 1px solid #BDBDBD; //Cinza 400 - Google Material Design Pallete
         resize: none;
         padding: 5px 10px 5px 10px;
+        font-size: 30px;
         
         &:focus {
           background-color: #FAFAFA; //Cinza 50 - Google Material Design Pallete
@@ -394,11 +424,12 @@ p, ol, ul, td {
       }
       select {
         background-color: #FFFFFF;
-        width: 272px;
-        height: 43px;
+        width: 612px;
+        height: 100px;
         border: 1px solid #BDBDBD;
         letter-spacing: 2px;
         margin-bottom: 10px;
+        font-size: 40px;
         
         &:focus {
           background-color: #FAFAFA; //Cinza 50 - Google Material Design Pallete

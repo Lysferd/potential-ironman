@@ -1,14 +1,8 @@
 - content_for( :title ) do
   = t 'index_header'
-  = t "models.#{name}", count: 2
-  %p
-    = 'Desktop version' if desktop?
-    = 'Mobile version' if mobile?
-    = 'Tablet version' if tablet?
-
+  = t "models.#{name}", count: obj::count
 - width = desktop? ? "width: #{500 + 100 * (columns.size - 1)}px;" : "width: auto;"
-
-%div#paper{ style: width }
+#paper{ style: width }
   %table
     %thead
       %tr
@@ -23,13 +17,12 @@
             - next if mobile? and not (c =~ /^(label|name)$/)
             %td= eval 'o.' + c rescue c
           %td
-            = image_get 'show.svg', :show, o
-            = image_get 'edit.svg', :edit, eval( "edit_#{name}_path( o )" )
-            = link_image 'destroy.svg', :destroy, o,
-              method: :delete,
-              data: { confirm: t( :destroy_confirmation ) }
+            = image_show o if can? :read, o
+            = image_edit eval( "edit_#{name}_path( o )" ) if can? :edit, o
+            = image_delete o if can? :destroy, o and not current_user.role == o
     %tbody.commands
       %tr
         %td{ colspan: columns.size + 1 }
-          = button_get :new, eval( "new_#{name}_path" )
+          - if can? :create, obj
+            = button_get :new, eval( "new_#{name}_path" )
           = button_get :back, root_path

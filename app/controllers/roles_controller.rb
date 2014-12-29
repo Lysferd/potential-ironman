@@ -36,6 +36,7 @@ class RolesController < ApplicationController
   end
 
   def update
+    byebug
     respond_to do |format|
       if @role.update(role_params)
         format.html { redirect_to roles_path, notice: 'Role was successfully created.' }
@@ -58,7 +59,7 @@ class RolesController < ApplicationController
   end
 
   def role_params
-    params.require(:role).permit(:label)
+    params.require(:role).permit(:label, { modes: [ ] })
   end
   
   # Cancels data update/creation in case cancel button is pressed.
