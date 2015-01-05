@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(version: 20141223151907) do
   create_table "commissionings", force: true do |t|
     t.string   "label"
     t.text     "description"
-    t.integer  "active_users", default: [], array: true
+    t.integer  "commissioners", default: [],    array: true
     t.integer  "creator_id"
-    t.boolean  "authorized"
+    t.boolean  "authorized",    default: false
     t.integer  "client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20141223151907) do
     t.string   "label"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.hstore   "modes",      default: {}, null: false
+    t.hstore   "rules",      default: {}, null: false
   end
 
   create_table "solutions", force: true do |t|

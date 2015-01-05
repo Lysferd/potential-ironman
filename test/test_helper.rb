@@ -7,15 +7,15 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  def login_as(user)
-    session[:user_id] = users(user).id
+  def login_as( user )
+    cookies[:auth_token] = users(user).auth_token
   end
 
   def logout
-    session.delete :user_id
+    cookies.delete( :auth_token )
   end
 
   def setup
-    login_as :one if defined? session
+    login_as :one if defined? cookies
   end
 end

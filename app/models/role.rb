@@ -1,7 +1,8 @@
 class Role < ActiveRecord::Base
   
   belongs_to :users
-  before_save :hashify_modes
+  before_create :hashify_rules
+  validates :label, presence: true, uniqueness: true
 
   #-------------------------------------------------------------------------
   # * Permission Mode Hash Expansion
@@ -9,14 +10,15 @@ class Role < ActiveRecord::Base
   # be expanded to be used with CanCan.
   #-------------------------------------------------------------------------
   def expand_mode( key )
-    fail ArgumentError unless self.modes.include?( key )
+    fail ArgumentError unless self.rules.include?( key )
     obj = !!(key =~ /all/i) ? key.intern : key.to_s
-    permission = self.modes[key].intern
+    permission = self.rules[key].intern
     return permission, obj
   end
 
   private
-  def hashify_modes
-    byebug
+  def hashify_rules
+    self.errors.add( :rules, 'Missing rules' ) if self.rules.empty?
+    #byebug
   end
 end

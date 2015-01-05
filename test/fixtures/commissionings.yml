@@ -3,11 +3,11 @@
 one:
   label: MyString
   description: MyText
-  client_id: 
-  solutions_id: 
+  #client_id: 
+  #solutions_id: 
 
 two:
   label: MyString
   description: MyText
-  client_id: 
-  solutions_id: 
+  #client_id: 
+  #solutions_id: 

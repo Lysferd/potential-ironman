@@ -18,7 +18,7 @@ class CommissioningsControllerTest < ActionController::TestCase
 
   test "should create commissioning" do
     assert_difference('Commissioning.count') do
-      post :create, commissioning: { client_id: @commissioning.client_id, description: @commissioning.description, label: @commissioning.label, solutions_id: @commissioning.solutions_id }
+      post :create, commissioning: { client_id: @commissioning.client_id, description: @commissioning.description, label: @commissioning.label }
     end
 
     assert_redirected_to commissioning_path(assigns(:commissioning))
@@ -35,7 +35,7 @@ class CommissioningsControllerTest < ActionController::TestCase
   end
 
   test "should update commissioning" do
-    patch :update, id: @commissioning, commissioning: { client_id: @commissioning.client_id, description: @commissioning.description, label: @commissioning.label, solutions_id: @commissioning.solutions_id }
+    patch :update, id: @commissioning, commissioning: { client_id: @commissioning.client_id, description: @commissioning.description, label: @commissioning.label }
     assert_redirected_to commissioning_path(assigns(:commissioning))
   end
 

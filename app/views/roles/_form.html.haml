@@ -4,23 +4,28 @@
       #error_explanation
         = t :error_notice
         %ul
-          - @user.errors.full_messages.each do |message|
+          - @role.errors.full_messages.each do |message|
             %li
               = message
     = f.text_field :label, autofocus: true, placeholder: t( 'forms.label' )
-    = f.label 'Modes:'
     %table( border )
       %thead
         %tr
           %th
-            Elemento
+            Model
           %th
-            Permissão
+            R
+          %th
+            W
+          %th
+            D
       %tbody
         - models.each do | m |
           %tr
-            %td= f.label m
-            %td= f.select :modes, %w( Create Edit Destroy Read )
+            %td= f.label  :'rules[:client]', m
+            %td= f.check_box :'rules[:client]'
+            /%td= f.select :rules, %w( Create Edit Destroy Read )
+          - break
     #commands
       = f.submit t( :create )
       = f.submit t( :cancel )

@@ -3,11 +3,11 @@
 <% SALT = 'NaCl' unless defined?( SALT ) %>
 
 one:
-  username: user1
+  email: user1@email.com
   hashed_password: <%= User::encrypt_password( 'pass', SALT ) %>
   salt: <%= SALT %>
 
 two:
-  username: MyString
+  email: MyString@MyEmail.Com
   hashed_password: MyString
   salt: MyString

@@ -1,6 +1,6 @@
 = render 'layouts/show',
   obj: @commissioning,
   name: 'commissioning',
-  columns: %w( label description creator_name client_label creation_date update_date )
+  columns: %w( label description creator_name commissioners_names client_label creation_date update_date authorized )
 = render 'details_solutions'
-/= render 'details_activities'
+= render 'details_activities' if @commissioning.authorized

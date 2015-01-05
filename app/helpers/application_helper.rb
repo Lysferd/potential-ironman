@@ -41,6 +41,14 @@ module ApplicationHelper
     return link_image( src, alt, path, html_options )
   end
 
+  def table_width( columns )
+    if desktop?
+      return "width: #{500 + 100 * (columns - 1)}px;"
+    else
+      return 'width: auto;'
+    end
+  end
+
   #-------------------------------------------------------------------------
   # * Logic Helpers
   #-------------------------------------------------------------------------

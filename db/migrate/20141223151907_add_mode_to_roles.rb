@@ -1,5 +1,5 @@
 class AddModeToRoles < ActiveRecord::Migration
   def change
-    add_column :roles, :modes, :hstore, default: { }, null: false
+    add_column :roles, :rules, :hstore, default: { }, null: false
   end
 end

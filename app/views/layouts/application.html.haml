@@ -33,12 +33,13 @@
         = image_tag 'qpc.png'
       %a{ href: 'http://www.ibtecnologia.com.br/' }
         2014-2015 © IB Tecnologia & Sistemas LTDA
-      %p{ style: 'border: 1px green solid' }
-        ="User: #{current_user.name}"
-        %br/
-        ="Permissions: #{current_user.role.label} #{current_user.role.modes}"
-        %br/
-        - m = desktop? ? 'desktop' : mobile? ? 'mobile' : tablet? ? 'tablet' : 'unknown'
-        ="Website mode: #{m} version"
-        %br/
-        ="Models: #{models}"
+      - if current_user
+        %p{ style: 'border: 1px green solid' }
+          ="User: #{current_user.name}"
+          %br/
+          ="Permissions: #{current_user.role.label} #{current_user.role.rules}"
+          %br/
+          - m = desktop? ? 'desktop' : mobile? ? 'mobile' : tablet? ? 'tablet' : 'unknown'
+          ="Website mode: #{m} version"
+          %br/
+          ="Models: #{models}"

@@ -14,7 +14,7 @@ class HomeControllerTest < ActionController::TestCase
 
   test "should login" do
     user = users(:one)
-    post :create, username: user.username, password: 'pass'
+    post :create, email: user.email, password: 'pass'
     assert_redirected_to :admin
     assert_equal user.id, session[:user_id]
   end

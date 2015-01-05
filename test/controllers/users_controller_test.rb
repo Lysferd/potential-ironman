@@ -17,10 +17,10 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should create user" do
-    username = 'newguy'
+    email = 'newguy'
     password = 'mycomplexpass'
     assert_difference('User.count') do
-      post :create, user: { username: username, password: password, password_confirmation: password }
+      post :create, user: { email: email, password: password, password_confirmation: password }
     end
 
     assert_redirected_to users_url
@@ -37,9 +37,9 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    new_username = 'updatedguy'
+    new_email = 'updatedguy'
     new_password = 'myupdatedpass'
-    patch :update, id: @user, user: { username: new_username, password: new_password, password_confirmation: new_password }
+    patch :update, id: @user, user: { email: new_email, password: new_password, password_confirmation: new_password }
     assert_redirected_to users_url
   end
 

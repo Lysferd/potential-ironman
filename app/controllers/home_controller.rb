@@ -5,9 +5,6 @@ class HomeController < ApplicationController
     redirect_to menu_path if browser.mobile?
   end
 
-  def admin
-  end
-
   def create
     if user = User::authenticate( params[:email], params[:password] )
       if params[:remember_me]

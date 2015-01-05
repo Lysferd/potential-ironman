@@ -1,28 +1,31 @@
 - content_for( :title ) do
   = t 'index_header'
   = t "models.#{name}", count: obj::count
-- width = desktop? ? "width: #{500 + 100 * (columns.size - 1)}px;" : "width: auto;"
-#paper{ style: width }
+#paper{ style: table_width( columns.size ) }
   %table
-    %thead
-      %tr
-        - columns.each do |c|
-          - next if mobile? and not (c =~ /^(label|name)$/)
-          %th= t 'forms.' + c
-        %th= t 'forms.options'
-    %tbody.data
-      - obj.all.each do |o|
+    - unless obj.count.zero?
+      %thead
         %tr
           - columns.each do |c|
             - next if mobile? and not (c =~ /^(label|name)$/)
-            %td= eval 'o.' + c rescue c
-          %td
-            = image_show o if can? :read, o
-            = image_edit eval( "edit_#{name}_path( o )" ) if can? :edit, o
-            = image_delete o if can? :destroy, o and not current_user.role == o
+            %th= t 'forms.' + c
+          %th= t 'forms.options'
+      %tbody.data
+        - obj.all.each do |o|
+          %tr
+            - columns.each do |c|
+              - next if mobile? and not (c =~ /^(label|name)$/)
+              %td= eval 'o.' + c rescue c
+            %td
+              = image_show o if can? :read, o
+              = image_edit eval( "edit_#{name}_path( o )" ) if can? :edit, o
+              = image_delete o if can? :destroy, o and not current_user.role == o
+    - else
+      %tr
+        %td
+          %h3= t "shows.no_#{name.pluralize}"
     %tbody.commands
       %tr
         %td{ colspan: columns.size + 1 }
-          - if can? :create, obj
-            = button_get :new, eval( "new_#{name}_path" )
+          = button_get :new, eval( "new_#{name}_path" ) if can? :create, obj
           = button_get :back, root_path

@@ -3,9 +3,9 @@ class CreateCommissionings < ActiveRecord::Migration
     create_table :commissionings do |t|
       t.string :label
       t.text :description
-      t.integer :active_users, array: true, default: []
+      t.integer :commissioners, array: true, default: [ ]
       t.integer :creator_id
-      t.boolean :authorized
+      t.boolean :authorized, default: false
       t.integer :client_id
 
       t.timestamps

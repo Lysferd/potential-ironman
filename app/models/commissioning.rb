@@ -1,8 +1,8 @@
 class Commissioning < ActiveRecord::Base
   
-  has_and_belongs_to_many :users#, dependent: :destroy
-  has_one  :client#, dependent: :destroy
-  has_many :solutions#, dependent: :destroy
+  has_and_belongs_to_many :users
+  has_one  :client
+  has_many :solutions
   has_many :activities#, dependent: :destroy
   
   validates :label, presence: true, uniqueness: true
@@ -16,12 +16,11 @@ class Commissioning < ActiveRecord::Base
     User::find( self.creator_id ).name
   end
 
-  def users_names
-    names = ''
-    users.each do |u|
-      names << u.name
-    end
-    return names
+  def commissioners_names
+    names = [ ]
+    self.commissioners.each { | u | names << u.name }
+    names << 'None' if names.empty?
+    return names.join( ?\n )
   end
 
   def creation_date

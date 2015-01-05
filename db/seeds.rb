@@ -2,9 +2,21 @@
 
 #====================================================================
 # SEED ROLES
-admin = Role::create label: 'Administrator'
-draft = Role::create label: 'Draftsman'
-commi = Role::create label: 'Commissioner'
+admin = Role::create label: 'Administrador',
+  rules: { 'all' => 'manage' }
+analist = Role::create label: 'Analista',
+  rules: { Manufacturer => 'manage',
+           Product => 'manage',
+           Platform => 'manage',
+           ProductType => 'manage' }
+commi = Role::create label: 'Comissionador',
+  rules: { Activity => 'manage' }
+draft = Role::create label: 'Projetista',
+  rules: { Commissioning => 'manage',
+           Solution => 'manage',
+           Client => 'manage' }
+manager = Role::create label: 'Gerente',
+  rules: { 'all' => 'read' }
 
 #====================================================================
 # SEED USERS
