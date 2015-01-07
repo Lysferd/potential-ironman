@@ -1,0 +1,19 @@
+#formy
+  = form_for @activity, remote: true do |f|
+    - if @activity.errors.any?
+      #error_explanation
+        = t :error_notice
+        %ul
+          - @activity.errors.full_messages.each do |message|
+            %li
+              = message
+    = f.text_field :label, placeholder: t( 'forms.label' ), autofocus: true
+    = f.text_area :description, placeholder: t( 'forms.description' )
+    V ToDo: jQuery Date Picker V
+    = f.text_field :date_start, placeholder: t( 'forms.date.start' )
+    = f.text_field :date_end, placeholder: t( 'forms.date.end' )
+    = f.hidden_field :user_id, current_user.id
+    = f.hidden_field :referer, value: params[:referer] if params[:referer]
+    #commands
+      = f.submit t( :create )
+      = f.submit t( :cancel )

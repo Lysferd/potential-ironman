@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   
   # -=-=-=-=-
   # AJAX requests.
-  # get 'commissioning_add_user' => 'commissionings#add_user'
+  get :back, controller: :application
   
   # -=-=-=-=-
   # Standard resources.

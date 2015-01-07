@@ -14,6 +14,10 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'haml'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer',  platforms: :ruby
+# ActiveRecord Session Store
+#gem 'activerecord-session_store'
+# A simple session store for Rails based on Redis
+gem 'redis-session-store'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -48,3 +52,5 @@ end
 
 # Debugger for Ruby 2.x
 gem 'byebug', group: [ :development, :test ]
+
+gem 'passenger'

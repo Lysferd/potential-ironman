@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: potential-ironman_production
-  username: potential-ironman
-  password: <%= ENV['POTENTIAL-IRONMAN_DATABASE_PASSWORD'] %>
+#  username: potential-ironman
+#  password: <%= ENV['POTENTIAL_IRONMAN_DATABASE_PASSWORD'] %>

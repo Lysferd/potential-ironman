@@ -1,6 +1,6 @@
 class PlatformsController < ApplicationController
   before_action :set_platform, only: [:show, :edit, :update, :destroy]
-  before_filter :check_for_cancel, :only => [:create, :update]
+  before_action :check_for_cancel, :only => [:create, :update]
 
   # GET /platforms
   # GET /platforms.json
@@ -29,10 +29,10 @@ class PlatformsController < ApplicationController
 
     respond_to do |format|
       if @platform.save
-        format.html { redirect_to @platform, notice: 'Platform was successfully created.' }
+        format.js { redirect_to @platform, notice: 'Platform was successfully created.' }
         format.json { render :show, status: :created, location: @platform }
       else
-        format.html { render :new }
+        format.js { render :new }
         format.json { render json: @platform.errors, status: :unprocessable_entity }
       end
     end
@@ -43,10 +43,10 @@ class PlatformsController < ApplicationController
   def update
     respond_to do |format|
       if @platform.update(platform_params)
-        format.html { redirect_to @platform, notice: 'Platform was successfully updated.' }
+        format.js { redirect_to @platform, notice: 'Platform was successfully updated.' }
         format.json { render :show, status: :ok, location: @platform }
       else
-        format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @platform.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +57,7 @@ class PlatformsController < ApplicationController
   def destroy
     @platform.destroy
     respond_to do |format|
-      format.html { redirect_to platforms_url, notice: 'Platform was successfully destroyed.' }
+      format.js { redirect_to platforms_url, notice: 'Platform was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,10 +71,5 @@ class PlatformsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def platform_params
     params.require(:platform).permit(:label, :description, :manufacturer_id)
-  end
-  
-  # Cancels data update/creation in case cancel button is pressed.
-  def check_for_cancel
-    redirect_to( platforms_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

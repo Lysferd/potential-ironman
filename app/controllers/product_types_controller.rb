@@ -1,6 +1,6 @@
 class ProductTypesController < ApplicationController
   before_action :set_product_type, only: [:show, :edit, :update, :destroy]
-  before_filter :check_for_cancel, :only => [:create, :update]
+  before_action :check_for_cancel, :only => [:create, :update]
 
   # GET /product_types
   # GET /product_types.json
@@ -29,10 +29,10 @@ class ProductTypesController < ApplicationController
 
     respond_to do |format|
       if @product_type.save
-        format.html { redirect_to @product_type, notice: 'Product type was successfully created.' }
+        format.js { redirect_to @product_type, notice: 'Product type was successfully created.' }
         format.json { render :show, status: :created, location: @product_type }
       else
-        format.html { render :new }
+        format.js { render :new }
         format.json { render json: @product_type.errors, status: :unprocessable_entity }
       end
     end
@@ -43,10 +43,10 @@ class ProductTypesController < ApplicationController
   def update
     respond_to do |format|
       if @product_type.update(product_type_params)
-        format.html { redirect_to @product_type, notice: 'Product type was successfully updated.' }
+        format.js { redirect_to @product_type, notice: 'Product type was successfully updated.' }
         format.json { render :show, status: :ok, location: @product_type }
       else
-        format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @product_type.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +57,7 @@ class ProductTypesController < ApplicationController
   def destroy
     @product_type.destroy
     respond_to do |format|
-      format.html { redirect_to product_types_url, notice: 'Product type was successfully destroyed.' }
+      format.js { redirect_to product_types_url, notice: 'Product type was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,10 +71,5 @@ class ProductTypesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_type_params
     params.require(:product_type).permit(:label, :description)
-  end
-  
-  # Cancels data update/creation in case cancel button is pressed.
-  def check_for_cancel
-    redirect_to( product_types_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

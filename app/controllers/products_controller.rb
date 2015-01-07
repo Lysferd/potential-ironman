@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_filter :check_for_cancel, :only => [:create, :update]
+  before_action :check_for_cancel, :only => [:create, :update]
 
   # GET /products
   # GET /products.json
@@ -29,10 +29,10 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.js { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
-        format.html { render :new }
+        format.js { render :new }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
@@ -43,10 +43,10 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.js { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
-        format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +57,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.js { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -72,10 +72,5 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:label, :description, :manufacturer_id,
                                     product_whitelist: [ ], platform_whitelist: [ ] )
-  end
-  
-  # Cancels data update/creation in case cancel button is pressed.
-  def check_for_cancel
-    redirect_to( products_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

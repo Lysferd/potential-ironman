@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
-  before_filter :check_for_cancel, :only => [:create, :update]
+  before_action :check_for_cancel, :only => [:create, :update]
 
   # GET /activities
   # GET /activities.json
@@ -29,10 +29,10 @@ class ActivitiesController < ApplicationController
 
     respond_to do |format|
       if @activity.save
-        format.html { redirect_to @activity, notice: 'Activity was successfully created.' }
+        format.js { redirect_to @activity, notice: 'Activity was successfully created.' }
         format.json { render :show, status: :created, location: @activity }
       else
-        format.html { render :new }
+        format.js { render :new }
         format.json { render json: @activity.errors, status: :unprocessable_entity }
       end
     end
@@ -43,10 +43,10 @@ class ActivitiesController < ApplicationController
   def update
     respond_to do |format|
       if @activity.update(activity_params)
-        format.html { redirect_to @activity, notice: 'Activity was successfully updated.' }
+        format.js { redirect_to @activity, notice: 'Activity was successfully updated.' }
         format.json { render :show, status: :ok, location: @activity }
       else
-        format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @activity.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +57,7 @@ class ActivitiesController < ApplicationController
   def destroy
     @activity.destroy
     respond_to do |format|
-      format.html { redirect_to activities_url, notice: 'Activity was successfully destroyed.' }
+      format.js { redirect_to activities_url, notice: 'Activity was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,10 +71,5 @@ class ActivitiesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def activity_params
     params.require(:activity).permit(:label, :description, :date_start, :date_end, :user_id)
-  end
-  
-  # Cancels data update/creation in case cancel button is pressed.
-  def check_for_cancel
-    redirect_to( activities_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

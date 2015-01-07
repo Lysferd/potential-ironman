@@ -1,7 +1,7 @@
-%div#formy
+#formy
   = form_for @product do |f|
     - if @product.errors.any?
-      %div#error_explanation
+      #error_explanation
         = t :error_notice
         %ul
           - @product.errors.full_messages.each do |message|
@@ -30,7 +30,8 @@
         = f.label :product_whitelist, p.label 
         %br/
         %br/
-    %div#commands
-      %div#commands2
+    = f.hidden_field :referer, value: params[:referer] if params[:referer]
+    #commands
+      #commands2
         = f.submit t( :create )
         = f.submit t( :cancel )

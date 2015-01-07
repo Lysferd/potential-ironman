@@ -1,6 +1,6 @@
 class SolutionsController < ApplicationController
   before_action :set_solution, only: [:show, :edit, :update, :destroy]
-  before_filter :check_for_cancel, :only => [:create, :update]
+  before_action :check_for_cancel, :only => [:create, :update]
   
   # GET /solutions
   # GET /solutions.json
@@ -15,7 +15,7 @@ class SolutionsController < ApplicationController
 
   # GET /solutions/new
   def new
-    @solution = Solution.new
+    @solution = Solution::new( commissioning_id: params[:commissioning_id] )
   end
 
   # GET /solutions/1/edit
@@ -25,14 +25,14 @@ class SolutionsController < ApplicationController
   # POST /solutions
   # POST /solutions.json
   def create
-    @solution = Solution.new(solution_params)
-
+    @solution = Solution::new( solution_params )
     respond_to do |format|
       if @solution.save
-        format.html { redirect_to @solution, notice: 'Solution was successfully created.' }
+        format.js { redirect_to @solution,
+                    notice: 'Solution was successfully created.' }
         format.json { render :show, status: :created, location: @solution }
       else
-        format.html { render :new }
+        format.js { render :new }
         format.json { render json: @solution.errors, status: :unprocessable_entity }
       end
     end
@@ -43,10 +43,10 @@ class SolutionsController < ApplicationController
   def update
     respond_to do |format|
       if @solution.update(solution_params)
-        format.html { redirect_to @solution, notice: 'Solution was successfully updated.' }
+        format.js { redirect_to @solution, notice: 'Solution was successfully updated.' }
         format.json { render :show, status: :ok, location: @solution }
       else
-        format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @solution.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +57,7 @@ class SolutionsController < ApplicationController
   def destroy
     @solution.destroy
     respond_to do |format|
-      format.html { redirect_to solutions_url, notice: 'Solution was successfully destroyed.' }
+      format.html { redirect_to :index, notice: 'Solution was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,11 +70,6 @@ class SolutionsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def solution_params
-    params.require(:solution).permit(:label, :description, :product_id, :platform_id)
-  end
-  
-  # Cancels data update/creation in case cancel button is pressed.
-  def check_for_cancel
-    redirect_to( solutions_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
+    params.require(:solution).permit(:label, :description, :product_id, :platform_id, :commissioning_id)
   end
 end

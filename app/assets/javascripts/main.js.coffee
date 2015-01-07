@@ -5,10 +5,18 @@
 delay = (ms, func) -> setTimeout func, ms
 popup = (msg) -> $( '.tooltip' ).show
 
+redirect = (page) ->
+  animation_speed = 'fast'
+  $( 'div#contents' ).fadeOut animation_speed, ->
+    $( 'div#contents' ).html page
+    $( 'div#contents' ).fadeIn animation_speed
+
 $ ->
   delay 2500, -> $( '#alert, #notice' ).fadeOut 'slow'
-  $( 'input[data-popbox]' ).hover -> $( '#pop1.tooltip' ).show
+  $( 'input[data-popbox]' ).hover ->
+    $( '#pop1.tooltip' ).show
+  #$( 'a[data-remote]' ).on 'ajax:success', (e,d,s,x) ->
+  #alert "Ajax"
 
-  #.effect 'slide', { "direction" : 'up', 'mode' : 'hide' }
-  #$( '.button' ).click ->
-    #$( '#login' ).slideUp( 'slow' )
+root = exports ? this
+root.redirect = redirect

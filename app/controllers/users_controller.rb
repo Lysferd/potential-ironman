@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_filter :check_for_cancel, :only => [:create, :update]
+  before_action :check_for_cancel, :only => [:create, :update]
   
   def index
     @users = User::order( :name )
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User::find( params[:id] )
     
     respond_to do | format |
-      format.html
+      format.js
       format.xml { render xml: @user }
     end
   end
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User::new
 
     respond_to do | format |
-      format.html
+      format.js
       format.xml { render xml: @user }
     end
   end
@@ -32,11 +32,11 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user,
+        format.js { redirect_to @user,
                       notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :new }
+        format.js { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -45,11 +45,11 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user,
+        format.js { redirect_to @user,
                       notice: 'User was created successfully.' }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_path, notice: 'User deleted.' }
+      format.js { redirect_to users_path, notice: 'User deleted.' }
       format.json { head :no_content }
     end
   end
@@ -69,12 +69,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :reg, :cpf, :ctps, :ci, :pis, :role_id )
-  end
-
-  def check_for_cancel
-    if params[:commit] == t( :cancel )
-      redirect_to( users_path, notice: 'Changes discarded.' )
-    end
+    params.require(:user).permit(:name, :email, :password, :password_confirmation,
+                                 :reg, :cpf, :ctps, :ci, :pis, :role_id )
   end
 end

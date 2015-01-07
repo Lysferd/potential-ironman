@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   skip_before_action :require_login, only: [ :login, :create ]
 
   def index
+    session[:referer] = nil
     redirect_to menu_path if browser.mobile?
   end
 

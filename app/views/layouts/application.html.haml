@@ -17,12 +17,13 @@
   %body
     #title
       = content_for?( :title ) ? yield( :title ) : 'Potential Ironman'
-    - if notice
-      #notice
+    /
+      - if notice
+        #notice
         = notice
-    - if alert
-      #alert
-        = alert
+      - if alert
+        #alert
+          = alert
     - if user_signed_in?
       #hmenu
         = render 'layouts/menu'
@@ -41,5 +42,3 @@
           %br/
           - m = desktop? ? 'desktop' : mobile? ? 'mobile' : tablet? ? 'tablet' : 'unknown'
           ="Website mode: #{m} version"
-          %br/
-          ="Models: #{models}"

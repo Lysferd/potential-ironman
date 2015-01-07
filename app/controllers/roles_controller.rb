@@ -1,36 +1,31 @@
 class RolesController < ApplicationController
   before_action :set_role, only: [:show, :edit, :update, :destroy]
-  before_filter :check_for_cancel, :only => [:create, :update]
-
-  respond_to :html
+  before_action :check_for_cancel, :only => [:create, :update]
 
   def index
     @roles = Role::order( :label )
-    respond_with(@roles)
   end
 
   def show
-    respond_with(@role)
   end
 
   def new
-    @role = Role.new
-    respond_with(@role)
+    @role = Role::new
   end
 
   def edit
   end
 
   def create
-    @role = Role.new(role_params)
+    @role = Role::new(role_params)
     byebug
     
     respond_to do |format|
       if @role.save
-        format.html { redirect_to roles_path, notice: 'Role was successfully created.' }
+        format.js { redirect_to roles_path, notice: 'Role was successfully created.' }
         format.json { render :index, status: :created, location: roles_path }
       else
-        format.html { render :new }
+        format.js { render :new }
         format.json { render json: @role.errors, status: :unprocessable_entity }
       end
     end
@@ -39,10 +34,10 @@ class RolesController < ApplicationController
   def update
     respond_to do |format|
       if @role.update(role_params)
-        format.html { redirect_to roles_path, notice: 'Role was successfully created.' }
+        format.js { redirect_to roles_path, notice: 'Role was successfully created.' }
         format.json { render :index, status: :created, location: roles_path }
       else
-        format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @role.errors, status: :unprocessable_entity }
       end
     end
@@ -50,7 +45,10 @@ class RolesController < ApplicationController
 
   def destroy
     @role.destroy
-    respond_with(@role)
+    respond_to do |format|
+      format.js { redirect_to :index, notice: 'Role was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -62,10 +60,5 @@ class RolesController < ApplicationController
     params.require(:role).permit(:label).tap do |whitelist|
       whitelist[:rules] = params[:role][:rules]
     end
-  end
-  
-  # Cancels data update/creation in case cancel button is pressed.
-  def check_for_cancel
-    redirect_to( roles_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

@@ -2,7 +2,7 @@
   = t 'show_header'
   = t 'models.' + eval( "obj.#{columns.first}" )
 
-%div#paper
+#paper
   %table
     %br/
     %tbody.data
@@ -15,4 +15,4 @@
       %tr
         %td{ colspan: 2 }
           = button_get :edit, eval( "edit_#{name}_path( obj )" )
-          = button_get :back, eval( "#{name.pluralize}_path" )
+          = button_get :back, back_path

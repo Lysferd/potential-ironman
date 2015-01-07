@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
-  before_filter :check_for_cancel, :only => [:create, :update]
+  before_action :check_for_cancel, :only => [:create, :update]
 
   # GET /clients
   # GET /clients.json
@@ -29,10 +29,10 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.save
-        format.html { redirect_to @client, notice: 'Client was successfully created.' }
+        format.js { redirect_to @client, notice: 'Client was successfully created.' }
         format.json { render :show, status: :created, location: @client }
       else
-        format.html { render :new }
+        format.js { render :new }
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end
     end
@@ -43,10 +43,10 @@ class ClientsController < ApplicationController
   def update
     respond_to do |format|
       if @client.update(client_params)
-        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
+        format.js { redirect_to @client, notice: 'Client was successfully updated.' }
         format.json { render :show, status: :ok, location: @client }
       else
-        format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +57,7 @@ class ClientsController < ApplicationController
   def destroy
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
+      format.js { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,10 +71,5 @@ class ClientsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def client_params
     params.require(:client).permit(:label, :homepage)
-  end
-  
-  # Cancels data update/creation in case cancel button is pressed.
-  def check_for_cancel
-    redirect_to( clients_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

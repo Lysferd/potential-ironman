@@ -1,11 +1,15 @@
 class ManufacturersController < ApplicationController
   before_action :set_manufacturer, only: [:show, :edit, :update, :destroy]
-  before_filter :check_for_cancel, :only => [:create, :update]
+  before_action :check_for_cancel, :only => [:create, :update]
 
   # GET /manufacturers
   # GET /manufacturers.json
   def index
     @manufacturers = Manufacturer::order( :label )
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /manufacturers/1
@@ -29,12 +33,12 @@ class ManufacturersController < ApplicationController
 
     respond_to do |format|
       if @manufacturer.save
-        format.html { redirect_to manufacturers_url,
+        format.js { redirect_to manufacturers_url,
                       notice: 'Manufacturer was successfully created.' }
         format.json { render :index, status: :created,
                       location: manufacturers_url }
       else
-        format.html { render :new }
+        format.js { render :new }
         format.json { render json: @manufacturer.errors,
                       status: :unprocessable_entity }
       end
@@ -46,11 +50,11 @@ class ManufacturersController < ApplicationController
   def update
     respond_to do |format|
       if @manufacturer.update(manufacturer_params)
-        format.html { redirect_to manufacturers_url,
+        format.js { redirect_to manufacturers_url,
                       notice: 'Manufacturer was successfully updated.' }
         format.json { render :index, status: :ok, location: manufacturers_url }
       else
-        format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @manufacturer.errors, status: :unprocessable_entity }
       end
     end
@@ -61,7 +65,7 @@ class ManufacturersController < ApplicationController
   def destroy
     @manufacturer.destroy
     respond_to do |format|
-      format.html { redirect_to manufacturers_url, notice: 'Manufacturer was successfully destroyed.' }
+      format.js { redirect_to manufacturers_url, notice: 'Manufacturer was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -75,10 +79,5 @@ class ManufacturersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def manufacturer_params
     params.require(:manufacturer).permit(:label)
-  end
-
-  # Cancels data update/creation in case cancel button is pressed.
-  def check_for_cancel
-    redirect_to( manufacturers_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

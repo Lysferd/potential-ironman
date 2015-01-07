@@ -1,5 +1,5 @@
 #formy
-  = form_for @solution do |f|
+  = form_for @solution, remote: true do |f|
     - if @solution.errors.any?
       #error_explanation
         = t :error_notice
@@ -15,6 +15,9 @@
     = f.select :platform_id,
       Platform::order( :label ).collect { |p| [ p.label, p.id ] },
       { include_blank: t( 'forms.select_platform' ) }
+    = f.hidden_field :commissioning_id,
+      value: @solution.commissioning_id if @solution.commissioning_id
+    = f.hidden_field :referer, value: params[:referer] if params[:referer]
     #commands
       = f.submit t( :create )
       = f.submit t( :cancel )

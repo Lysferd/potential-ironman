@@ -1,6 +1,6 @@
 class CertificationsController < ApplicationController
   before_action :set_certification, only: [:show, :edit, :update, :destroy]
-  before_filter :check_for_cancel, :only => [:create, :update]
+  before_action :check_for_cancel, :only => [:create, :update]
 
   # GET /certifications
   # GET /certifications.json
@@ -29,10 +29,10 @@ class CertificationsController < ApplicationController
 
     respond_to do |format|
       if @certification.save
-        format.html { redirect_to certifications_url, notice: 'Certification was successfully created.' }
+        format.js { redirect_to certifications_url, notice: 'Certification was successfully created.' }
         format.json { render :index, status: :created, location: certifications_url }
       else
-        format.html { render :new }
+        format.js { render :new }
         format.json { render json: @certification.errors, status: :unprocessable_entity }
       end
     end
@@ -43,10 +43,10 @@ class CertificationsController < ApplicationController
   def update
     respond_to do |format|
       if @certification.update(certification_params)
-        format.html { redirect_to certifications_url, notice: 'Certification was successfully updated.' }
+        format.js { redirect_to certifications_url, notice: 'Certification was successfully updated.' }
         format.json { render :index, status: :ok, location: certifications_url }
       else
-        format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @certification.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +57,7 @@ class CertificationsController < ApplicationController
   def destroy
     @certification.destroy
     respond_to do |format|
-      format.html { redirect_to certifications_url, notice: 'Certification was successfully destroyed.' }
+      format.js { redirect_to certifications_url, notice: 'Certification was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,10 +71,5 @@ class CertificationsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def certification_params
     params.require(:certification).permit( :label, :description, :user_id, :product_id )
-  end
-
-  # Cancels data update/creation in case cancel button is pressed.
-  def check_for_cancel
-    redirect_to( certifications_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
   end
 end

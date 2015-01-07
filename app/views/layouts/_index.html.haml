@@ -28,4 +28,4 @@
       %tr
         %td{ colspan: columns.size + 1 }
           = button_get :new, eval( "new_#{name}_path" ) if can? :create, obj
-          = button_get :back, root_path
+          = button_get :back, back_path

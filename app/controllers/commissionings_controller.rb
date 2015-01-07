@@ -1,26 +1,25 @@
 class CommissioningsController < ApplicationController
   before_action :set_commissioning, only: [:show, :edit, :update, :destroy]
-  before_filter :check_for_cancel, :only => [:create, :update]
+  before_action :check_for_cancel, :only => [:create, :update]
 
   # GET /commissionings
   # GET /commissionings.json
   def index
     @commissionings = Commissioning::order( :label )
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /commissionings/1
   # GET /commissionings/1.json
   def show
   end
-  
-  def add_user
-    @f = params[:form]
-    render( 'add_user', format: :js )
-  end
 
   # GET /commissionings/new
   def new
-    @commissioning = Commissioning.new
+    @commissioning = Commissioning::new( creator_id: current_user.id )
   end
 
   # GET /commissionings/1/edit
@@ -30,16 +29,13 @@ class CommissioningsController < ApplicationController
   # POST /commissionings
   # POST /commissionings.json
   def create
-    p = commissioning_params
-    p[:creator_id] = current_user.id
-
-    @commissioning = Commissioning.new( p )
+    @commissioning = Commissioning.new( commissioning_params )
     respond_to do |format|
       if @commissioning.save
-        format.html { redirect_to @commissioning, notice: 'Commissioning was successfully created.' }
+        format.js { redirect_to @commissioning, notice: 'Commissioning was successfully created.' }
         format.json { render :show, status: :created, location: @commissioning }
       else
-        format.html { render :new }
+        format.js { render :new }
         format.json { render json: @commissioning.errors, status: :unprocessable_entity }
       end
     end
@@ -50,10 +46,10 @@ class CommissioningsController < ApplicationController
   def update
     respond_to do |format|
       if @commissioning.update(commissioning_params)
-        format.html { redirect_to @commissioning, notice: 'Commissioning was successfully updated.' }
+        format.js { redirect_to @commissioning, notice: 'Commissioning was successfully updated.' }
         format.json { render :show, status: :ok, location: @commissioning }
       else
-        format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @commissioning.errors, status: :unprocessable_entity }
       end
     end
@@ -64,7 +60,7 @@ class CommissioningsController < ApplicationController
   def destroy
     @commissioning.destroy
     respond_to do |format|
-      format.html { redirect_to commissionings_url, notice: 'Commissioning was successfully destroyed.' }
+      format.js { redirect_to :index, notice: 'Commissioning was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -77,11 +73,6 @@ class CommissioningsController < ApplicationController
   
   # Never trust parameters from the scary internet, only allow the white list through.
   def commissioning_params
-    params.require(:commissioning).permit(:label, :description, :client_id, :creator_id, users: [ ], active_users: [ ], solutions: [ ], activities: [ ] )
-  end
-  
-  # Cancels data update/creation in case cancel button is pressed.
-  def check_for_cancel
-    redirect_to( commissionings_path, notice: 'Changes discarded.' ) if params[:commit] == t( :cancel )
+    params.require(:commissioning).permit(:label, :description, :client_id, :creator_id, commissioners: [ ], solutions: [ ], activities: [ ] )
   end
 end

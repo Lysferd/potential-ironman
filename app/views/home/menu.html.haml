@@ -1,24 +1,21 @@
 = content_for( :title ) do
   Administração
-%div#menu
-  = link_to( "- Comissionamentos", commissionings_path, class: "button-link" )
-  = link_to( "-- Atividades", activities_path, class: "button-link"  )
-
-  = link_to( "-- Soluções", solutions_path, class: "button-link"  )
+#menu
+  = link_to "Comissionamentos", commissionings_path, class: "button-link", remote: true
+  = link_to "Atividades", activities_path, class: "button-link", remote: true
+  = link_to "Soluções", solutions_path, class: "button-link", remote: true
   
-  = link_to( "- Fabricantes", manufacturers_path, class: "button-link"  )
-  
-  = link_to( "-- Plataformas", platforms_path, class: "button-link"  )
-  
-  = link_to( "-- Produtos", products_path, class: "button-link"  )
+  = link_to "Fabricantes", manufacturers_path, class: "button-link", remote: true
+  = link_to "Plataformas", platforms_path, class: "button-link", remote: true
+  = link_to "Sistemas", products_path, class: "button-link", remote: true
+  = link_to "Tipos de Sistemas", product_types_path, class: "button-link", remote: true
 
-  = link_to( "-- Tipos de Produtos", product_types_path, class: "button-link" )
+  = link_to "Clientes", clients_path, class: "button-link", remote: true
 
-  = link_to( "- Clientes", clients_path, class: "button-link"  )
-
-  = link_to( "- Usuários", users_path, class: "button-link"  )
+  = link_to "Usuários", users_path, class: "button-link", remote: true
   -#= link_to( "-- Certificados", certifications_path, class: "button-link"  )
-  -#= link_to( "-- Permissões", roles_path, class: "button-link"  )
-  = link_to( "- Finalizar Sessão", logout_path,
-  method: :delete, class: "button-link",
-  data: { confirm: "This will terminate your login session. Continue?" } )
+  = link_to "Permissões", roles_path, class: "button-link", remote: true
+
+  = link_to "Finalizar Sessão", logout_path,
+    method: :delete, class: "button-link",
+    data: { confirm: "This will terminate your login session. Continue?" }
