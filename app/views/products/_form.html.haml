@@ -12,21 +12,20 @@
     = f.select :manufacturer_id,
       Manufacturer::order( :label ).collect { |m| [ m.label, m.id ] },
       { include_blank: 'Selecione um fabricante' }
-    Platform Whitelist:
-    %br
-    .inputcheck
-      - Platform::order( :label ).each do |p|
-        = f.check_box :platform_whitelist, { multiple: true }, p.id, false
-        = f.label :platform_whitelist, p.label
-        %br/
-        %br/
     %br/
-    System Whitelist:
+    Plataformas Compatíveis:
+    %br
+    - Platform::order( :label ).each do |p|
+      = f.check_box :platform_whitelist, { multiple: true }, p.id, false
+      = f.label :platform_whitelist, p.label
+      %br/
+    %br/
+    Sistemas Compatíveis:
     %br/
     - Product::order( :label ).each do |p|
-      - next if p == @product
       = f.check_box :product_whitelist, { multiple: true }, p.id, false
       = f.label :product_whitelist, p.label 
+      %br/
     #commands
       = f.submit t( :save )
       = f.submit t( :cancel )

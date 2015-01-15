@@ -45,7 +45,8 @@ class SolutionsController < ApplicationController
                     notice: 'Solution was successfully created.' }
         format.json { render :show, status: :created, location: @solution }
       else
-        format.js { render :new }
+        format.js { render :new,
+                    alert: t( 'failed_to_create' ) }
         format.json { render json: @solution.errors, status: :unprocessable_entity }
       end
     end

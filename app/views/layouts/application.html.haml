@@ -17,18 +17,14 @@
   %body
     #title= content_for?( :title ) ? yield( :title ) : 'Potential Ironman'
     #hmenu= render 'layouts/menu' if user_signed_in?
-    #loading
+    #spinner( hidden )
+      %p
+        = image_tag( 'spinner.gif' )
+        %br/
+        = t( :loading )
     #contents= yield
     #footer
       #image2
         = image_tag 'qpc.png'
       %a{ href: 'http://www.ibtecnologia.com.br/' }
         2014-2015 © IB Tecnologia & Sistemas LTDA
-      - if current_user
-        %p{ style: 'border: 1px green solid' }
-          ="User: #{current_user.name}"
-          %br/
-          ="Permissions: #{current_user.role.label} #{current_user.role.rules}"
-          %br/
-          - m = desktop? ? 'desktop' : mobile? ? 'mobile' : tablet? ? 'tablet' : 'unknown'
-          ="Website mode: #{m} version"

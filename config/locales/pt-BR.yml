@@ -114,12 +114,31 @@ pt-BR:
       other: Usuários
   
   activerecord:
+    models:
+      solution:
+        one: Solução
+        other: Soluções
+    attributes:
+      solution:
+        label: Nome
+        description: Descrição
+        platform_id: Plataforma
+        product_id: Produto
+      user:
+        name: Nome
     errors:
       models:
+        solution:
+          attributes:
+            platform_id:
+              invalid: não é compatível com o produto selecionado.
+            product_id:
+              invalid: não é compatível com outras soluções deste comissionamento.
         manufacturer:
           attributes:
             label:
               blank: "- o nome do fabricante não pode estar em branco!"
+
   date:
     abbr_day_names:
     - Dom

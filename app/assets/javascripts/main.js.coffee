@@ -13,10 +13,10 @@ redirect = (page) ->
 
 $ ->
   $( document ).on 'ajax:before ajaxStart page:fetch', ->
-    $( 'div#loading' ).show()
+    $( 'div#spinner' ).fadeIn 'fast'
 
   $( document ).on 'ajax:complete ajaxComplete page:change', ( event, xhr ) ->
-    $( 'div#loading' ).hide()
+    $( 'div#spinner' ).fadeOut 'fast'
     flash = $.parseJSON( xhr.getResponseHeader( 'X-Flash-Messages' ) )
     return if _.isEmpty flash
 
