@@ -22,11 +22,9 @@
             %td
               = f.check_box :users, { multiple: true, checked: @commissioning.user_ids.include?( u.id ) }, u.id, ''
               = f.label :users, u.name
-    - unless @commissioning.solutions.count.zero?
-      = f.check_box :authorized
-      = f.label :authorized, t( 'forms.authorized' )
     = f.hidden_field :creator_id, value: @commissioning.creator_id
-    = f.hidden_field :referer, value: params[:referer] if params[:referer]
     #commands
-      = f.submit t( :create )
+      = f.submit t( :save )
       = f.submit t( :cancel )
+      - unless @commissioning.solutions.count.zero?
+        = f.submit t( :authorize ), data: { confirm: t( 'forms.confirm_authorization' ) }

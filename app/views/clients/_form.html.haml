@@ -1,5 +1,5 @@
 #formy
-  = form_for @client do |f|
+  = form_for @client, remote: true do |f|
     - if @client.errors.any?
       %div#error_explanation
         = t :error_notice
@@ -8,7 +8,6 @@
             %li
               = message
     = f.text_field :label, placeholder: t( 'forms.label' ), autofocus: true
-    = f.hidden_field :referer, value: params[:referer] if params[:referer]
     #commands
-      = f.submit t( :create )
+      = f.submit t( :save )
       = f.submit t( :cancel )

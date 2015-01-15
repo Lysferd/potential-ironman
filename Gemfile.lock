@@ -21,6 +21,10 @@ GEM
       activemodel (= 4.1.7)
       activesupport (= 4.1.7)
       arel (~> 5.0.0)
+    activerecord-session_store (0.1.0)
+      actionpack (>= 4.0.0, < 5)
+      activerecord (>= 4.0.0, < 5)
+      railties (>= 4.0.0, < 5)
     activesupport (4.1.7)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
@@ -123,10 +127,6 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
-    redis (3.2.0)
-    redis-session-store (0.8.0)
-      actionpack (>= 3, < 5)
-      redis
     ref (1.0.5)
     ruby2ruby (2.1.3)
       ruby_parser (~> 3.1)
@@ -176,11 +176,13 @@ GEM
     uglifier (2.6.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    underscore-rails (1.7.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-session_store
   bcrypt (~> 3.1.7)
   brakeman
   browser
@@ -196,10 +198,10 @@ DEPENDENCIES
   passenger
   pg
   rails (= 4.1.7)
-  redis-session-store
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
   therubyracer
   turbolinks
   uglifier (>= 1.3.0)
+  underscore-rails

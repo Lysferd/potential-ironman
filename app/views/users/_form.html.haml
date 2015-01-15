@@ -1,5 +1,5 @@
 #formy{ style: "padding-top: 20px; padding-bottom: 10px;" }
-  = form_for @user do |f|
+  = form_for @user, remote: true do |f|
     - if @user.errors.any?
       #error_explanation
         = t :error_notice
@@ -19,7 +19,6 @@
     = f.text_field :reg, placeholder: t( 'forms.reg' )
     = f.select :role_id, Role::all.collect { |r| [ r.label, r.id ] },
       { prompt: 'Selecione uma permissão' }
-    = f.hidden_field :referer, value: params[:referer] if params[:referer]
     #commands
-      = f.submit t( :create )
+      = f.submit t( :save )
       = f.submit t( :cancel )

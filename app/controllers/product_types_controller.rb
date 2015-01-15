@@ -6,20 +6,24 @@ class ProductTypesController < ApplicationController
   # GET /product_types.json
   def index
     @product_types = ProductType::order( :label )
+    super
   end
 
   # GET /product_types/1
   # GET /product_types/1.json
   def show
+    super( @product_type.label )
   end
 
   # GET /product_types/new
   def new
     @product_type = ProductType.new
+    super
   end
 
   # GET /product_types/1/edit
   def edit
+    super( @product_type.label )
   end
 
   # POST /product_types
@@ -56,10 +60,7 @@ class ProductTypesController < ApplicationController
   # DELETE /product_types/1.json
   def destroy
     @product_type.destroy
-    respond_to do |format|
-      format.js { redirect_to product_types_url, notice: 'Product type was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    super
   end
 
   private

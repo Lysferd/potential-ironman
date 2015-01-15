@@ -6,24 +6,24 @@ class ManufacturersController < ApplicationController
   # GET /manufacturers.json
   def index
     @manufacturers = Manufacturer::order( :label )
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    super
   end
 
   # GET /manufacturers/1
   # GET /manufacturers/1.json
   def show
+    super( @manufacturer.label )
   end
 
   # GET /manufacturers/new
   def new
     @manufacturer = Manufacturer.new
+    super
   end
 
   # GET /manufacturers/1/edit
   def edit
+    super( @manufacturer.label )
   end
 
   # POST /manufacturers
@@ -64,10 +64,7 @@ class ManufacturersController < ApplicationController
   # DELETE /manufacturers/1.json
   def destroy
     @manufacturer.destroy
-    respond_to do |format|
-      format.js { redirect_to manufacturers_url, notice: 'Manufacturer was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    super
   end
 
   private

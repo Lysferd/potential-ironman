@@ -13,6 +13,7 @@ module ApplicationHelper
   def button_delete( name = nil, options = nil, html_options = { }, &block )
     html_options[:method] = :delete
     html_options[:remote] = true
+    html_options[:data] = { confirm: t( :destroy_confirmation ) }
     name = t( name ) if name.kind_of?( Symbol )
     return button_to( name, options, html_options, &block )
   end
@@ -24,24 +25,41 @@ module ApplicationHelper
   end
   alias :image_get :link_image
 
-  def image_show( path, html_options = { } )
+  def image_show( object, html_options = { } )
+    return unless can?( :read, object )
+    path = "/#{object.class.name.downcase.pluralize}/#{object.id}"
+    #path += append_references
     src = 'show.svg'
     alt = :show
     return link_image( src, alt, path, html_options )
   end
 
-  def image_edit( path, html_options = { } )
+  def image_edit( object, html_options = { } )
+    return unless can?( :edit, object )
+    path = "/#{object.class.name.downcase.pluralize}/#{object.id}/edit"
+    #path += append_references
     src = 'edit.svg'
     alt = :edit
     return link_image( src, alt, path, html_options )
   end
 
-  def image_delete( path, html_options = { } )
+  def image_delete( object, html_options = { } )
+    return unless can?( :destroy, object )
+    path = "/#{object.class.name.downcase.pluralize}/#{object.id}"
+    #path += append_references
     src = 'destroy.svg'
     alt = :destroy
     html_options[:method] = :delete
     html_options[:data] = { confirm: t( :destroy_confirmation ) }
     return link_image( src, alt, path, html_options )
+  end
+
+  def append_references
+    refs = ''
+    if params[:commissioning_id]
+      refs += "?commissioning_id=#{params[:commissioning_id]}"
+    end
+    return refs
   end
 
   def table_width( columns )

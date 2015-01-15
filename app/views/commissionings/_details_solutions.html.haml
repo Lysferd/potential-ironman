@@ -5,12 +5,12 @@
         %tr
           %th( colspan = 2 )= t 'shows.last_solutions'
       %tbody.data
-        - @commissioning.solutions.each do | s |
+        - @commissioning.solutions.order( :updated_at ).reverse[0...5].each do | s |
           %tr
             %td= s.label
             %td
               = image_show s
-              = image_edit edit_solution_path( s )
+              = image_edit s
               = image_delete s
     - else
       %tr
@@ -19,6 +19,5 @@
     %tbody.commands
       %tr
         %td( colspan = 2 )
-          = button_get t( :create ),
-            new_solution_path( commissioning_id: @commissioning.id )
+          = button_get t( :create ), new_solution_path
           = button_get t( :view ), solutions_path

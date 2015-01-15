@@ -1,5 +1,5 @@
 #formy
-  = form_for @product do |f|
+  = form_for @product, remote: true do |f|
     - if @product.errors.any?
       #error_explanation
         = t :error_notice
@@ -23,15 +23,10 @@
     %br/
     System Whitelist:
     %br/
-    .inputcheck
-      - Product::order( :label ).each do |p|
-        - next if p == @product
-        = f.check_box :product_whitelist, { multiple: true }, p.id, false
-        = f.label :product_whitelist, p.label 
-        %br/
-        %br/
-    = f.hidden_field :referer, value: params[:referer] if params[:referer]
+    - Product::order( :label ).each do |p|
+      - next if p == @product
+      = f.check_box :product_whitelist, { multiple: true }, p.id, false
+      = f.label :product_whitelist, p.label 
     #commands
-      #commands2
-        = f.submit t( :create )
-        = f.submit t( :cancel )
+      = f.submit t( :save )
+      = f.submit t( :cancel )

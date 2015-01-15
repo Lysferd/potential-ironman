@@ -17,7 +17,6 @@
       { include_blank: t( 'forms.select_platform' ) }
     = f.hidden_field :commissioning_id,
       value: @solution.commissioning_id if @solution.commissioning_id
-    = f.hidden_field :referer, value: params[:referer] if params[:referer]
     #commands
-      = f.submit t( :create )
+      = f.submit t( :save )
       = f.submit t( :cancel )

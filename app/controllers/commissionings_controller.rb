@@ -1,29 +1,31 @@
 class CommissioningsController < ApplicationController
   before_action :set_commissioning, only: [:show, :edit, :update, :destroy]
-  before_action :check_for_cancel, :only => [:create, :update]
+  before_action :check_for_cancel, only: [:create, :update]
+  #before_action :refresh_title, except: [ :create, :update, :destroy ]
 
   # GET /commissionings
   # GET /commissionings.json
   def index
     @commissionings = Commissioning::order( :label )
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    super
   end
 
   # GET /commissionings/1
   # GET /commissionings/1.json
   def show
+    flash[:commissioning_id] = params[:id]
+    super( @commissioning.label )
   end
 
   # GET /commissionings/new
   def new
     @commissioning = Commissioning::new( creator_id: current_user.id )
+    super
   end
 
   # GET /commissionings/1/edit
   def edit
+    super( @commissioning.label )
   end
 
   # POST /commissionings
@@ -59,10 +61,7 @@ class CommissioningsController < ApplicationController
   # DELETE /commissionings/1.json
   def destroy
     @commissioning.destroy
-    respond_to do |format|
-      format.js { redirect_to :index, notice: 'Commissioning was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    super
   end
 
   private

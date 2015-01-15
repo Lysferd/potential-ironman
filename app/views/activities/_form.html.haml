@@ -13,7 +13,8 @@
     = f.text_field :date_start, placeholder: t( 'forms.date.start' )
     = f.text_field :date_end, placeholder: t( 'forms.date.end' )
     = f.hidden_field :user_id, current_user.id
-    = f.hidden_field :referer, value: params[:referer] if params[:referer]
+    = f.hidden_field :commissioning_id,
+      value: @activity.commissioning_id if @activity.commissioning_id
     #commands
-      = f.submit t( :create )
+      = f.submit t( :save )
       = f.submit t( :cancel )

@@ -4,16 +4,20 @@ class RolesController < ApplicationController
 
   def index
     @roles = Role::order( :label )
+    super
   end
 
   def show
+    super( @role.label )
   end
 
   def new
     @role = Role::new
+    super
   end
 
   def edit
+    super( @role.label )
   end
 
   def create
@@ -45,10 +49,7 @@ class RolesController < ApplicationController
 
   def destroy
     @role.destroy
-    respond_to do |format|
-      format.js { redirect_to :index, notice: 'Role was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    super
   end
 
   private

@@ -15,20 +15,10 @@
     = csrf_meta_tags
 
   %body
-    #title
-      = content_for?( :title ) ? yield( :title ) : 'Potential Ironman'
-    /
-      - if notice
-        #notice
-        = notice
-      - if alert
-        #alert
-          = alert
-    - if user_signed_in?
-      #hmenu
-        = render 'layouts/menu'
-    #contents
-      = yield
+    #title= content_for?( :title ) ? yield( :title ) : 'Potential Ironman'
+    #hmenu= render 'layouts/menu' if user_signed_in?
+    #loading
+    #contents= yield
     #footer
       #image2
         = image_tag 'qpc.png'

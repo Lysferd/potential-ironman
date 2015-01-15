@@ -1,5 +1,7 @@
 - content_for( :title ) do
-  Meus Commissionamentos
+  Meus Projetos
 
-%div#paper
-  Hello World
+#paper
+  - Commissioning::where( creator_id: current_user.id ).each do |c|
+    = c.label
+    %br/

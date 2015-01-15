@@ -1,5 +1,5 @@
 #formy
-  = form_for @role do | f |
+  = form_for @role, remote: true do | f |
     - if @role.errors.any?
       #error_explanation
         = t :error_notice
@@ -26,7 +26,6 @@
             %td= f.check_box :'rules[:client]'
             /%td= f.select :rules, %w( Create Edit Destroy Read )
           - break
-    = f.hidden_field :referer, value: params[:referer] if params[:referer]
     #commands
-      = f.submit t( :create )
+      = f.submit t( :save )
       = f.submit t( :cancel )

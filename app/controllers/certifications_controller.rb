@@ -6,20 +6,24 @@ class CertificationsController < ApplicationController
   # GET /certifications.json
   def index
     @certifications = Certification::order( :label )
+    super
   end
 
   # GET /certifications/1
   # GET /certifications/1.json
   def show
+    super( @certification.label )
   end
 
   # GET /certifications/new
   def new
     @certification = Certification.new
+    super
   end
 
   # GET /certifications/1/edit
   def edit
+    super( @certification.label )
   end
 
   # POST /certifications
@@ -56,10 +60,7 @@ class CertificationsController < ApplicationController
   # DELETE /certifications/1.json
   def destroy
     @certification.destroy
-    respond_to do |format|
-      format.js { redirect_to certifications_url, notice: 'Certification was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    super
   end
 
   private

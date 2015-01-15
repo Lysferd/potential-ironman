@@ -2,31 +2,31 @@
   %nav
     %ul.cf
       %li
-        = link_to t( 'models.commissioning', count: 2 ),
+        = link_to t( 'models.commissionings', count: 2 ),
           commissionings_path, remote: true
         %ul.dropdown
           %li.dropdown-sub-item
-            = link_to t( 'models.activity', count: 2 ), activities_path, remote: true
+            = link_to t( 'models.activities', count: 2 ), activities_path, remote: true
           %li.dropdown-sub-item
-            = link_to t( 'models.solution', count: 2 ), solutions_path, remote: true
+            = link_to t( 'models.solutions', count: 2 ), solutions_path, remote: true
       %li
-        = link_to t( 'models.manufacturer', count: 2 ), manufacturers_path, remote: true
+        = link_to t( 'models.manufacturers', count: 2 ), manufacturers_path, remote: true
         %ul.dropdown
           %li.dropdown-sub-item
-            = link_to t( 'models.product', count: 2 ), products_path, remote: true
+            = link_to t( 'models.products', count: 2 ), products_path, remote: true
           %li.dropdown-sub-item
-            = link_to t( 'models.platform', count: 2 ), platforms_path, remote: true
+            = link_to t( 'models.platforms', count: 2 ), platforms_path, remote: true
           %li.dropdown-sub-item
-            = link_to t( 'models.product_type', count: 2 ), product_types_path, remote: true
+            = link_to t( 'models.product_types', count: 2 ), product_types_path, remote: true
       %li
-        = link_to t( 'models.client', count: 2 ), clients_path, remote: true
+        = link_to t( 'models.clients', count: 2 ), clients_path, remote: true
       %li
-        = link_to t( 'models.user', count: 2 ), users_path, remote: true
+        = link_to t( 'models.users', count: 2 ), users_path, remote: true
         %ul.dropdown
           -#%li.dropdown-sub-item
             -#= link_to t( 'models.certification', count: 2 ), users_certifications_path, remote: true
           %li.dropdown-sub-item
-            = link_to t( 'models.role', count: 2 ),
+            = link_to t( 'models.roles', count: 2 ),
               roles_path, remote: true
       %li.dropdown-item
         = link_to t( 'logout' ), logout_path, method: :delete,

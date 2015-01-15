@@ -6,20 +6,24 @@ class PlatformsController < ApplicationController
   # GET /platforms.json
   def index
     @platforms = Platform::order( :label )
+    super
   end
 
   # GET /platforms/1
   # GET /platforms/1.json
   def show
+    super( @platform.label )
   end
 
   # GET /platforms/new
   def new
     @platform = Platform.new
+    super
   end
 
   # GET /platforms/1/edit
   def edit
+    super( @platform.label )
   end
 
   # POST /platforms
@@ -56,10 +60,7 @@ class PlatformsController < ApplicationController
   # DELETE /platforms/1.json
   def destroy
     @platform.destroy
-    respond_to do |format|
-      format.js { redirect_to platforms_url, notice: 'Platform was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    super
   end
 
   private

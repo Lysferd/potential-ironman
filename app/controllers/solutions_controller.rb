@@ -5,21 +5,34 @@ class SolutionsController < ApplicationController
   # GET /solutions
   # GET /solutions.json
   def index
-    @solutions = Solution::order( :label )
+    if flash[:commissioning_id]
+      @solutions = Solution::where( commissioning_id: flash[:commissioning_id] ).
+        order( :label )
+      flash.keep( :commissioning_id )
+    else
+      @solutions = Solution::order( :label )
+    end
+    super
   end
 
   # GET /solutions/1
   # GET /solutions/1.json
   def show
+    flash.keep( :commissioning_id )
+    super( @solution.label )
   end
 
   # GET /solutions/new
   def new
-    @solution = Solution::new( commissioning_id: params[:commissioning_id] )
+    flash.keep( :commissioning_id ) if flash[:commissioning_id]
+    @solution = Solution::new( commissioning_id: flash[:commissioning_id] )
+    super
   end
 
   # GET /solutions/1/edit
   def edit
+    flash.keep( :commissioning_id ) if flash[:commissioning_id]
+    super( @solution.label )
   end
 
   # POST /solutions
@@ -43,8 +56,9 @@ class SolutionsController < ApplicationController
   def update
     respond_to do |format|
       if @solution.update(solution_params)
-        format.js { redirect_to @solution, notice: 'Solution was successfully updated.' }
-        format.json { render :show, status: :ok, location: @solution }
+        format.html { redirect_to @solution,
+                      notice: 'Solution was successfully updated.' }
+        #format.json { render :show, status: :ok, location: @solution }
       else
         format.js { render :edit }
         format.json { render json: @solution.errors, status: :unprocessable_entity }
@@ -55,11 +69,9 @@ class SolutionsController < ApplicationController
   # DELETE /solutions/1
   # DELETE /solutions/1.json
   def destroy
+    flash.keep( :commissioning_id ) if flash[:commissioning_id]
     @solution.destroy
-    respond_to do |format|
-      format.html { redirect_to :index, notice: 'Solution was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    super
   end
 
   private
@@ -71,5 +83,10 @@ class SolutionsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def solution_params
     params.require(:solution).permit(:label, :description, :product_id, :platform_id, :commissioning_id)
+  end
+  
+  def check_for_cancel
+    flash.keep( :commissioning_id ) if flash[:commissioning_id]
+    super
   end
 end

@@ -4,27 +4,21 @@ class UsersController < ApplicationController
   
   def index
     @users = User::order( :name )
+    super
   end
 
   def show
     @user = User::find( params[:id] )
-    
-    respond_to do | format |
-      format.js
-      format.xml { render xml: @user }
-    end
+    super( @user.name )
   end
 
   def new
     @user = User::new
-
-    respond_to do | format |
-      format.js
-      format.xml { render xml: @user }
-    end
+    super
   end
 
   def edit
+    super( @user.name )
   end
 
   def create
@@ -57,10 +51,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.js { redirect_to users_path, notice: 'User deleted.' }
-      format.json { head :no_content }
-    end
+    super
   end
 
   private

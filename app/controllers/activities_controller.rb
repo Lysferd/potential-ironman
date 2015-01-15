@@ -6,20 +6,24 @@ class ActivitiesController < ApplicationController
   # GET /activities.json
   def index
     @activities = Activity::order( :label )
+    super
   end
 
   # GET /activities/1
   # GET /activities/1.json
   def show
+    super( @activity.label )
   end
 
   # GET /activities/new
   def new
     @activity = Activity.new
+    super
   end
 
   # GET /activities/1/edit
   def edit
+    super( @activity.label )
   end
 
   # POST /activities
@@ -56,10 +60,7 @@ class ActivitiesController < ApplicationController
   # DELETE /activities/1.json
   def destroy
     @activity.destroy
-    respond_to do |format|
-      format.js { redirect_to activities_url, notice: 'Activity was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    super
   end
 
   private
