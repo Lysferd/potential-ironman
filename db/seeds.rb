@@ -144,6 +144,7 @@ ov.update platform_whitelist: [win.id]
   Client::create label: l
 end
 
+=begin
 #====================================================================
 # SEED SOLUTIONS
 Solution::create label: 'OnGuard + Windows',
@@ -160,3 +161,4 @@ Solution::create label: 'VideoEdge + Linux',
   description: 'Software de CFTV VideoEdge numa plataforma Ubuntu Server.',
   product_id: ve.id,
   platform_id: ubuntu.id
+=end

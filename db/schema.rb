@@ -39,7 +39,15 @@ ActiveRecord::Schema.define(version: 20150107023908) do
 
   create_table "clients", force: true do |t|
     t.string   "label"
-    t.text     "description"
+    t.string   "cnpj"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "zip_code"
+    t.string   "phone"
+    t.string   "contact_name"
+    t.string   "contact_email"
+    t.string   "commercial_contact"
+    t.string   "homepage"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

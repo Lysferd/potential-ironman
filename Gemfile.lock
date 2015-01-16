@@ -188,6 +188,7 @@ DEPENDENCIES
   browser
   byebug
   cancan
+  capistrano
   capistrano-rails
   coffee-rails (~> 4.0.0)
   gritter

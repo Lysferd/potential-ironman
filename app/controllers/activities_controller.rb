@@ -38,7 +38,6 @@ class ActivitiesController < ApplicationController
   # POST /activities
   # POST /activities.json
   def create
-    byebug
     @activity = Activity.new(activity_params)
 
     respond_to do |format|

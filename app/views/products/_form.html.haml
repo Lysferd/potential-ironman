@@ -17,7 +17,7 @@
     %br
     - Platform::order( :label ).each do |p|
       = f.check_box :platform_whitelist, { multiple: true }, p.id, false
-      = f.label :platform_whitelist, p.label
+      = f.label :platform_whitelist, p.label# + " (#{p.version})"
       %br/
     %br/
     Sistemas Compatíveis:

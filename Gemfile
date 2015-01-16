@@ -46,7 +46,8 @@ group :development do
   # Static analysis tool for security vulnerabilities
   gem 'brakeman', require: false
   # Use Capistrano for deployment
-  gem 'capistrano-rails', require: false
+  gem 'capistrano'
+  gem 'capistrano-rails'
 end
 
 # Debugger for Ruby 2.x
