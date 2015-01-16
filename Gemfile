@@ -48,6 +48,8 @@ group :development do
   # Use Capistrano for deployment
   gem 'capistrano'
   gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano-passenger'
 end
 
 # Debugger for Ruby 2.x
