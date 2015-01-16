@@ -1,7 +1,7 @@
 - content_for( :title ) do
-  Meus Projetos
+  Minha Página
+  %p
+    Logado como:
+    = current_user.name
 
-#paper
-  - Commissioning::where( creator_id: current_user.id ).each do |c|
-    = c.label
-    %br/
+= render( 'draftsman', obj: @obj )

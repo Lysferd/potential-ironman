@@ -1,0 +1,23 @@
+#paper
+  %table
+    - unless @commissioning.activities.empty?
+      %thead
+        %tr
+          %th( colspan = 2 )= t 'shows.last_activities'
+      %tbody.data
+        - @commissioning.activities.order( :updated_at ).reverse[0...5].each do | a |
+          %tr
+            %td= a.label
+            %td
+              = image_show a, 'activities'
+              = image_edit a, 'activities'
+              = image_delete a, 'activities'
+    - else
+      %tr
+        %td
+          %h3= t 'shows.no_activities'
+    %tbody.commands
+      %tr
+        %td( colspan = 2 )
+          = button_get t( :create ), new_activity_path
+          = button_get t( :view ), activities_path

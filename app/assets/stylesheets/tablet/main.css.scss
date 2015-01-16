@@ -1,20 +1,34 @@
-// Place all the styles related to the Home controller here.
+// Place all the styles related to the Activities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 
 // Mixins //
 @mixin title-banner {
   color: white;
   top: 0px;
   left: 0px;
-  padding-top: 30px;
+  padding-top: 5px;
   position: fixed;
   width: 100%;
-  height: 90px;
   box-shadow: 0px 0px 15px #888888;
   text-align: center;
   font-variant: small-caps;
   letter-spacing: 2px;
+}
+
+/* Portrait */
+@media screen and (orientation:portrait) {
+
+#title {
+  height: 120px;
+  }
+}
+/* Landscape */
+@media screen and (orientation:landscape) {
+  #title {
+  height: 30px;
+  }
 }
 
 
@@ -23,27 +37,29 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-p, ol, td {
+p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 25px;
 }
-
 
 // Title //
 
 #title {
   @include title-banner;
   background-color: #009688; // Verde Petróleo 500 - Google Material Design Pallete
-  font-size: 35px;
+  font-size: 60px;
   z-index: 10;
+  height: 120px;
 }
+
+
 
 #alert {
   @include title-banner;
   background-color: #D50000; // Vermelho A700 - Google Material Design Pallete
   font-size: 30px;
   z-index: 11;
+  height: 120px;
 }
 
 #notice {
@@ -51,6 +67,7 @@ p, ol, td {
   background-color: #FFCA28; // Âmbar 400 - Google Material Design Pallete
   font-size: 30px;
   z-index: 11;
+  height: 120px;
 }
 
 #hmenu {
@@ -139,587 +156,6 @@ p, ol, td {
     border: 1px solid red;
   }
 }
-
-
-
-// BEGIN OF CONTENTS //
-#contents {
-  
-  // BEGIN OF PAPER-BIG //
-  #paper {
-    position: relative;
-    top: 160px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 30px;
-    background-color: #FFFFFF; //Branco 0 - Google Material Design Pallete
-    width: 500px;
-    height: auto;
-    box-shadow: 0px 0px 5px #455A64;
-    
-    input {
-      color: white;
-      letter-spacing: 2px;
-      background-color: #4DB6AC; //Verde Petróleo 500 - Google Material Design Pallete
-      width: 180px;
-      height: 30px;
-      border: 0;
-      
-      &:hover {
-        background-color:#26A69A; //Verde Petróleo 400 - Google Material Design Pallete
-      }
-    }
-    
-    .button_to {
-      display: inline;
-      
-      div {
-        display: inline;
-      }
-      
-   
-    }
-    
-    // BEGIN OF GENERIC TABLE //
-    table {
-      width: inherit;
-      min-width: 100px;
-      text-align: center;
-      border-collapse: collapse;
-      padding-top: 10px;
-      margin-bottom: 15px;
-      margin-left: auto;
-      margin-right: auto;
-      
-      // BEGIN OF GENERIC THEAD //
-      thead {
-        color: #424242;  //Cinza 800 - Google Material Design Pallete
-        line-height: 60px;
-        font-size: 15px;
-      }
-      // END OF GENERIC THEAD //
-      
-      // BEGIN OF TABLE DATA //
-      .data {
-        color: #757575; //Cinza 600 - Google Material Design Pallete
-        
-        a {
-          color: #00BFA5; //Verde Petróleo 400 - Google Material Design Pallete
-        }
-        
-        tr {
-          height: 30px;
-          
-          &:nth-child( odd ) {
-            background: #F5F5F5; //Cinza 100 - Google Material Design Pallete
-          }
-        }
-        
-        td { 
-          width: 150px;
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-      }
-      // END OF TABLE DATA //
-      
-      // BEGIN OF TABLE COMMANDS //
-      .commands tr {
-        height: 60px;
-      }
-      // END OF TABLE COMMANDS //
-    }
-    // END OF GENERIC TABLE //
-  }
-  // END OF PAPER-BIG //
-  
-  
-  // BEGIN OF FIXME //
-  .comm3 {
-    width: 350px;
-    text-align: center;
-    padding: 5px;
-    border-collapse: collapse;
-  }
-  
-  .thead3 {
-    color: #424242;  //Cinza 800 - Google Material Design Pallete
-    line-height: 60px;
-    font-size: 15px;
-  }
-  
-  .tbody3 {
-    color: #757575; //Cinza 600 - Google Material Design Pallete
-    
-    a {
-      color: #00BFA5; //Verde Petróleo 400 - Google Material Design Pallete
-    }
-    
-    tr {
-      height: 30px;
-    }
-    
-    tr:nth-child( odd ) { 
-      background: #F5F5F5; //Cinza 100 - Google Material Design Pallete
-    }
-    
-    td {
-      width: 150px;
-    }
-  }
-  
-  .spacer{
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    width: 10px;
-    height: 10px;
-  }
-
-  #formy {
-    padding-top: 20px;
-    padding-bottom: 10px;
-    position: relative;
-    top: 150px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #FFFFFF; //Branco 0 - Google Material Design Pallete
-    box-shadow: 0px 0px 5px #888888;
-    width: 355px;
-    
-    // FIX THIS
-    //height: 300px;
-    //height: 100%;
-    
-    form {
-      margin-left: auto;
-      margin-right: auto;
-      width: 274px;
-      //height: 10px;
-    
-      .inputcheck {
-        margin-left: auto;
-        margin-right: auto;
-        width: 274px;
-        font-size: 15px;
-        
-        input[type="checkbox"] {
-          
-          + label span {
-            margin-left: 20px;
-            bottom: 5px;
-            cursor: pointer;
-            vertical-align: middle;
-            position: relative;
-            cursor: pointer;
-          }
-          
-        }
-      }
-      
-      #commands {
-        text-align: center;
-        
-        input[type="submit"] {
-          color: white;
-          letter-spacing: 2px;
-          background-color: #4DB6AC; //Verde Petróleo 500 - Google Material Design Pallete
-          width: 130px;
-          height: 30px;
-          border: 0;
-          
-          &:hover{
-            background-color:#26A69A; //Verde Petróleo 400 - Google Material Design Pallete
-          }
-        }
-      }
-      
-    // SPECIAL BUTTON FOR LOGIN PAGE
-      #login {
-        color: white;
-        letter-spacing: 2px;
-        background-color: #009688; //Verde Petróleo 500 - Google Material Design Pallete
-        width: 274px;
-        height: 43px;
-        border: 0;
-        border-radius: 3px;
-        &:hover {
-          background-color:#26A69A; //Teal 400 - Google Material Design Pallete
-        }
-      }
-      
-      input {
-        margin-bottom: 10px;
-        
-        &[type="email"], &[type="password"], &[type="text"]{
-          background-color: #FFFFFF;
-          padding-left: 10px;
-          width: 261px;
-          height: 43px;
-          border: 1px solid #BDBDBD;
-          letter-spacing: 2px;
-          
-          &:focus {
-             background-color: #FAFAFA; //Cinza 50 - Google Material Design Pallete
-          }
-        }
-      }
-      textarea {
-          width: 252px;
-          height: 150px;
-          border: 1px solid #BDBDBD; //Cinza 400 - Google Material Design Pallete
-          resize: none;
-          padding: 5px 10px 5px 10px;
-          
-          
-          &:focus {
-             background-color: #FAFAFA; //Cinza 50 - Google Material Design Pallete
-          }
-          
-        }
-      select {
-          background-color: #FFFFFF;
-          width: 272px;
-          height: 43px;
-          border: 1px solid #BDBDBD;
-          letter-spacing: 2px;
-          margin-top: 6px;
-          margin-bottom: 10px;
-          
-          &:focus {
-            background-color: #FAFAFA; //Cinza 50 - Google Material Design Pallete
-          }
-          
-        }
-        
-    }
-    
-    
-    #image {
-      padding-top: 10px;
-      padding-bottom: 10px;
-      margin-left: auto;
-      margin-right: auto;
-      width: 70px;
-      height: 50px;
-      
-      img {
-        width: inherit;
-        height: inherit;
-      }
-    }
-  }
-}
-// END OF CONTENTS //
-
-
-// BEGIN OF FOOTER //
-#footer{
-  margin-top: 180px;
-  bottom: 0px;
-  left:0px;
-  position: relative;
-  width: 100%;
-  height: 80px;
-  text-align: center;
-  font-variant: small-caps;
-  font-size: 15px;
-  
-  a {
-      text-decoration: none;
-      color: black;
-      }
-  
-
-  #image2 img {
-    width: 50px;
-    height: 50px;
-  }
-}
-// END OF FOOTER //
-
-
-
-  /******************************************************** Admin Page */
-
-  #menu {
-    position: relative;
-    top: 150px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 30px;
-    background-color: #FFFFFF; //Branco 0 - Google Material Design Pallete
-    width: 300px;
-    height: auto;
-    box-shadow: 0px 0px 5px #455A64;
-   /* 
-    input {
-      padding-top: 5px;
-      padding-bottom: 5px;
-      color: black;
-      letter-spacing: 2px;
-      background-color: #FFFFFF; //Branco 0 - Google Material Design Pallete
-      width: 274px;
-      height: 43px;
-      border: 0;
-      
-      &:hover {
-        background-color: #CFD8DC; //Cinza azulado 100 - Google Material Design Pallete
-      }
-    }
-    
-    .button_to {
-      margin-left: auto;
-      margin-right: auto;
-      width: inherit;
-      height: 43px;
-    }
-    */
-    a {
-        display: block;
-        width: 300px;
-        padding-top: 15px;
-        text-align: center;
-        text-decoration: none
-        }
-    
-    .button-link{
-
-      letter-spacing: 2px;
-      background-color: #FFFFFF; //Branco 0 - Google Material Design Pallete
-      border: 0;
-      color: black;
-      height: 28px;
-      font-size: 16px;
-               
-      &:hover {
-        background-color: #CFD8DC; //Cinza azulado 100 - Google Material Design Pallete
-      }
-    }
-    
-  }
-  
-  /******************************************************** User-edit Page */
-
-  #edit-menu{
-    position: relative;
-    top: 150px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #FFFFFF; /*Branco 0 - Google Material Design Pallete*/
-    width: 274px;
-    height: 255px;
-    box-shadow: 0px 0px 5px #455A64;
-  }
-
-  #edit-menu .input{
-    margin-left: auto;
-    margin-right: auto;
-    width: 274px;
-    height: 43px;
-  }
-
-  #edit-menu .input input{
-    background-color: #FFFFFF;
-    padding-left: 10px;
-    width: 274px;
-    height: 43px;
-    letter-spacing: 2px;
-  }
-
-  #edit-menu input:hover{
-    background-color:#FAFAFA; /*Verde Petróleo 400 - Google Material Design Pallete*/
-  }
-
-  #edit-menu select{
-    background-color: #FFFFFF;
-    padding-left: 10px;
-    width: 274px;
-    height: 43px;
-    letter-spacing: 2px;
-  }
-
-  #edit-menu select:hover{
-    background-color:#FAFAFA; /*Verde Petróleo 400 - Google Material Design Pallete*/
-  }
-
-  #edit-menu button{
-    color: white;
-    letter-spacing: 2px;
-    background-color: #009688; /*Verde Petróleo 500 - Google Material Design Pallete*/
-    width: 274px;
-    height: 43px;
-    border: 0;
-  }
-
-  #edit-menu button:hover{
-    background-color:#26A69A; /*Verde Petróleo 400 - Google Material Design Pallete*/
-  }
-
-  /******************************************************** Comissionings page */
-
-
-  /******************************************************** New Comissioning Page */
-
-  #menu-wide{
-    position: relative;
-    top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #FFFFFF; /*Branco 0 - Google Material Design Pallete*/
-    width: 350px;
-    height: auto;
-    box-shadow: 0px 0px 5px #455A64;
-  }
-
-
-  #menu-wide input{
-    color: #212121; /*Cinza 900 - Google Material Design Pallete */
-    letter-spacing: 2px;
-    width: 274px;
-    border: 1px solid #BDBDBD; /*Cinza 400 - Google Material Design Pallete */
-    height: 30px;
-    padding: 5px 10px 5px 10px;
-  }
-
-  #menu-wide input[type=text]{
-    color: #212121; /*Cinza 900 - Google Material Design Pallete */
-    letter-spacing: 2px;
-    width: 274px;
-    border: 1px solid #BDBDBD; /*Cinza 400 - Google Material Design Pallete*/
-    height: 30px;
-    padding: 5px 10px 5px 10px;
-  }
-
-  #menu-wide input[type=submit]{
-    color: white;
-    letter-spacing: 2px;
-    background-color: #4DB6AC; /*Verde Petróleo 500 - Google Material Design Pallete */
-    width: 150px;
-    height: 30px;
-    border: 0;
-    
-   }
-
-  #menu-wide input[type=checkbox]{
-    width: 20px;
-    height: 20px;
-    border: 0;
-  }
-
-  #menu-wide .action{ 
-    width: 305px;
-    height: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 10px;
-  }
-
-  #menu-wide input:hover{
-    background-color:#FAFAFA; /*Cinza 50 - Google Material Design Pallete*/
-  }
-
-  #menu-wide input[type=text]:focus { 
-    background-color: #FAFAFA; /*Cinza 50 - Google Material Design Pallete*/
-  }
-
-  #menu-wide input[type=textarea]:focus { 
-    background-color: #FAFAFA; /*Cinza 50 - Google Material Design Pallete*/
-  }
-
-  #menu-wide .field {
-  text-align: center;
-  }
-
-  #menu-wide textarea {
-    width: 274px;
-    height: 150px;
-    border: 1px solid #BDBDBD; /*Cinza 400 - Google Material Design Pallete*/
-    resize: none;
-    padding: 5px 10px 5px 10px;
-  }
-
-  #menu-wide textarea:focus { 
-    background-color: #FAFAFA; /*Cinza 50 - Google Material Design Pallete*/
-  }
-
-  #menu-wide  .comission select{
-    background-color: #FFFFFF;
-    padding-left: 7px;
-    width: 294px;
-    height: 30px;
-    padding: 5px 10px 5px 10px;
-    letter-spacing: 2px;
-    border: 1px solid #BDBDBD; /*Cinza 400 - Google Material Design Pallete*/
-  }
-
-  #menu-wide  select:hover{
-    background-color:#FAFAFA; /*Cinza 50 - Google Material Design Pallete*/
-  }
-
-  #menu-wide  input[type=submit]:hover{
-    background-color:#26A69A; /*Verde Petróleo 400 - Google Material Design Pallete*/
-  }
-
-  /******************************************************** New/Editing Activity Page */
-
-  /*
-  #menu-wide .activity  select{
-    background-color: red;
-    padding-left: 7px;
-    padding: 5px 10px 5px 10px;
-    letter-spacing: 2px;
-    border: 1px solid #BDBDBD; /*Cinza 400 - Google Material Design Pallete*//*
-  }
-
-  #menu-wide .acitivy select:hover{
-    background-color:#FAFAFA; /*Cinza 50 - Google Material Design Pallete*//*
-  }
-  */
-
-  /******************************************************** details_solutions Page */
-
-  #wrapper{
-    position: relative;
-    top: 150px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: red; /*Branco 0 - Google Material Design Pallete*/
-    width: 600px;
-    height: auto;
-    box-shadow: 0px 0px 5px #455A64;
-  }
-
-  #paper-small{
-    position: float;
-    top: 15px;
-    background-color: green; /*Branco 0 - Google Material Design Pallete*/
-    width: 250px;
-    height: auto;
-    box-shadow: 0px 0px 5px #455A64;
-  }
-
-
-  #paper-small input{
-    color: white;
-    letter-spacing: 2px;
-    background-color: #4DB6AC; /*Verde Petróleo 500 - Google Material Design Pallete*/
-    width: 180px;
-    height: 30px;
-    border: 0;
-    }
-    
-  #paper-small input:hover{
-    background-color:#26A69A; /*Verde Petróleo 400 - Google Material Design Pallete*/
-  }
-
-  #paper-small .button_to{
-      display: inline;
-  }
-
-  #paper-small.button_to div{
-    display: inline;
-  }
 
 // BEGIN OF HORIZONTAL MENU STYLE //
 
@@ -820,3 +256,375 @@ nav {
 }
 
 // END OF HORIZONTAL MENU STYLE //
+  
+
+// BEGIN OF FOOTER //
+#footer {
+  margin-top: 250px;
+  padding-bottom: 70px;
+  bottom: 0px;
+  left: 0px;
+  position: relative;
+  width: 100%;
+  height: 80px;
+  text-align: center;
+  font-variant: small-caps;
+  font-size: 20px;
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  #image2 img {
+    width: 70px;
+    height: 70px;
+  }
+}
+// END OF FOOTER //
+
+// BEGIN OF CONTENTS //
+#contents {
+  
+  // BEGIN OF PAPER-BIG //
+  #paper {
+    position: relative;
+    top: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    background-color: #FFFFFF; //Branco 0 - Google Material Design Pallete
+    width: 800px;
+    height: auto;
+    box-shadow: 0px 0px 5px #455A64;
+    
+    input {
+      color: white;
+      letter-spacing: 2px;
+      background-color: #4DB6AC; //Verde Petróleo 500 - Google Material Design Pallete
+      width: 180px;
+      height: 30px;
+      border: 0;
+      
+      &:hover {
+        background-color:#26A69A; //Verde Petróleo 400 - Google Material Design Pallete
+      }
+    }
+    
+    .button_to {
+      display: inline;
+      
+      div {
+        display: inline;
+      }
+    }
+    
+    // BEGIN OF GENERIC TABLE //
+    table {
+      width: inherit;
+      text-align: center;
+      padding: 5px;
+      border-collapse: collapse;
+      padding-top: 100px;
+      margin-left: auto;
+      margin-right: auto;
+      
+      // BEGIN OF GENERIC THEAD //
+      thead {
+        color: #424242;  //Cinza 800 - Google Material Design Pallete
+        line-height: auto;
+        font-size: 15px;
+      }
+      // END OF GENERIC THEAD //
+      
+      // BEGIN OF TABLE DATA //
+      .data {
+        color: #757575; //Cinza 600 - Google Material Design Pallete
+        
+        a {
+          color: #00BFA5; //Verde Petróleo 400 - Google Material Design Pallete
+        }
+        
+        tr {
+          height: 30px;
+          
+          &:nth-child( odd ) {
+            background: #F5F5F5; //Cinza 100 - Google Material Design Pallete
+          }
+        }
+        
+        td { 
+          width: 150px;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+      // END OF TABLE DATA //
+      
+      // BEGIN OF TABLE COMMANDS //
+      .commands tr {
+        height: 60px;
+      }
+      // END OF TABLE COMMANDS //
+    }
+    // END OF GENERIC TABLE //
+  }
+  // END OF PAPER-BIG //
+  
+  
+  // BEGIN OF FIXME //
+  .comm3 {
+    width: 350px;
+    text-align: center;
+    padding: 5px;
+    border-collapse: collapse;
+  }
+  
+  .thead3 {
+    color: #424242;  //Cinza 800 - Google Material Design Pallete
+    line-height: 60px;
+    font-size: 15px;
+  }
+  
+  .tbody3 {
+    color: #757575; //Cinza 600 - Google Material Design Pallete
+    
+    a {
+      color: #00BFA5; //Verde Petróleo 400 - Google Material Design Pallete
+    }
+    
+    tr {
+      height: 30px;
+    }
+    
+    tr:nth-child( odd ) { 
+      background: #F5F5F5; //Cinza 100 - Google Material Design Pallete
+    }
+    
+    td {
+      width: 150px;
+    }
+  }
+  
+  .spacer{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10px;
+    height: 10px;
+  }
+
+  #formy {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    position: relative;
+    top: 190px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFFFFF; //Branco 0 - Google Material Design Pallete
+    box-shadow: 0px 0px 5px #888888;
+    width: 500px;
+    
+    // BEGIN OF FORM //
+    form {
+      margin-left: auto;
+      margin-right: auto;
+      width: 600px;
+      
+    
+      .inputcheck {
+        margin-left: auto;
+        margin-right: auto;
+        width: 600px;
+        height: auto;
+        font-size: 20px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        
+        input[type="checkbox"] {
+          -webkit-transform: scale(2.5,2.5);
+          margin-left: 20px;
+          cursor: pointer;
+          vertical-align: middle;
+          position: relative;
+
+          + label{ 
+            font-size: 30px;
+            padding-left: 15px;
+            text-indent: -15px;
+          }
+        }
+      }
+      #commands {
+        text-align: center;
+        
+        input[type="submit"] {
+          color: white;
+          letter-spacing: 2px;
+          background-color: #4DB6AC; //Verde Petróleo 500 - Google Material Design Pallete
+          width: 130px;
+          height: 30px;
+          border: 0;
+          
+          &:hover{
+            background-color:#26A69A; //Verde Petróleo 400 - Google Material Design Pallete
+          }
+        }
+      }
+      
+// SPECIAL BUTTON FOR LOGIN PAGE
+      #login {
+        margin-left: auto;
+        margin-right: auto;
+        color: white;
+        letter-spacing: 2px;
+        background-color: #009688; //Verde Petróleo 500 - Google Material Design Pallete
+        width: 500px;
+        height: 50px;
+        border: 0;
+        border-radius: 3px;
+        font-size: 40px;
+        &:hover {
+          background-color:#26A69A; //Teal 400 - Google Material Design Pallete
+        }
+      }
+      
+      input {
+        margin-bottom: 10px;
+        &[type="email"], &[type="password"], &[type="text"]{
+          background-color: #FFFFFF;
+          //padding-left: 10px;
+          width: 499px;
+          height: 50px;
+          border: 1px solid gray;
+          letter-spacing: 2px;
+          font-size: 20px;
+        }
+      }
+
+      textarea {
+        width: 252px;
+        height: 150px;
+        border: 1px solid #BDBDBD; //Cinza 400 - Google Material Design Pallete
+        resize: none;
+        padding: 5px 10px 5px 10px;
+        
+        &:focus {
+          background-color: #FAFAFA; //Cinza 50 - Google Material Design Pallete
+        }
+      }
+      select {
+        background-color: #FFFFFF;
+        width: 272px;
+        height: 43px;
+        border: 1px solid #BDBDBD;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+        
+        &:focus {
+          background-color: #FAFAFA; //Cinza 50 - Google Material Design Pallete
+        }
+        
+      }
+    }
+    // END OF FORM //
+    
+    #image {
+      padding-top: 10px;
+      padding-bottom: 50px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 126px;
+      height: 90px;
+      
+      img {
+        width: inherit;
+        height: inherit;
+      }
+    }
+  }
+}
+// END OF CONTENTS //
+
+// NEW MENU //
+
+.menu {width:100%; margin:20px 0; text-align:center; position:relative; z-index:100;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+-o-user-select: none;
+user-select: none;
+-ms-touch-action: none;
+}
+
+.menu ul {margin:0; padding:0; list-style:none; white-space:nowrap; text-align:left; border-radius:8px;}
+.menu ul {display:inline-block;}
+.menu > ul {width:100%;}
+
+.menu li {display:block; position:relative; z-index:10;}
+
+.menu ul ul {position:absolute; left:-9999px; top:70px; padding:10px 0; z-index:10;
+-webkit-transition: opacity 0.5s;
+-o-transition:0.5s;
+-moz-transition:0.5s;
+transition: opacity 0.5s;
+}
+.menu ul ul ul {left:100%; top:auto; margin-top:-40px;}
+.menu ul li.left > ul {left:auto; right:0; top:70px;}
+.menu ul li.left ul li > ul {left:auto; right:100%; top:auto; margin-top:-40px;}
+
+.menu > ul > li {float:left;}
+
+.menu ul {background:#09c;}
+.menu ul ul {background:#c60;}
+.menu ul ul ul {background:#690;}
+.menu ul ul ul ul {background:#66c;}
+
+.menu ul,
+.menu ul ul,
+.menu ul ul ul,
+.menu ul ul ul ul {
+background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+background-image: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+background-image: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+background-image: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+box-shadow:0px 5px 5px rgba(0,0,0,0.4);
+}
+.menu a {display:block; font:normal 16px/40px "Ubuntu Condensed", arial, sans-serif; color:#fff; text-decoration:none; border-radius:8px; padding:0 20px; position:relative; z-index:10;}
+.menu > ul > li > a {line-height:70px;}
+.menu > ul > li > b {display:block; position:relative; width:100%; margin-top:-70px; height:70px; background: url(trans.gif); z-index:50;
+-webkit-transition:0.75s;
+-o-transition:0.75s;
+-moz-transition:0.75s;
+transition:0.75s;
+}
+.menu ul ul > li > b {display:block; position:relative; margin-top:-40px; width:100%; height:40px; background: url(trans.gif); z-index:50;
+-webkit-transition:0.75s;
+-o-transition:0.75s;
+-moz-transition:0.75s;
+transition:0.75s;
+}
+.menu li:hover {z-index:100;}
+.menu li:hover > b {width:0;}
+.menu li.left ul a {text-align:right;}
+
+.menu li:hover > a,
+.menu ul li:hover > a {color:#ff0; text-decoration:underline;}
+
+.menu ul li a.hassub {background:url(down.gif) no-repeat right center;}
+.menu li.left ul li a.hassub {background:url(down.gif) no-repeat left center;}
+
+
+.menu ul ul,
+.menu ul ul ul,
+.menu ul li.left > ul,
+.menu ul li.left ul li > ul {left:-9999px; right:auto; opacity:0;}
+
+.menu ul li:hover > ul {left:0; opacity:1;}
+.menu ul ul li:hover > ul {left:100%; opacity:1;}
+.menu ul li.left:hover > ul {left:auto; right:0; opacity:1;}
+.menu ul li.left ul li:hover > ul {left:auto; right:100%; opacity:1;}
+
+.menu ul li:hover > a.hassub {background:url(right.gif) no-repeat right center;}
+.menu li.left ul li:hover > a.hassub {background:url(left.gif) no-repeat left center;}

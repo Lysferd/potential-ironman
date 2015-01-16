@@ -8,23 +8,25 @@
             %li= message
     = f.text_field :label, placeholder: t( 'forms.label' ), autofocus: true
     = f.text_area :description, placeholder: t( 'forms.description' )
-    = f.select :client_id, Client::order( :label ).collect { |c| [ c.label, c.id ] },
-      { prompt: 'Selecione um cliente' }
-    - if @commissioning.authorized and can? :manage, @commissioning
-      = f.select :creator_id, User::all.collect { |u| [ u.name, u.id ] },
-        { prompt: 'Selecione um projetista' }
+    = f.select :client_id, Client::order( :label ).collect { |c| [ c.label, c.id ] }, { prompt: 'Selecione um cliente' }
     - if @commissioning.authorized
-      = f.label :commissioners, 'Comissionadores:'
+      = f.select :creator_id, User::draftsmen.collect { |u| [ u.name, u.id ] },
+        { prompt: 'Selecione um projetista' }
+    - else
+      = f.hidden_field :creator_id, value: @commissioning.creator_id
+    - if @commissioning.authorized
+      Comissionadores:
       %table
-        - User::order( :name ).each_with_index do |u, i|
-          - next if u == current_user and cannot? :destroy, @commissioning
+        - User::commissioners.each_with_index do |u, i|
           %tr
             %td
-              = f.check_box :users, { multiple: true, checked: @commissioning.user_ids.include?( u.id ) }, u.id, ''
-              = f.label :users, u.name
-    = f.hidden_field :creator_id, value: @commissioning.creator_id
+              = f.check_box :commissioners,
+                { multiple: true,
+                checked: @commissioning.user_ids.include?( u.id ) },
+                u.id, ''
+              = f.label :commissioners, u.name
     #commands
       = f.submit t( :save )
       = f.submit t( :cancel )
-      - unless @commissioning.solutions.count.zero?
+      - if not @commissioning.solutions.count.zero? and not @commissioning.authorized
         = f.submit t( :authorize ), data: { confirm: t( 'forms.confirm_authorization' ) }

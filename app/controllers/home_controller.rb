@@ -4,6 +4,22 @@ class HomeController < ApplicationController
   def index
     session[:referer] = nil
     redirect_to menu_path if browser.mobile?
+
+    case current_user.role.label
+    when 'Administrador'
+      @obj = User::all
+    when 'Gerente'
+      @obj = User::all
+    when 'Analista'
+      @obj = Product::all
+    when 'Comissionador'
+      @obj = Activity::all
+    when 'Projetista'
+      @obj = Commissioning::where( creator_id: current_user.id )
+      #@solutions = @commissionings.inject( [ ] ) do | memo, commissioning |
+      #  memo << Solution::where( commissioning_id: commissioning.id )
+      #end.flatten
+    end
   end
 
   def login

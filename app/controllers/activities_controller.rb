@@ -5,35 +5,46 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.json
   def index
-    @activities = Activity::order( :label )
+    if flash[:commissioning_id]
+      @activities = Activity::where( commissioning_id: flash[:commissioning_id] ).
+        order( :label )
+      flash.keep( :commissioning_id )
+    else
+      @activities = Activity::order( :label )
+    end
     super
   end
 
   # GET /activities/1
   # GET /activities/1.json
   def show
+    flash.keep( :commissioning_id ) if flash[:commissioning_id]
     super( @activity.label )
   end
 
   # GET /activities/new
   def new
+    flash.keep( :commissioning_id ) if flash[:commissioning_id]
     @activity = Activity.new
     super
   end
 
   # GET /activities/1/edit
   def edit
+    flash.keep( :commissioning_id ) if flash[:commissioning_id]
     super( @activity.label )
   end
 
   # POST /activities
   # POST /activities.json
   def create
+    byebug
     @activity = Activity.new(activity_params)
 
     respond_to do |format|
       if @activity.save
-        format.js { redirect_to @activity, notice: 'Activity was successfully created.' }
+        format.js { redirect_to @activity,
+                    notice: 'Activity was successfully created.' }
         format.json { render :show, status: :created, location: @activity }
       else
         format.js { render :new }
@@ -59,6 +70,7 @@ class ActivitiesController < ApplicationController
   # DELETE /activities/1
   # DELETE /activities/1.json
   def destroy
+    flash.keep( :commissioning_id ) if flash[:commissioning_id]
     @activity.destroy
     super
   end
@@ -71,6 +83,11 @@ class ActivitiesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def activity_params
-    params.require(:activity).permit(:label, :description, :date_start, :date_end, :user_id)
+    params.require(:activity).permit(:label, :description, :date_start, :date_end, :user_id, :commissioning_id)
+  end
+
+  def check_for_cancel
+    flash.keep( :commissioning_id ) if flash[:commissioning_id]
+    super
   end
 end

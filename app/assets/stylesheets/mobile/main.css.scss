@@ -35,7 +35,7 @@ p, ol, ul, td {
 #title {
   @include title-banner;
   background-color: #009688; // Verde Petróleo 500 - Google Material Design Pallete
-  font-size: 80px;
+  font-size: 60px;
   z-index: 10;
   
   p{ line-height: 0px;}

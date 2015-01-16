@@ -25,28 +25,25 @@ module ApplicationHelper
   end
   alias :image_get :link_image
 
-  def image_show( object, html_options = { } )
+  def image_show( object, controller = controller_name, html_options = { } )
     return unless can?( :read, object )
-    path = "/#{object.class.name.downcase.pluralize}/#{object.id}"
-    #path += append_references
+    path = "/#{controller}/#{object.id}"
     src = 'show.svg'
     alt = :show
     return link_image( src, alt, path, html_options )
   end
 
-  def image_edit( object, html_options = { } )
+  def image_edit( object, controller = controller_name, html_options = { } )
     return unless can?( :edit, object )
-    path = "/#{object.class.name.downcase.pluralize}/#{object.id}/edit"
-    #path += append_references
+    path = "/#{controller}/#{object.id}/edit"
     src = 'edit.svg'
     alt = :edit
     return link_image( src, alt, path, html_options )
   end
 
-  def image_delete( object, html_options = { } )
+  def image_delete( object, controller = controller_name, html_options = { } )
     return unless can?( :destroy, object )
-    path = "/#{object.class.name.downcase.pluralize}/#{object.id}"
-    #path += append_references
+    path = "/#{controller}/#{object.id}"
     src = 'destroy.svg'
     alt = :destroy
     html_options[:method] = :delete
@@ -54,16 +51,13 @@ module ApplicationHelper
     return link_image( src, alt, path, html_options )
   end
 
-  def append_references
-    refs = ''
-    if params[:commissioning_id]
-      refs += "?commissioning_id=#{params[:commissioning_id]}"
-    end
-    return refs
+  def remote_link( name, path, html_options = { } )
+    html_options[:remote] = true
+    return link_to( name, path, html_options )
   end
 
   def table_width( columns )
-    if desktop?
+    if desktop? or tablet?
       return "width: #{500 + 100 * (columns - 1)}px;"
     else
       return 'width: auto;'

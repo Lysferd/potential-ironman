@@ -18,7 +18,7 @@ class SolutionsController < ApplicationController
   # GET /solutions/1
   # GET /solutions/1.json
   def show
-    flash.keep( :commissioning_id )
+    flash.keep( :commissioning_id ) if flash[:commissioning_id]
     super( @solution.label )
   end
 
@@ -39,6 +39,7 @@ class SolutionsController < ApplicationController
   # POST /solutions.json
   def create
     @solution = Solution::new( solution_params )
+
     respond_to do |format|
       if @solution.save
         format.js { redirect_to @solution,
@@ -59,7 +60,7 @@ class SolutionsController < ApplicationController
       if @solution.update(solution_params)
         format.html { redirect_to @solution,
                       notice: 'Solution was successfully updated.' }
-        #format.json { render :show, status: :ok, location: @solution }
+        format.json { render :show, status: :ok, location: @solution }
       else
         format.js { render :edit }
         format.json { render json: @solution.errors, status: :unprocessable_entity }

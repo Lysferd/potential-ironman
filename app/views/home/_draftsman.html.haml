@@ -1,0 +1,21 @@
+#paper
+  %table
+    - unless obj.empty?
+      %thead
+        %tr
+          %th( colspan = 2 )
+            = t "last.#{obj.model.name.downcase}", count: obj.size
+      %tbody.data
+        - obj.order( :updated_at ).reverse[0...5].each do | s |
+          %tr
+            %td= s.label rescue s.name
+            %td
+              = image_show s
+              = image_edit s
+              = image_delete s
+    - else
+      %tr
+        %td
+          %h3= t "empty.#{obj.model.name.downcase}"
+    %tbody.commands
+      %tr

@@ -9,10 +9,15 @@
               = message
     = f.text_field :label, placeholder: t( 'forms.label' ), autofocus: true
     = f.text_area :description, placeholder: t( 'forms.description' )
-    V ToDo: jQuery Date Picker V
-    = f.text_field :date_start, placeholder: t( 'forms.date.start' )
-    = f.text_field :date_end, placeholder: t( 'forms.date.end' )
-    = f.hidden_field :user_id, current_user.id
+    :javascript
+      $(function() {
+        $( 'input#date_start, input#date_end' ).datepicker();
+        $( 'input#date_start, input#date_end' ).datepicker( "option", "showAnim", "fadeIn" );
+        $( 'input#date_start, input#date_end' ).datepicker( "option", "dateFormat", "dd/mm/yy" );
+      });
+    = f.text_field :date_start, placeholder: t( 'date_start' ), id: :date_start
+    = f.text_field :date_end, placeholder: t( 'date_end' ), id: :date_end
+    = f.hidden_field :user_id, value: current_user.id
     = f.hidden_field :commissioning_id,
       value: @activity.commissioning_id if @activity.commissioning_id
     #commands

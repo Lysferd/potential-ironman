@@ -63,8 +63,12 @@ class ManufacturersController < ApplicationController
   # DELETE /manufacturers/1
   # DELETE /manufacturers/1.json
   def destroy
-    @manufacturer.destroy
-    super
+    if Product::where( manufacturer_id: @manufacturer.id ).empty? and Platform::where( manufacturer_id: @manufacturer.id ).empty?
+      @manufacturer.destroy
+      super( true )
+    else
+      super( false )
+    end
   end
 
   private

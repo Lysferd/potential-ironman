@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   private
   def require_login
     return if cookies[:auth_token]
-    redirect_to( login_path, alert: 'Please log in.' )
+    redirect_to( login_path ) #, alert: 'Please log in.' )
   end
 
   def cache_referer
@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
   # Cancels data update/creation in case cancel button is pressed.
   def check_for_cancel
     return unless params[:commit] == t( :cancel )
-    back( notice: 'Changes discarded.' )
+    back( notice: 'Alterações descartadas.' )
   end
 
   def title_base
@@ -97,12 +97,17 @@ class ApplicationController < ActionController::Base
     flash[:title] = title_base + t( "models.#{controller_name}", count: 1 )
   end
 
-  def destroy
+  def destroy( success = true )
     respond_to do |format|
-      format.js { redirect_to session[:referer].last,
-                  status: :see_other,
-                  alert: 'Elemento removido.' }
-      format.json { head :no_content }
+      if success
+        format.js { redirect_to session[:referer].last,
+                    status: :see_other,
+                    notice: 'Elemento removido.' }
+      else
+        format.js { redirect_to session[:referer].last,
+                    status: :see_other,
+                    alert: 'Elemento não pôde ser removido.' }
+      end
     end
   end
 end

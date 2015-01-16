@@ -4,9 +4,9 @@
     %meta{ name: 'viewport', content: 'user-scalable=no' }
     %title
       PotentialIronman
-    - if browser.tablet? or params[:tablet]
+    -#- if browser.tablet? or params[:tablet]
       - css = 'tablet'
-    - elsif browser.mobile? or params[:mobile]
+    - if browser.mobile? or params[:mobile]
       - css = 'mobile'
     - else
       - css = 'desktop'

@@ -1,33 +1,21 @@
-%div#dnav
-  %nav
-    %ul.cf
-      %li
-        = link_to t( 'models.commissionings', count: 2 ),
-          commissionings_path, remote: true
-        %ul.dropdown
-          %li.dropdown-sub-item
-            = link_to t( 'models.activities', count: 2 ), activities_path, remote: true
-          %li.dropdown-sub-item
-            = link_to t( 'models.solutions', count: 2 ), solutions_path, remote: true
-      %li
-        = link_to t( 'models.manufacturers', count: 2 ), manufacturers_path, remote: true
-        %ul.dropdown
-          %li.dropdown-sub-item
-            = link_to t( 'models.products', count: 2 ), products_path, remote: true
-          %li.dropdown-sub-item
-            = link_to t( 'models.platforms', count: 2 ), platforms_path, remote: true
-          %li.dropdown-sub-item
-            = link_to t( 'models.product_types', count: 2 ), product_types_path, remote: true
-      %li
-        = link_to t( 'models.clients', count: 2 ), clients_path, remote: true
-      %li
-        = link_to t( 'models.users', count: 2 ), users_path, remote: true
-        %ul.dropdown
-          -#%li.dropdown-sub-item
-            -#= link_to t( 'models.certification', count: 2 ), users_certifications_path, remote: true
-          %li.dropdown-sub-item
-            = link_to t( 'models.roles', count: 2 ),
-              roles_path, remote: true
-      %li.dropdown-item
-        = link_to t( 'logout' ), logout_path, method: :delete,
+%nav
+  %ul
+    %li
+      = remote_link 'Comissionamentos', commissionings_path
+      %ul
+        %li= remote_link 'Atividades', activities_path
+        %li= remote_link 'Soluções', solutions_path
+    %li
+      = remote_link 'Fabricantes', manufacturers_path
+      %ul
+        %li= remote_link 'Sistemas', products_path
+        %li= remote_link 'Plataformas', platforms_path
+        -#%li= remote_link 'Tipos de Produtos', product_types_path
+    %li= remote_link 'Clientes', clients_path
+    %li
+      = remote_link 'Usuários', users_path
+      %ul
+        -#%li= remote_link users_certifications_path
+        %li= remote_link 'Permissões', roles_path
+    %li= link_to t( 'logout' ), logout_path, method: :delete,
           data: { confirm: "This will terminate your login session. Continue?" }

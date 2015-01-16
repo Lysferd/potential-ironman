@@ -46,8 +46,12 @@ class CommissioningsController < ApplicationController
   # PATCH/PUT /commissionings/1
   # PATCH/PUT /commissionings/1.json
   def update
+    p = commissioning_params
+    p[:commissioners].reject!( &:empty? )
+    p[:authorized] = true if params[:commit] == t( :authorize )
+
     respond_to do |format|
-      if @commissioning.update(commissioning_params)
+      if @commissioning.update(p)
         format.js { redirect_to @commissioning, notice: 'Commissioning was successfully updated.' }
         format.json { render :show, status: :ok, location: @commissioning }
       else
@@ -60,8 +64,12 @@ class CommissioningsController < ApplicationController
   # DELETE /commissionings/1
   # DELETE /commissionings/1.json
   def destroy
-    @commissioning.destroy
-    super
+    if Solution::where( commissioning_id: @commissioning.id ).empty? and Activity::where( commissioning_id: @commissioning.id ).empty?
+      @commissioning.destroy
+      super( true )
+    else
+      super( false )
+    end
   end
 
   private
@@ -72,6 +80,6 @@ class CommissioningsController < ApplicationController
   
   # Never trust parameters from the scary internet, only allow the white list through.
   def commissioning_params
-    params.require(:commissioning).permit(:label, :description, :client_id, :creator_id, commissioners: [ ], solutions: [ ], activities: [ ] )
+    params.require(:commissioning).permit(:label, :description, :client_id, :creator_id, commissioners: [] )
   end
 end

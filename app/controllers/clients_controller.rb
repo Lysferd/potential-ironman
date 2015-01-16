@@ -59,8 +59,12 @@ class ClientsController < ApplicationController
   # DELETE /clients/1
   # DELETE /clients/1.json
   def destroy
-    @client.destroy
-    super
+    if Commissioning::where( client_id: @client.id ).empty?
+      @client.destroy
+      super( true )
+    else
+      super( false )
+    end
   end
 
   private

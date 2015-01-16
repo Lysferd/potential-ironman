@@ -11,7 +11,7 @@
   height: 100%;
   z-index: 9;
 
-  background: rgba( 128, 128, 128, 0.7 );
+  background: rgba( 178, 223, 219, 0.7 );
   opacity: 50%;
   
   p {
@@ -25,13 +25,9 @@
     font-weight: bold;
     text-align: center;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY( -50% );
     color: white;
-    text-shadow:
-      -1px 1px 0 #000,
-      1px -1px 0 #000,
-      -1px -1px 0 #000,
-      1px 1px 0 #000;
+    text-shadow: -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000, 1px 1px 0 #000;
   }
 }
 

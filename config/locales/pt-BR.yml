@@ -47,7 +47,18 @@ pt-BR:
     last_activities: '5 útlimas atividades'
     no_solutions: Nenhuma solução cadastrada.
     no_activities: Nenhuma atividade cadastrada.
-    authorized: Autorizado
+    authorization_status: Autorizado
+
+  last:
+    user: Últimos usuários cadastrados
+    product: Últimos produtos cadastrados
+    activity: Últimas atividades cadastradas
+    commissioning: Últimos comissionamentos cadastrados
+  empty:
+    user: Nenhum usuário cadastrado
+    product: Nenhum produto cadastrado
+    activity: Nenhuma atividade cadastrada
+    commissioning: Nenhum comissionamento cadastrado
   
   forms:
     full_name: Nome completo

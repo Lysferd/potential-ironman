@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
     return Role::find( self.role_id )
   end
 
+
   class << self
     def authenticate( email, password )
       if user = find_by_email( email )
@@ -29,6 +30,14 @@ class User < ActiveRecord::Base
     
     def encrypt_password( password, salt )
       Digest::SHA2.hexdigest( password + 'shampoo de rabanete' + salt )
+    end
+
+    def commissioners
+      return self::where( role_id: Role::where( label: 'Comissionador' ) )
+    end
+
+    def draftsmen
+      return self::where( role_id: Role::where( label: 'Projetista' ) )
     end
   end
   

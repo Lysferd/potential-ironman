@@ -18,9 +18,13 @@ class Commissioning < ActiveRecord::Base
 
   def commissioners_names
     names = [ ]
-    self.commissioners.each { | u | names << u.name }
+    self.commissioners.each { | id | names << User::find( id ).name }
     names << 'None' if names.empty?
-    return names.join( ?\n )
+    return names.join( ', ' )
+  end
+
+  def authorization_status
+    self.authorized ? 'Sim' : 'Não'
   end
 
   def creation_date
