@@ -194,6 +194,7 @@ DEPENDENCIES
   byebug
   cancan
   capistrano
+  capistrano-bundler
   capistrano-passenger
   capistrano-rails
   capistrano-rvm
