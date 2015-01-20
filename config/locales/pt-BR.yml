@@ -10,7 +10,7 @@ pt-BR:
   cancel: Cancelar
   authorize: Autorizar
   back: Voltar
-  empty: (N/A)
+  empty_field: (N/A)
   view: Ver Todos
   password: Senha
   login_in: Efetuando login...
