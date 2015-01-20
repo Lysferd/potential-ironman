@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
   end
 
   def product_whitelist_labels
-    return I18n::t( :empty ) if self.product_whitelist.empty?
+    return I18n::t( :empty_field ) if self.product_whitelist.empty?
     labels = [ ]
     self.product_whitelist.each do |p|
       labels.push( Product::find( p ).label )
@@ -20,7 +20,7 @@ class Product < ActiveRecord::Base
   end
 
   def platform_whitelist_labels
-    return I18n::t( :empty ) if self.platform_whitelist.empty?
+    return I18n::t( :empty_field ) if self.platform_whitelist.empty?
     labels = [ ]
     self.platform_whitelist.each do |p|
       labels.push( Platform::find( p ).label )
