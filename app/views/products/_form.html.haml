@@ -16,15 +16,15 @@
     Plataformas Compatíveis:
     %br
     - Platform::order( :label ).each do |p|
-      = f.check_box :platform_whitelist, { multiple: true }, p.id, false
+      = f.check_box :platform_whitelist, { multiple: true }, p.id, 0
       = f.label :platform_whitelist, p.label# + " (#{p.version})"
       %br/
     %br/
     Sistemas Compatíveis:
     %br/
     - Product::order( :label ).each do |p|
-      = f.check_box :product_whitelist, { multiple: true }, p.id, false
-      = f.label :product_whitelist, p.label 
+      = f.check_box :product_whitelist, { multiple: true }, p.id, 0
+      = f.label :product_whitelist, p.label
       %br/
     #commands
       = f.submit t( :save )
