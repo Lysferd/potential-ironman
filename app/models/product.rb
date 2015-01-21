@@ -14,7 +14,7 @@ class Product < ActiveRecord::Base
     return I18n::t( :empty_field ) if self.product_whitelist.empty?
     labels = [ ]
     self.product_whitelist.each do |p|
-      labels.push( Product::find( p ).label )
+      labels.push( Product::find( p ).full_label )
     end
     return labels.join( ', ' )
   end
@@ -26,6 +26,19 @@ class Product < ActiveRecord::Base
       labels.push( Platform::find( p ).label )
     end
     return labels.join( ', ' )
+  end
+  
+  def product_dependencies_labels
+    return I18n::t( :empty_field ) if self.product_dependencies.empty?
+    labels = [ ]
+    self.product_dependencies.each do |p|
+      labels.push( Product::find( p ).full_label )
+    end
+    return labels.join( ', ' )
+  end
+
+  def full_label
+    return self.label + " #{self.version}"
   end
 
   def short_description

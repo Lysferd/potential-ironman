@@ -8,6 +8,7 @@
             %li
               = message
     = f.text_field :label, placeholder: t( 'forms.label' )
+    = f.text_field :version, placeholder: t( 'forms.version' )
     = f.text_area :description, placeholder: t( 'forms.description' )
     = f.select :manufacturer_id,
       Manufacturer::order( :label ).collect { |m| [ m.label, m.id ] },
@@ -26,6 +27,14 @@
       = f.check_box :product_whitelist, { multiple: true }, p.id, false
       = f.label :product_whitelist, p.label 
       %br/
+    %br/
+    Produtos requeridos:
+    %br/
+    - Product::order( :label ).each do |p|
+      = f.check_box :product_dependencies, {multiple: true }, p.id, false
+      = f.label :product_dependencies, p.label + " #{p.version}"
+      %br/
+    %br/
     #commands
       = f.submit t( :save )
       = f.submit t( :cancel )
