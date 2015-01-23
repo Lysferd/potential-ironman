@@ -10,11 +10,11 @@ class Solution < ActiveRecord::Base
   before_validation :validate_compatibility
 
   def product
-    Product::find( product_id ).label
+    Product::find( product_id ).full_label
   end
 
   def platform
-    Platform::find( platform_id ).label
+    Platform::find( platform_id ).full_label
   end
 
   def short_description

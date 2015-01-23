@@ -15,4 +15,8 @@ class Platform < ActiveRecord::Base
     self.description[0...100] + '(...)'
   end
 
+  def full_label
+    return self.label + " #{self.version}"
+  end
+
 end

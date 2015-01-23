@@ -5,7 +5,7 @@ class PlatformsController < ApplicationController
   # GET /platforms
   # GET /platforms.json
   def index
-    @platforms = Platform::order( :label )
+    @platforms = Platform::order( :label, :version )
     super
   end
 
@@ -71,6 +71,6 @@ class PlatformsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def platform_params
-    params.require(:platform).permit(:label, :description, :manufacturer_id)
+    params.require(:platform).permit(:label, :version, :description, :manufacturer_id)
   end
 end
