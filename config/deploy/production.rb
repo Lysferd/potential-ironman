@@ -5,8 +5,7 @@
 # property set.  Don't declare `role :all`, it's a meta role.
 
 #role :app, %w{deploy@example.com}
-#role :web, %w{ib@comissionamentos.ddns.net:3001}
-role :web, %w{ib@192.168.1.200}
+role :web, %w{ib@comissionamentos.ddns.net:3001}
 #role :db,  %w{deploy@example.com}
 
 
