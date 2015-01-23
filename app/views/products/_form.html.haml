@@ -16,9 +16,9 @@
     %br/
     Plataformas Compatíveis:
     %br
-    - Platform::order( :label ).each do |p|
+    - Platform::order( :label, :version ).each do |p|
       = f.check_box :platform_whitelist, { multiple: true }, p.id, 0
-      = f.label :platform_whitelist, p.label# + " (#{p.version})"
+      = f.label :platform_whitelist, p.full_label
       %br/
     %br/
     Sistemas Compatíveis:

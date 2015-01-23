@@ -13,7 +13,7 @@
       Product::order( :label, :version ).collect { |p| [ p.full_label, p.id ] },
       { include_blank: t( 'forms.select_product' ) }
     = f.select :platform_id,
-      Platform::order( :label ).collect { |p| [ p.label, p.id ] },
+      Platform::order( :label, :version ).collect { |p| [ p.full_label, p.id ] },
       { include_blank: t( 'forms.select_platform' ) }
     = f.hidden_field :commissioning_id,
       value: @solution.commissioning_id if @solution.commissioning_id
