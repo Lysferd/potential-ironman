@@ -1,21 +1,22 @@
 %nav
   %ul
-    %li
-      = remote_link 'Comissionamentos', commissionings_path
-      %ul
-        %li= remote_link 'Atividades', activities_path
-        %li= remote_link 'Soluções', solutions_path
-    %li
-      = remote_link 'Fabricantes', manufacturers_path
-      %ul
-        %li= remote_link 'Sistemas', products_path
-        %li= remote_link 'Plataformas', platforms_path
-        -#%li= remote_link 'Tipos de Produtos', product_types_path
+    %li= remote_link 'Comissionamentos', commissionings_path
+    
+    %li= remote_link 'Fabricantes', manufacturers_path
+    
+    %li= remote_link 'Produtos', products_path
+    
+    %li= remote_link 'Plataformas', platforms_path
+    
+    -#%li= remote_link 'Tipos de Produtos', product_types_path
+    
     %li= remote_link 'Clientes', clients_path
-    %li
-      = remote_link 'Usuários', users_path
-      %ul
-        -#%li= remote_link users_certifications_path
-        %li= remote_link 'Permissões', roles_path
+    
+    %li= remote_link 'Usuários', users_path
+    
+    -#%li= remote_link 'Certificações', users_path
+    
+    %li= remote_link 'Permissões', roles_path
+    
     %li= link_to t( 'logout' ), logout_path, method: :delete,
           data: { confirm: "This will terminate your login session. Continue?" }
