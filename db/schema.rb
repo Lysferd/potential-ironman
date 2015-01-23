@@ -92,11 +92,9 @@ ActiveRecord::Schema.define(version: 20150107023908) do
 
   create_table "products", force: true do |t|
     t.string   "label"
-    t.string   "version"
     t.text     "description"
-    t.integer  "product_whitelist",    default: [], array: true
-    t.integer  "platform_whitelist",   default: [], array: true
-    t.integer  "product_dependencies", default: [], array: true
+    t.integer  "product_whitelist",  default: [], array: true
+    t.integer  "platform_whitelist", default: [], array: true
     t.integer  "product_type_id"
     t.integer  "manufacturer_id"
     t.datetime "created_at"
