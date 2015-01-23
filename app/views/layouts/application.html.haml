@@ -15,6 +15,9 @@
     = csrf_meta_tags
 
   %body
+    - if user_signed_in?
+      #square
+        = image_tag 'imgtest.png'
     #title= content_for?( :title ) ? yield( :title ) : 'Potential Ironman'
     - if user_signed_in?
       #hmenu= render 'layouts/menu'
