@@ -42,12 +42,6 @@ User::create name: "David Rocha Milsted",
   reg: "609",
   role_id: admin.id
 
-User::create name: "Vitor Hugo Cardoso",
-  password: '1',
-  password_confirmation: '1',
-  email: "hcardoso.vitor@gmail.com",
-  role_id: admin.id
-
 User::create name: 'Projetista 01',
   password: '1',
   password_confirmation: '1',

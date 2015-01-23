@@ -30,7 +30,6 @@ pt-BR:
     edit: Editando
 
   shows:
-    version: Versão/Modelo
     description: Descrição
     reg: Registro
     cpf: Cadastro de Pessoa Física
@@ -39,7 +38,6 @@ pt-BR:
     pis: Programa de Integração Social
     product_whitelist_labels: Produtos Compatíveis
     platform_whitelist_labels: Plataformas Compatíveis
-    product_dependencies_labels: Produtos Requeridos
     creator_name: Projetista
     client_label: Cliente
     commissioners_names: Comissionadores
@@ -65,7 +63,6 @@ pt-BR:
   forms:
     full_name: Nome completo
     label: Nome
-    version: Versão/Modelo
     description: Descrição
     short_description: Descrição
     email: E-mail
