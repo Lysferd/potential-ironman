@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20150107023908) do
 
   create_table "platforms", force: true do |t|
     t.string   "label"
+    t.string   "version"
     t.text     "description"
     t.integer  "manufacturer_id"
     t.datetime "created_at"

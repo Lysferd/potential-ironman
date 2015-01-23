@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product::order( :label )
+    @products = Product::order( :label, :version )
     super
   end
 

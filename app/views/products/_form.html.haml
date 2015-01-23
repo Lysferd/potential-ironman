@@ -16,23 +16,23 @@
     %br/
     Plataformas Compatíveis:
     %br
-    - Platform::order( :label ).each do |p|
+    - Platform::order( :label, :version ).each do |p|
       = f.check_box :platform_whitelist, { multiple: true }, p.id, 0
-      = f.label :platform_whitelist, p.label# + " (#{p.version})"
+      = f.label :platform_whitelist, p.full_label
       %br/
     %br/
     Sistemas Compatíveis:
     %br/
-    - Product::order( :label ).each do |p|
+    - Product::order( :label, :version ).each do |p|
       = f.check_box :product_whitelist, { multiple: true }, p.id, 0
-      = f.label :product_whitelist, p.label
+      = f.label :product_whitelist, p.full_label
       %br/
     %br/
     Produtos requeridos:
     %br/
-    - Product::order( :label ).each do |p|
+    - Product::order( :label, :version ).each do |p|
       = f.check_box :product_dependencies, {multiple: true }, p.id, false
-      = f.label :product_dependencies, p.label + " #{p.version}"
+      = f.label :product_dependencies, p.full_label
       %br/
     %br/
     #commands

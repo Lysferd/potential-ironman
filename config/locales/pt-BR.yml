@@ -65,6 +65,8 @@ pt-BR:
   forms:
     full_name: Nome completo
     label: Nome
+    full_label: Nome
+    manufacturer: Fabricante
     version: Versão/Modelo
     description: Descrição
     short_description: Descrição
