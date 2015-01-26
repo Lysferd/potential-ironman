@@ -50,6 +50,15 @@ pt-BR:
     no_solutions: Nenhuma solução cadastrada.
     no_activities: Nenhuma atividade cadastrada.
     authorization_status: Autorizado
+    cnpj: CNPJ
+    address1: Endereço
+    address2: Complemento
+    zip_code: CEP
+    phone: Telefone
+    contact_name: Nome do Contato
+    contact_email: Email do Contato
+    commercial_contact: Contato Comercial
+    homepage: Endereço Web
 
   last:
     user: Últimos usuários cadastrados
@@ -85,6 +94,14 @@ pt-BR:
     roles: Permissões
     authorized: Autorizar este comissionamento.
     confirm_authorization: Uma vez autorizado, este comissionamento não poderá mais ser modificado. Deseja prosseguir?
+    cnpj: CNPJ
+    address1: Endereço
+    address2: Complemento
+    zip_code: CEP
+    phone: Telefone
+    contact_name: Nome do Contato
+    contact_email: Email do Contato
+    commercial_contact: Contato Comercial
   
   label: Nome
   description: Descrição
