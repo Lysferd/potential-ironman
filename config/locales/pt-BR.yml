@@ -80,7 +80,7 @@ pt-BR:
     reg: Registro geral
     homepage: Endereço web
     options: Opções
-    product: Sistema
+    product: Produto
     platform: Plataforma
     roles: Permissões
     authorized: Autorizar este comissionamento.
@@ -114,11 +114,11 @@ pt-BR:
       one: Plataforma
       other: Plataformas
     products:
-      one: Sistema
-      other: Sistemas
+      one: Produto
+      other: Produtos
     product_types:
-      one: Tipo de Sistema
-      other: Tipos de Sistemas
+      one: Tipo de Produto
+      other: Tipos de Produtos
     roles:
       one: Permissão
       other: Permissões
