@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
   # Cancels data update/creation in case cancel button is pressed.
   def check_for_cancel
     return unless params[:commit] == t( :cancel )
-    back( notice: 'Alterações descartadas.' )
+      back( notice: 'Alterações descartadas.' )
   end
 
   def title_base

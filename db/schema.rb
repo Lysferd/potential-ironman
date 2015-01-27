@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150107023908) do
     t.datetime "date_end"
     t.integer  "commissioning_id"
     t.integer  "user_id"
+    t.boolean  "completed",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

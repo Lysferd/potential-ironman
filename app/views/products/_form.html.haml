@@ -37,4 +37,4 @@
     %br/
     #commands
       = f.submit t( :save )
-      = f.submit t( :cancel )
+      = f.submit t( :cancel ), data: { confirm: t( :cancel_confirmation) } #, data: { confirm: t( :cancel_confirmation ) } ) #f.submit t( :cancel )

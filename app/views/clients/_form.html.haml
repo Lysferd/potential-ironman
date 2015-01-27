@@ -8,6 +8,15 @@
             %li
               = message
     = f.text_field :label, placeholder: t( 'forms.label' ), autofocus: true
+    = f.text_field :cnpj, placeholder: t( 'forms.cnpj' )
+    = f.text_field :address1, placeholder: t( 'forms.address1' )
+    = f.text_field :address2, placeholder: t( 'forms.address2' )
+    = f.text_field :zip_code, placeholder: t( 'forms.zip_code' )
+    = f.text_field :phone, placeholder: t( 'forms.phone' )
+    = f.text_field :contact_name, placeholder: t( 'forms.contact_name' )
+    = f.text_field :contact_email, placeholder: t( 'forms.contact_email' )
+    = f.text_field :commercial_contact, placeholder: t( 'forms.commercial_contact' )
+    = f.text_field :homepage, placeholder: t( 'forms.homepage' )
     #commands
       = f.submit t( :save )
-      = f.submit t( :cancel )
+      = f.submit t( :cancel ), data: { confirm: t( :cancel_confirmation) }
