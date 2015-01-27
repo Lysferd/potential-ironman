@@ -19,4 +19,4 @@
     = f.text_field :homepage, placeholder: t( 'forms.homepage' )
     #commands
       = f.submit t( :save )
-      = f.submit t( :cancel )
+      = f.submit t( :cancel ), data: { confirm: t( :cancel_confirmation) }

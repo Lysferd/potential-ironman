@@ -7,6 +7,7 @@ class CreateActivities < ActiveRecord::Migration
       t.timestamp :date_end
       t.integer :commissioning_id
       t.integer :user_id
+      t.boolean :completed, default: false
 
       t.timestamps
     end

@@ -16,7 +16,8 @@ pt-BR:
   login_in: Efetuando login...
   destroy_confirmation: Esta ação permanentemente removerá o dado selecionado. Deseja prosseguir?
   remember_me: Lembrar destas credenciais
-  
+  cancel_confirmation: Tem certeza de que deseja descartar essas alterações? 
+  confirm_authorization: Uma vez autorizado, este comissionamento não poderá mais ser modificado. Deseja prosseguir?
   error_notice: 'Houve um problema durante criação deste objeto:'
 
   show_header: Detalhes de
@@ -93,7 +94,7 @@ pt-BR:
     platform: Plataforma
     roles: Permissões
     authorized: Autorizar este comissionamento.
-    confirm_authorization: Uma vez autorizado, este comissionamento não poderá mais ser modificado. Deseja prosseguir?
+    #confirm_authorization: Uma vez autorizado, este comissionamento não poderá mais ser modificado. Deseja prosseguir?
     cnpj: CNPJ
     address1: Endereço
     address2: Complemento
