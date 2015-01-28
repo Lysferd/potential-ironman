@@ -16,7 +16,8 @@ pt-BR:
   login_in: Efetuando login...
   destroy_confirmation: Esta ação permanentemente removerá o dado selecionado. Deseja prosseguir?
   remember_me: Lembrar destas credenciais
-  
+  cancel_confirmation: Tem certeza de que deseja descartar essas alterações? 
+  confirm_authorization: Uma vez autorizado, este comissionamento não poderá mais ser modificado. Deseja prosseguir?
   error_notice: 'Houve um problema durante criação deste objeto:'
 
   show_header: Detalhes de
@@ -50,6 +51,15 @@ pt-BR:
     no_solutions: Nenhuma solução cadastrada.
     no_activities: Nenhuma atividade cadastrada.
     authorization_status: Autorizado
+    cnpj: CNPJ
+    address1: Endereço
+    address2: Complemento
+    zip_code: CEP
+    phone: Telefone
+    contact_name: Nome do Contato
+    contact_email: Email do Contato
+    commercial_contact: Contato Comercial
+    homepage: Endereço Web
 
   last:
     user: Últimos usuários cadastrados
@@ -65,6 +75,8 @@ pt-BR:
   forms:
     full_name: Nome completo
     label: Nome
+    full_label: Nome
+    manufacturer: Fabricante
     version: Versão/Modelo
     description: Descrição
     short_description: Descrição
@@ -78,11 +90,19 @@ pt-BR:
     reg: Registro geral
     homepage: Endereço web
     options: Opções
-    product: Sistema
+    product: Produto
     platform: Plataforma
     roles: Permissões
     authorized: Autorizar este comissionamento.
-    confirm_authorization: Uma vez autorizado, este comissionamento não poderá mais ser modificado. Deseja prosseguir?
+    #confirm_authorization: Uma vez autorizado, este comissionamento não poderá mais ser modificado. Deseja prosseguir?
+    cnpj: CNPJ
+    address1: Endereço
+    address2: Complemento
+    zip_code: CEP
+    phone: Telefone
+    contact_name: Nome do Contato
+    contact_email: Email do Contato
+    commercial_contact: Contato Comercial
   
   label: Nome
   description: Descrição
@@ -112,11 +132,11 @@ pt-BR:
       one: Plataforma
       other: Plataformas
     products:
-      one: Sistema
-      other: Sistemas
+      one: Produto
+      other: Produtos
     product_types:
-      one: Tipo de Sistema
-      other: Tipos de Sistemas
+      one: Tipo de Produto
+      other: Tipos de Produtos
     roles:
       one: Permissão
       other: Permissões

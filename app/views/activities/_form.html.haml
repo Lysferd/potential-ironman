@@ -22,4 +22,4 @@
       value: @activity.commissioning_id if @activity.commissioning_id
     #commands
       = f.submit t( :save )
-      = f.submit t( :cancel )
+      = f.submit t( :cancel ), data: { confirm: t( :cancel_confirmation) }

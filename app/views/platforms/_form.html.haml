@@ -8,10 +8,11 @@
             %li
               = message
     = f.text_field :label, placeholder: t( 'forms.label' ), autofocus: true
+    = f.text_field :version, placeholder: t( 'forms.version' )
     = f.text_area :description, placeholder: t( 'forms.description' )
     = f.select :manufacturer_id,
-      Manufacturer::order( :label ).collect { |m| [ m.label, m.id ] },
+      Manufacturer::order( :label).collect { |m| [ m.label, m.id ] },
       { prompt: 'Selecione um fabricante' }
     #commands
       = f.submit t( :save )
-      = f.submit t( :cancel )
+      = f.submit t( :cancel ), data: { confirm: t( :cancel_confirmation) }

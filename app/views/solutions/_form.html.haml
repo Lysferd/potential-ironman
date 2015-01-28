@@ -10,13 +10,13 @@
     = f.text_field :label, placeholder: t( 'forms.label' ), autofocus: true
     = f.text_area :description, placeholder: t( 'forms.description' )
     = f.select :product_id,
-      Product::order( :label ).collect { |p| [ p.label, p.id ] },
+      Product::order( :label, :version ).collect { |p| [ p.full_label, p.id ] },
       { include_blank: t( 'forms.select_product' ) }
     = f.select :platform_id,
-      Platform::order( :label ).collect { |p| [ p.label, p.id ] },
+      Platform::order( :label, :version ).collect { |p| [ p.full_label, p.id ] },
       { include_blank: t( 'forms.select_platform' ) }
     = f.hidden_field :commissioning_id,
       value: @solution.commissioning_id if @solution.commissioning_id
     #commands
       = f.submit t( :save )
-      = f.submit t( :cancel )
+      = f.submit t( :cancel ), data: { confirm: t( :cancel_confirmation) }

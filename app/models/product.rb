@@ -25,7 +25,7 @@ class Product < ActiveRecord::Base
     return I18n::t( :empty_field ) if self.platform_whitelist.empty?
     labels = [ ]
     self.platform_whitelist.each do |p|
-      labels.push( Platform::find( p ).label )
+      labels.push( Platform::find( p ).full_label )
     end
     return labels.join( ', ' )
   end

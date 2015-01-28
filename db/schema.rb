@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150107023908) do
     t.datetime "date_end"
     t.integer  "commissioning_id"
     t.integer  "user_id"
+    t.boolean  "completed",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -77,6 +78,7 @@ ActiveRecord::Schema.define(version: 20150107023908) do
 
   create_table "platforms", force: true do |t|
     t.string   "label"
+    t.string   "version"
     t.text     "description"
     t.integer  "manufacturer_id"
     t.datetime "created_at"
