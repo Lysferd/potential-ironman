@@ -22,7 +22,7 @@
             %td
               = f.check_box :commissioners,
                 { multiple: true,
-                checked: @commissioning.user_ids.include?( u.id ) },
+                checked: @commissioning.commissioners.include?( u.id ) },
                 u.id, ''
               = f.label :commissioners, u.name
     #commands
