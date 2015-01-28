@@ -4,12 +4,11 @@
     %meta{ name: 'viewport', content: 'user-scalable=no' }
     %title
       Comissionamentos
-    -#- if browser.tablet? or params[:tablet]
-      - css = 'tablet'
     - if browser.mobile? or params[:mobile]
       - css = 'mobile'
     - else
       - css = 'desktop'
+    = stylesheet_link_tag 'all/application', media: :all, 'data-turbolinks-track' => true
     = stylesheet_link_tag "#{css}/application", media: :all, 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
