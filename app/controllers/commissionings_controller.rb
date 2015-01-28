@@ -47,7 +47,6 @@ class CommissioningsController < ApplicationController
   # PATCH/PUT /commissionings/1.json
   def update
     p = commissioning_params
-    p[:commissioners].reject!( &:empty? )
     p[:authorized] = true if params[:commit] == t( :authorize )
 
     respond_to do |format|
