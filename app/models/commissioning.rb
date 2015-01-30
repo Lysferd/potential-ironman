@@ -42,12 +42,8 @@ class Commissioning < ActiveRecord::Base
     self.description[0...100] + '(...)'
   end
 
-<<<<<<< HEAD
-=======
   private
   def remove_empty_elements
     self.commissioners.reject!( &:empty? )
   end
-  
->>>>>>> master
 end
