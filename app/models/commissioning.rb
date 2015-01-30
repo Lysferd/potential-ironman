@@ -8,6 +8,8 @@ class Commissioning < ActiveRecord::Base
   validates :label, presence: true, uniqueness: true
   validates :client_id, presence: true
 
+  before_validation :remove_empty_elements, if: lambda { self.authorized }
+
   def client_label
     Client::find( self.client_id ).label
   end
@@ -40,4 +42,12 @@ class Commissioning < ActiveRecord::Base
     self.description[0...100] + '(...)'
   end
 
+<<<<<<< HEAD
+=======
+  private
+  def remove_empty_elements
+    self.commissioners.reject!( &:empty? )
+  end
+  
+>>>>>>> master
 end

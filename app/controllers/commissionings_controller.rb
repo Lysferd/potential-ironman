@@ -1,7 +1,6 @@
 class CommissioningsController < ApplicationController
   before_action :set_commissioning, only: [:show, :edit, :update, :destroy]
   before_action :check_for_cancel, only: [:create, :update]
-  before_action :validate_dependencies, only: [:update]
   #before_action :refresh_title, except: [ :create, :update, :destroy ]
 
   # GET /commissionings
@@ -48,7 +47,10 @@ class CommissioningsController < ApplicationController
   # PATCH/PUT /commissionings/1.json
   def update
     p = commissioning_params
-    #p[:commissioners].reject!( &:empty? )
+<<<<<<< HEAD
+    p[:commissioners].reject!( &:empty? )
+=======
+>>>>>>> master
     p[:authorized] = true if params[:commit] == t( :authorize )
 
     respond_to do |format|

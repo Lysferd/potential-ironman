@@ -23,3 +23,6 @@
 
 # Ignore DB seeds.
 /db/seeds.rb
+
+# Ignore VIM swap files.
+*.swp
