@@ -46,5 +46,4 @@ class Commissioning < ActiveRecord::Base
   def remove_empty_elements
     self.commissioners.reject!( &:empty? )
   end
-  
 end
