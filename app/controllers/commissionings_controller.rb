@@ -1,6 +1,7 @@
 class CommissioningsController < ApplicationController
   before_action :set_commissioning, only: [:show, :edit, :update, :destroy]
   before_action :check_for_cancel, only: [:create, :update]
+  before_action :validate_dependencies, only: [:update]
   #before_action :refresh_title, except: [ :create, :update, :destroy ]
 
   # GET /commissionings
@@ -47,7 +48,7 @@ class CommissioningsController < ApplicationController
   # PATCH/PUT /commissionings/1.json
   def update
     p = commissioning_params
-    p[:commissioners].reject!( &:empty? )
+    #p[:commissioners].reject!( &:empty? )
     p[:authorized] = true if params[:commit] == t( :authorize )
 
     respond_to do |format|
@@ -77,7 +78,7 @@ class CommissioningsController < ApplicationController
   def set_commissioning
     @commissioning = Commissioning.find(params[:id])
   end
-  
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def commissioning_params
     params.require(:commissioning).permit(:label, :description, :client_id, :creator_id, commissioners: [] )

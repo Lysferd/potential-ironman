@@ -39,5 +39,5 @@ class Commissioning < ActiveRecord::Base
     return self.description if self.description.size <= 100
     self.description[0...100] + '(...)'
   end
-  
+
 end

@@ -6,6 +6,7 @@ class CreateSolutions < ActiveRecord::Migration
       t.integer :commissioning_id
       t.integer :product_id
       t.integer :platform_id
+      t.boolean :depends
 
       t.timestamps
     end
