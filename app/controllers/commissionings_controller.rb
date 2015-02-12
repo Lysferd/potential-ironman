@@ -2,6 +2,7 @@ class CommissioningsController < ApplicationController
   before_action :set_commissioning, only: [:show, :edit, :update, :destroy]
   before_action :check_for_cancel, only: [:create, :update]
   #before_action :refresh_title, except: [ :create, :update, :destroy ]
+  before_action :dependences, only: [:show]
 
   # GET /commissionings
   # GET /commissionings.json
@@ -80,5 +81,15 @@ class CommissioningsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def commissioning_params
     params.require(:commissioning).permit(:label, :description, :client_id, :creator_id, commissioners: [] )
+    
   end
+
+  def dependences
+    @solutions = Solution::where( commissioning_id: @commissioning.id )
+    @solutions.each do |s|
+      s[:depends] = s.check_dependence
+      s.save
+    end
+  end
+
 end

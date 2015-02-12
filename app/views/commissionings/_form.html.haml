@@ -28,5 +28,5 @@
     #commands
       = f.submit t( :save )
       = f.submit t( :cancel ), data: { confirm: t( :cancel_confirmation) }
-      - if not @commissioning.solutions.count.zero? and not @commissioning.authorized
+      - if not @commissioning.solutions.count.zero? and not @commissioning.authorized and not @commissioning.depends
         = f.submit t( :authorize ), data: { confirm: t( :confirm_authorization ) }

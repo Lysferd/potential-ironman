@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20150107023908) do
     t.integer  "commissioning_id"
     t.integer  "product_id"
     t.integer  "platform_id"
-    t.boolean  "depends"
+    t.boolean  "depends",          default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

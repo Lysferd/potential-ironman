@@ -42,6 +42,23 @@ class Commissioning < ActiveRecord::Base
     self.description[0...100] + '(...)'
   end
 
+  def depends
+    self.solutions.each do |s|
+      if not s.depends
+        return true
+      end
+    end
+    return false
+  end
+
+  def product_list
+    list = [ ]
+    self.solutions.each do |s|
+      list.push( Solution::find( s ).product_id )
+    end
+    return list
+  end
+    
   private
   def remove_empty_elements
     self.commissioners.reject!( &:empty? )
