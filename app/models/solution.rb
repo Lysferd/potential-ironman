@@ -26,11 +26,6 @@ class Solution < ActiveRecord::Base
     self.depends ? 'Sim' : 'Não'
   end
 
-  def change_depends( sign )
-    self[:depends] = sign
-    self.save
-  end
-
   def check_dependence
     Product::find( self.product_id ).product_dependencies.each do |s|
       if not Commissioning::find( self.commissioning_id ).product_list.include?( s )

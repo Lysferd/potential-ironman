@@ -58,25 +58,6 @@ class Commissioning < ActiveRecord::Base
     end
     return list
   end
-
-#  def validate_dependencies
-#   product_list = [ ]
-#  self.solutions.each do |s|
-#   s.change_depends(true)
-#  product_list.push( s.product_id )
-#    end
-#    
-#    self.solutions.each do |s|
-#      unless product_list.include?( Product::find(s.product_id).product_dependencies )
-#        Solution::find( s ).depends = false
-#      else
-#        Solution::find( s ).depends = true
-#      end
-#      
-#      #need to find a way to change value of `depends´ in solution.
-#    end
-#  end
-
     
   private
   def remove_empty_elements

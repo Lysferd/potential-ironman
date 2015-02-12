@@ -1,7 +1,6 @@
 class SolutionsController < ApplicationController
   before_action :set_solution, only: [:show, :edit, :update, :destroy]
-  before_action :check_for_cancel, :only => [:create, :update]
-#  before_action :dependence_change, only: [:show] 
+  before_action :check_for_cancel, :only => [:create, :update] 
   after_action :dependence_change, only: [:update, :create]
   
   # GET /solutions
@@ -41,7 +40,6 @@ class SolutionsController < ApplicationController
   # POST /solutions.json
   def create
     @solution = Solution::new( solution_params )
-    #@solution[:depends] = @solution.check_dependence
 
     respond_to do |format|
       if @solution.save
@@ -59,11 +57,9 @@ class SolutionsController < ApplicationController
   # PATCH/PUT /solutions/1
   # PATCH/PUT /solutions/1.json
   def update
-    p = solution_params
-    #p[:depends] = @solution.check_dependence
-    
+
     respond_to do |format|
-      if @solution.update(p)
+      if @solution.update(solution_params)
         format.html { redirect_to @solution,
                       notice: 'Solution was successfully updated.' }
         format.json { render :show, status: :ok, location: @solution }
