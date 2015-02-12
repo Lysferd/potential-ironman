@@ -60,6 +60,9 @@ pt-BR:
     contact_email: Email do Contato
     commercial_contact: Contato Comercial
     homepage: Endereço Web
+    product: Produto
+    platform: Plataforma
+    depends_status: Dependencias Atendidas
 
   last:
     user: Últimos usuários cadastrados

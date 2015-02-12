@@ -22,6 +22,24 @@ class Solution < ActiveRecord::Base
     self.description[0...100] + '(...)'
   end
 
+  def depends_status
+    self.depends ? 'Sim' : 'Não'
+  end
+
+  def change_depends( sign )
+    self[:depends] = sign
+    self.save
+  end
+
+  def check_dependence
+    Product::find( self.product_id ).product_dependencies.each do |s|
+      if not Commissioning::find( self.commissioning_id ).product_list.include?( s )
+        return false
+      end
+    end
+    return true
+  end
+
   private
   def validate_compatibility
     return unless self.label and self.product_id and self.platform_id
@@ -36,5 +54,5 @@ class Solution < ActiveRecord::Base
       end
     end
   end
-  
+
 end
