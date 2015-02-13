@@ -1,6 +1,9 @@
 - content_for( :title ) do
   = t 'show_header'
   = t 'models.' + eval( "obj.#{columns.first}" )
+  - if user_signed_in?
+    #square
+      = image_tag 'ibheader.png'
 
 #paper
   %table

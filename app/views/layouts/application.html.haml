@@ -18,7 +18,8 @@
     - if user_signed_in?
       #square
         = image_tag 'ibheader.png'
-    #title= content_for?( :title ) ? yield( :title ) : 'Potential Ironman'
+    #title
+      = content_for?( :title ) ? yield( :title ) : 'Potential Ironman'
     - if user_signed_in?
       #hmenu= render 'layouts/menu'
     #spinner( hidden )

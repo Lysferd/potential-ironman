@@ -2,8 +2,21 @@
   #image
     = image_tag 'ib3.png'
   = form_tag :login do |f|
-    = email_field_tag :email, params[:email], autofocus: true, placeholder: t( :email )
-    = password_field_tag :password, params[:password], autocomplete: :off, placeholder: t( :password )
-    = check_box_tag :remember_me, params[:remember_me]
-    = label_tag :remember_me, t( :remember_me )
+    %div.group
+      = email_field_tag :email, params[:email]
+      %span.highlight
+      %span.bar
+      %label
+        = t( :email )
+    %div.group
+      = password_field_tag :password, params[:password], autocomplete: :off
+      %span.highlight
+      %span.bar
+      %label
+        = t( :password )
+    
+    %div.inputcheck
+      = check_box_tag :remember_me, params[:remember_me]
+      %span
+      = label_tag :remember_me, t( :remember_me )
     = submit_tag t( :login ), { id: :login, data: { disable_with: t( :login_in ) } }

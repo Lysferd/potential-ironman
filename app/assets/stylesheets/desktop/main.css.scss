@@ -36,19 +36,22 @@ p, ol, td {
   background-color: #009688; // Verde Petróleo 500 - Google Material Design Pallete
   font-size: 35px;
   z-index: 10;
+  
+
 }
 
 #square {
-  position: relative;
-  top: 0px;
-  left: 0px;
-  z-index: 11;
-  
+position: absolute;
+top: 28px;
+left: 8px;
+z-index: 11;
+
   img {
-    width: auto;
-    height: 102px;
+    height: AUTO;
+    max-width: 200px;
   }
 }
+
 
 #alert {
   @include title-banner;
@@ -288,18 +291,101 @@ p, ol, td {
         width: 274px;
         font-size: 15px;
         
-        input[type="checkbox"] {
-          + label span {
-            margin-left: 20px;
-            bottom: 5px;
-            cursor: pointer;
-            vertical-align: middle;
-            position: relative;
-            cursor: pointer;
-          }
-          
+        label {
+          color:#999; 
+          font-size:18px;
+          font-weight:normal;
+          pointer-events:none;
+          left:25px;
+          top:10px;
         }
+        
       }
+      
+      // BEGIN - ELEMENTS OF NEW STYLE FORM //
+      
+      
+      .group { 
+        position:relative; 
+        margin-bottom:25px; 
+      
+      
+            /* LABEL ======================================= */
+        label 				 {
+          color:#999; 
+          font-size:14px;
+          font-weight:normal;
+          position:absolute;
+          pointer-events:none;
+          left:5px;
+          top:1px;
+          transition:0.2s ease all; 
+          -moz-transition:0.2s ease all; 
+          -webkit-transition:0.2s ease all;
+        } 
+      
+      } 
+
+      /* active state */
+      
+
+      /* BOTTOM BARS ================================= */
+      .bar 	{ position:relative; display:block; width:285px; }
+      .bar:before, .bar:after 	{
+        content:'';
+        height:2px; 
+        width:0;
+        bottom:9px; 
+        position:absolute;
+        background:#5264AE; 
+        transition:0.2s ease all; 
+        -moz-transition:0.2s ease all; 
+        -webkit-transition:0.2s ease all;
+      }
+      .bar:before {
+        left:50%;
+      }
+      .bar:after {
+        right:50%; 
+      }
+
+      /* active state */
+      input:focus ~ .bar:before, input:focus ~ .bar:after {
+        width:50%;
+      }
+
+      /* HIGHLIGHTER ================================== */
+      .highlight {
+        position:absolute;
+        height:25px; 
+        width:100px; 
+        top:25%; 
+        left:0;
+        pointer-events:none;
+        opacity:0.5;
+      }
+
+      /* active state */
+      
+
+      /* ANIMATIONS ================ */
+      @-webkit-keyframes inputHighlighter {
+        from { background:#5264AE; }
+        to 	{ width:0; background:transparent; }
+      }
+      @-moz-keyframes inputHighlighter {
+        from { background:#5264AE; }
+        to 	{ width:0; background:transparent; }
+      }
+      @keyframes inputHighlighter {
+        from { background:#5264AE; }
+        to 	{ width:0; background:transparent; }
+      }
+
+      // END - NEW STYLE ELEMENTS FORM //
+      
+      
+      
       
       #commands {
         text-align: center;
@@ -335,15 +421,25 @@ p, ol, td {
       input {
         margin-bottom: 10px;
         &[type="email"], &[type="password"], &[type="text"] {
-          background-color: #FFFFFF;
-          padding-left: 10px;
-          width: 261px;
-          height: 43px;
-          border: 1px solid #BDBDBD;
-          letter-spacing: 2px;
-          &:focus {
-            background-color: #FAFAFA; //Cinza 50 - Google Material Design Pallete
+          font-size:18px;
+          padding:20px 10px 10px 0px;
+          display:block;
+          width:274px;
+          border:none;
+          border-bottom:1px solid #757575;
+          
+          &:focus 		{ outline:none; }
+          &:focus ~ .highlight {
+          -webkit-animation:inputHighlighter 0.3s ease;
+          -moz-animation:inputHighlighter 0.3s ease;
+          animation:inputHighlighter 0.3s ease;
           }
+          &:focus ~ label, input:valid ~ label 		{
+          /* top:-20px; */
+          font-size:16px;
+          color:#5264AE;
+          }
+          
         }
       }
 
@@ -759,3 +855,5 @@ nav {
   }
 }
 // END OF HORIZONTAL MENU STYLE //
+
+
