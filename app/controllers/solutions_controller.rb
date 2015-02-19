@@ -95,8 +95,8 @@ class SolutionsController < ApplicationController
   end
 
   def dependence_change
-      @solution[:depends] = @solution.check_dependence
-      @solution.save 
+    @solution[:depends] = @solution.check_dependence
+    @solution.save 
   end
 
 end

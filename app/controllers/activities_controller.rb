@@ -25,7 +25,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/new
   def new
     flash.keep( :commissioning_id ) if flash[:commissioning_id]
-    @activity = Activity.new
+    @activity = Activity.new( commissioning_id: flash[:commissioning_id] )
     super
   end
 
